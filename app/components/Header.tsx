@@ -11,9 +11,11 @@ export default function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50)
+            setIsScrolled(window.scrollY > 20)
         }
-        window.addEventListener("scroll", handleScroll)
+
+        window.addEventListener("scroll", handleScroll, { passive: true })
+
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
@@ -21,48 +23,51 @@ export default function Header() {
         <header
             className={`fixed top-0 left-0 w-full z-50 flex justify-center transition-all duration-500 ${isScrolled
                 ? "pt-4 px-4"
-                : "bg-gray-950/90 backdrop-blur border-b border-gray-800"
+                : "bg-brand-section/90 backdrop-blur border-b border-brand-border"
                 }`}
         >
             <div
                 className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled
-                    ? "max-w-5xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.4)] rounded-full px-4 py-2"
+                    ? "max-w-5xl bg-brand-card/80 backdrop-blur-xl border border-brand-border shadow-lg rounded-full px-5 py-3"
                     : "max-w-7xl px-6 md:px-16 py-4"
                     }`}
             >
                 {/* Logo */}
                 <div className="flex items-center gap-2">
-                    <div className="bg-orange-600 w-9 h-9 rounded-md flex items-center justify-center overflow-hidden">
-                        S
+                    <div className="rounded-full w-11 h-11 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20">
+                        <Image
+                            src="/logo.png"
+                            alt="ScamFreeIndia Logo"
+                            width={48}
+                            height={48}
+                            className="w-full h-full object-contain p-1"
+                            priority
+                        />
                     </div>
 
-                    <span className="text-white font-semibold tracking-wide hidden sm:block">
+                    <span className="text-brand-primary font-bold tracking-wide hidden sm:block text-lg">
                         ScamFreeIndia
                     </span>
                 </div>
 
                 {/* Navigation */}
-                <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-8 text-sm font-medium text-brand-secondary">
                     {navItems.map((item) => (
                         <a
                             key={item}
                             href="/"
-                            className="relative group"
+                            className="relative group transition-colors hover:text-brand-primary"
                         >
-                            <span className="group-hover:text-white transition">
-                                {item}
-                            </span>
-
+                            <span>{item}</span>
                             {/* Animated underline */}
-                            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all group-hover:w-full"></span>
+                            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     ))}
                 </nav>
 
-                <div className="flex items-center relative gap-3">
-
+                <div className="flex items-center gap-3">
                     {/* Desktop CTA */}
-                    <button className="hidden sm:inline-block bg-orange-600 hover:bg-orange-700 text-white text-sm font-bold uppercase transition shadow-lg hover:shadow-orange-500/20 px-4 py-2 rounded-md">
+                    <button className="hidden sm:inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-5 py-2.5 rounded-lg active:scale-95">
                         Get Started
                     </button>
 
@@ -70,40 +75,32 @@ export default function Header() {
                     <button
                         type="button"
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-                        aria-expanded={isMobileMenuOpen}
-                        className="md:hidden text-white flex items-center justify-center p-4 rounded-md transition"
+                        className="md:hidden text-brand-primary flex flex-col justify-center items-center w-8 h-8 rounded-md transition"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
-                        {/* Animated Icon */}
-                        <div className="w-5 h-5 relative">
-                            <span className={`absolute w-5 h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 top-2" : "top-0"}`}></span>
-                            <span className={`absolute w-5 h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : "top-2"}`}></span>
-                            <span className={`absolute w-5 h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 top-2" : "top-4"}`}></span>
-                        </div>
+                        <span className={`block w-5 h-0.5 bg-brand-primary transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-1" : "-translate-y-1"}`}></span>
+                        <span className={`block w-5 h-0.5 bg-brand-primary transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : "my-0.5"}`}></span>
+                        <span className={`block w-5 h-0.5 bg-brand-primary transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-1.5" : "translate-y-1"}`}></span>
                     </button>
 
                     {/* Mobile Menu */}
                     <div
-                        className={`absolute top-14 right-0 w-56 bg-[#0b1121]/95 backdrop-blur-xl border border-white/10 shadow-2xl rounded-xl flex flex-col z-50 md:hidden transition-all duration-300 origin-top ${isMobileMenuOpen
+                        className={`absolute top-16 right-4 w-56 bg-brand-section/95 backdrop-blur-xl border border-brand-border shadow-2xl rounded-xl flex flex-col z-50 md:hidden transition-all duration-300 origin-top ${isMobileMenuOpen
                             ? "scale-100 opacity-100"
                             : "scale-95 opacity-0 pointer-events-none"
                             }`}
                     >
-                        {/* Links */}
                         {navItems.map((item, idx) => (
                             <a
                                 key={item}
                                 href="/"
-                                className={`px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition ${idx !== navItems.length - 1 ? "border-b border-white/5" : ""
+                                className={`px-5 py-4 text-sm font-medium text-brand-secondary hover:text-brand-primary hover:bg-white/5 transition ${idx !== navItems.length - 1 ? "border-b border-brand-border" : ""
                                     }`}
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {item}
                             </a>
                         ))}
-
-
-
                     </div>
                 </div>
             </div>
