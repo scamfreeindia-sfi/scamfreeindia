@@ -33,8 +33,8 @@ export default function Header() {
                     }`}
             >
                 {/* Logo */}
-                <div className="flex items-center gap-2">
-                    <div className="rounded-full w-11 h-11 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20">
+                <a href="/" className="flex items-center gap-2 group">
+                    <div className="rounded-full w-11 h-11 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105">
                         <Image
                             src="/logo.png"
                             alt="ScamFreeIndia Logo"
@@ -48,15 +48,15 @@ export default function Header() {
                     <span className="text-brand-primary font-bold tracking-wide hidden sm:block text-lg">
                         ScamFreeIndia
                     </span>
-                </div>
+                </a>
 
                 {/* Navigation */}
                 <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-8 text-sm font-medium text-brand-secondary">
                     {navItems.map((item) => (
                         <a
                             key={item}
-                            href="/"
-                            className="relative group transition-colors hover:text-brand-primary"
+                            href={item === "Blog" ? "/blog" : "/"}
+                            className="relative group transition-colors hover:text-brand-primary text-lg"
                         >
                             <span>{item}</span>
                             {/* Animated underline */}
@@ -93,7 +93,7 @@ export default function Header() {
                         {navItems.map((item, idx) => (
                             <a
                                 key={item}
-                                href="/"
+                                href={item === "Blog" ? "/blog" : "/"}
                                 className={`px-5 py-4 text-sm font-medium text-brand-secondary hover:text-brand-primary hover:bg-white/5 transition ${idx !== navItems.length - 1 ? "border-b border-brand-border" : ""
                                     }`}
                                 onClick={() => setIsMobileMenuOpen(false)}
