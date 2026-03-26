@@ -3,6 +3,8 @@ import Image from "next/image";
 import FraudSection from "./ScamType"
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import SebiIntermediaries from "./SebiIntermediaries";
+import Review from "./Review";
 export default function Main() {
     const [form, setForm] = useState({
         name: "",
@@ -45,14 +47,14 @@ export default function Main() {
                     {/* LEFT */}
                     <div className="hidden lg:block space-y-8 relative z-0">
                         {/* Background Logo Watermark */}
-                        <div className="absolute top-1/2 -translate-y-1/2 left-0 -z-10 opacity-20 pointer-events-none select-none w-full max-w-lg">
+                        <div className="absolute top-1/2 -translate-y-1/2 left-0 -z-10 opacity-10 pointer-events-none select-none w-full max-w-lg">
                             <Image
                                 src="/logo.png"
                                 alt="Hero Background"
                                 width={1200}
                                 height={800}
                                 sizes="(max-width: 768px) 100vw, 1200px"
-                                className="w-full h-auto object-contain blur-[1px]"
+                                className="w-full h-auto object-contain"
                                 priority
                             />
                         </div>
@@ -79,8 +81,8 @@ export default function Main() {
                                 "Expert Guidance",
                                 "Fast Response",
                                 "100% Confidential"
-                            ].map((item, i) => (
-                                <li key={i} className="flex items-center gap-3">
+                            ].map((item, itemIndex) => (
+                                <li key={itemIndex} className="flex items-center gap-3">
                                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-green/20 flex items-center justify-center border border-brand-green/30 text-brand-green">
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -186,12 +188,14 @@ export default function Main() {
 
             {/* FRAUD PROGRAM SECTION */}
             <FraudSection />
+            <SebiIntermediaries />
+            <Review />
 
             {/* BLOGS SECTION */}
             <section className="py-20 px-6 md:px-16 max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Recent Scam Awareness</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Recent Scam Awareness</h2>
                         <p className="text-brand-secondary max-w-xl">Stay informed about the latest online frauds and how to protect yourself.</p>
                     </div>
                     <a href="/blog" className="inline-flex items-center text-brand-blue font-medium hover:text-white transition-colors">
@@ -202,24 +206,24 @@ export default function Main() {
                 <div className="grid md:grid-cols-3 gap-6">
                     {[
                         {
-                            title: "How to Spot a Fake Trading Platform in 2026",
-                            category: "Trading Scam",
+                            title: "Reporting Scams Effectively: Contact Resources for a Scam-Free India",
+                            category: "Awareness",
                             date: "March 20, 2026"
                         },
                         {
-                            title: "The Anatomy of a WhatsApp Job Fraud",
-                            category: "Job Scam",
+                            title: "How a Broker Can Scam Investors in India",
+                            category: "Broker Scam",
                             date: "March 18, 2026"
                         },
                         {
-                            title: "Phishing Links: What Happens When You Click?",
-                            category: "Cyber Security",
+                            title: "SEBI Register Research Analyst (RA) Scam in India",
+                            category: "Investment Scam",
                             date: "March 15, 2026"
                         }
-                    ].map((blog, i) => (
-                        <div key={i} className="group flex flex-col bg-brand-card rounded-2xl border border-brand-border overflow-hidden hover:border-brand-blue/50 transition-all cursor-pointer">
-                            <div className="h-48 bg-brand-section w-full border-b border-brand-border relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-brand-section to-brand-bg opacity-50"></div>
+                    ].map((blog, blogIndex) => (
+                        <div key={blogIndex} className="group flex flex-col bg-brand-card rounded-2xl border border-brand-border overflow-hidden hover:border-brand-blue/50 transition-all cursor-pointer">
+                            <div className="h-48 bg-[#0A0A0A] w-full border-b border-brand-border relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#111] to-black opacity-50"></div>
                                 <div className="absolute inset-0 flex items-center justify-center text-brand-secondary/30">
                                     <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                 </div>
@@ -229,7 +233,7 @@ export default function Main() {
                                     <span className="text-xs font-semibold px-2 py-1 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">{blog.category}</span>
                                     <span className="text-xs text-brand-secondary">{blog.date}</span>
                                 </div>
-                                <h3 className="text-lg font-bold group-hover:text-brand-blue transition-colors mb-4">{blog.title}</h3>
+                                <h3 className="text-lg font-bold group-hover:text-brand-blue transition-colors mb-4 text-white">{blog.title}</h3>
                                 <div className="mt-auto">
                                     <span className="text-sm text-brand-secondary group-hover:text-brand-primary transition-colors inline-flex items-center">Read article &rarr;</span>
                                 </div>
@@ -238,67 +242,6 @@ export default function Main() {
                     ))}
                 </div>
             </section>
-
-            {/* TRUST SECTION */}
-            <section className="bg-brand-section py-20 px-6 md:px-16 border-y border-brand-border">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl md:text-offset-4xl text-center font-bold mb-12">Why Choose Us</h2>
-                    <div className="grid md:grid-cols-3 gap-8 text-center">
-
-                        <div className="p-8 rounded-2xl bg-brand-bg border border-brand-border drop-shadow-sm">
-                            <div className="w-12 h-12 mx-auto bg-brand-blue/10 rounded-full flex items-center justify-center text-brand-blue mb-4">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                            </div>
-                            <h3 className="text-3xl font-bold text-brand-blue mb-2">500+</h3>
-                            <h4 className="font-bold text-lg mb-2">Cases Guided</h4>
-                            <p className="text-brand-secondary text-sm">We&apos;ve helped hundreds navigate the complex recovery process.</p>
-                        </div>
-
-                        <div className="p-8 rounded-2xl bg-brand-bg border border-brand-border drop-shadow-sm">
-                            <div className="w-12 h-12 mx-auto bg-brand-blue/10 rounded-full flex items-center justify-center text-brand-blue mb-4">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            </div>
-                            <h3 className="text-3xl font-bold text-brand-blue mb-2">&lt; 1 hr</h3>
-                            <h4 className="font-bold text-lg mb-2">Fast Response</h4>
-                            <p className="text-brand-secondary text-sm">Time is critical. Our experts review your case rapidly.</p>
-                        </div>
-
-                        <div className="p-8 rounded-2xl bg-brand-bg border border-brand-border drop-shadow-sm">
-                            <div className="w-12 h-12 mx-auto bg-brand-blue/10 rounded-full flex items-center justify-center text-brand-blue mb-4">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                            </div>
-                            <h3 className="text-3xl font-bold text-brand-blue mb-2">100%</h3>
-                            <h4 className="font-bold text-lg mb-2">Secure & Private</h4>
-                            <p className="text-brand-secondary text-sm">Your personal information and case details are strictly confidential.</p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA */}
-            <section className="py-24 px-6 md:px-16 text-center max-w-4xl mx-auto">
-                <div className="inline-flex items-center gap-2 mb-6 text-brand-red font-bold uppercase tracking-wider text-sm bg-brand-red/10 px-4 py-1.5 rounded-full border border-brand-red/20">
-                    <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
-                    Critical Window
-                </div>
-
-                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-                    Don&apos;t Wait — Act Now
-                </h2>
-
-                <p className="text-brand-secondary text-xl mb-10">
-                    Reporting quickly drastically increases your chances of a successful recovery. Let our experts guide your next steps.
-                </p>
-
-                <button
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="bg-brand-green hover:brightness-110 active:scale-95 text-brand-bg px-10 py-5 rounded-xl font-bold text-lg shadow-[0_4px_24px_0_rgba(34,197,94,0.4)] transition-all"
-                >
-                    Submit Your Case Immediately
-                </button>
-            </section>
-
         </main>
     )
 }

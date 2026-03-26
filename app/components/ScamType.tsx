@@ -122,9 +122,9 @@ export default function FraudSection() {
                         <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent" />
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-brand-blue/20 to-brand-red/10" />
 
-                        <div className="relative z-10 w-24 h-24 bg-brand-section rounded-full flex items-center justify-center border border-white/5 shadow-2xl overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green text-2">
+                        <div className="relative z-10 w-24 h-24 bg-brand-section rounded-full flex items-center justify-center border border-white/5 shadow-2xl overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green text-2xl">
                             {/* Person Icon representing Investigator */}
-                            Cyber
+                            <div className="text-2xl font-bold">Cyber</div>
                             <div className="absolute inset-0 bg-brand-blue/5 animate-pulse" />
                         </div>
                     </div>
@@ -171,14 +171,14 @@ export default function FraudSection() {
                 <div className="absolute top-0 bottom-0 right-0 w-16 md:w-48 bg-gradient-to-l from-brand-section to-transparent z-10 pointer-events-none"></div>
 
                 <div className="flex w-max animate-marquee gap-6">
-                    {[...scamsList.slice(0, 4), ...scamsList.slice(0, 4)].map((scam, i) => (
-                        <ScamCard key={`row1-${i}`} scam={scam} />
+                    {[...scamsList.slice(0, 4), ...scamsList.slice(0, 4)].map((scam, scamIndex) => (
+                        <ScamCard key={`row1-${scamIndex}`} scam={scam} />
                     ))}
                 </div>
 
                 <div className="flex w-max animate-marquee-reverse gap-6">
-                    {[...scamsList.slice(4, 8), ...scamsList.slice(4, 8)].map((scam, i) => (
-                        <ScamCard key={`row2-${i}`} scam={scam} />
+                    {[...scamsList.slice(4, 8), ...scamsList.slice(4, 8)].map((scam, scamIndex) => (
+                        <ScamCard key={`row2-${scamIndex}`} scam={scam} />
                     ))}
                 </div>
             </div>

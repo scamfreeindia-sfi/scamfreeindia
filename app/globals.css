@@ -20,13 +20,23 @@ body {
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marquee-reverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 .animate-marquee {
@@ -37,6 +47,8 @@ body {
   animation: marquee-reverse 30s linear infinite;
 }
 
-.animate-marquee:hover, .animate-marquee-reverse:hover {
+.animate-marquee:hover,
+.animate-marquee-reverse:hover,
+.pause {
   animation-play-state: paused;
-}
+}
