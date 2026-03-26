@@ -7,7 +7,7 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-    const navItems = ["Blog", "About", "Contact"]
+    const navItems = ["Home", "Blog", "About", "Contact"]
 
     useEffect(() => {
         const handleScroll = () => {
@@ -51,11 +51,16 @@ export default function Header() {
                 </a>
 
                 {/* Navigation */}
-                <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-8 text-sm font-medium text-brand-secondary">
+                <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-14 text-sm font-medium text-brand-secondary">
                     {navItems.map((item) => (
                         <a
                             key={item}
-                            href={item === "Blog" ? "/blog" : "/"}
+                            href={
+                                item === "Home" ? "/" : 
+                                item === "Blog" ? "/blog" : 
+                                item === "About" ? "/about" : 
+                                "/contact"
+                            }
                             className="relative group transition-colors hover:text-brand-primary text-lg"
                         >
                             <span>{item}</span>
@@ -67,9 +72,9 @@ export default function Header() {
 
                 <div className="flex items-center gap-3">
                     {/* Desktop CTA */}
-                    <button className="hidden sm:inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-5 py-2.5 rounded-lg active:scale-95">
+                    <a href="/#report" className="hidden sm:inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-5 py-2.5 rounded-lg active:scale-95">
                         Get Started
-                    </button>
+                    </a>
 
                     {/* Mobile Toggle */}
                     <button
@@ -93,7 +98,12 @@ export default function Header() {
                         {navItems.map((item, idx) => (
                             <a
                                 key={item}
-                                href={item === "Blog" ? "/blog" : "/"}
+                                 href={
+                                    item === "Home" ? "/" : 
+                                    item === "Blog" ? "/blog" : 
+                                    item === "About" ? "/about" : 
+                                    "/contact"
+                                }
                                 className={`px-5 py-4 text-sm font-medium text-brand-secondary hover:text-brand-primary hover:bg-white/5 transition ${idx !== navItems.length - 1 ? "border-b border-brand-border" : ""
                                     }`}
                                 onClick={() => setIsMobileMenuOpen(false)}

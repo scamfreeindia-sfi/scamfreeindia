@@ -65,7 +65,7 @@ export default function Review() {
         <div className="bg-[#050505] py-8 overflow-hidden border-t border-white/5 relative">
             <div className="max-w-7xl mx-auto px-4 relative z-10">
                 <h2 className="text-2xl md:text-5xl font-bold text-center mb-8 tracking-tight text-white">
-                    Trusted by <span className="text-[#FF4444]">Thousands!</span>
+                    People Who  <span className="bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green text-transparent">Trusted Us</span>
                 </h2>
 
                 <div className="relative h-[280px] w-full overflow-visible">

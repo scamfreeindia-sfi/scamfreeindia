@@ -8,68 +8,7 @@ export const metadata: Metadata = {
     description: "Read latest scam alerts, security guides, and online fraud insights from the expert team at ScamFreeIndia. Stay informed, stay safe.",
 }
 
-const BLOG_POSTS = [
-    {
-        id: 1,
-        title: "Top 5 Online Banking Scams to Watch Out for in 2026",
-        excerpt: "Online scams are becoming increasingly sophisticated. Learn how to protect your hard-earned money from the latest phishing and social engineering attacks.",
-        date: "March 20, 2026",
-        author: "Team ScamFreeIndia",
-        category: "Safety Guide",
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop",
-        slug: "online-banking-scams-2026"
-    },
-    {
-        id: 2,
-        title: "How to Identify Fake IPO Allotments in India",
-        excerpt: "The surge in IPOs has brought many scammers targeting innocent investors. Here's a step-by-step guide to verifying your allotment status securely.",
-        date: "March 18, 2026",
-        author: "Security Expert",
-        category: "IPO Fraud",
-        image: "https://images.unsplash.com/photo-1611974717482-48a8570072d7?q=80&w=1470&auto=format&fit=crop",
-        slug: "fake-ipo-allotments"
-    },
-    {
-        id: 3,
-        title: "The Rise of AI Voice Cloning in Phone Fraud",
-        excerpt: "Scammers are now using AI to mimic voices of loved ones. Understand this new threat and set up 'security questions' with your family.",
-        date: "March 15, 2026",
-        author: "Tech Insights",
-        category: "AI Threats",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1632&auto=format&fit=crop",
-        slug: "ai-voice-cloning-fraud"
-    },
-    {
-        id: 4,
-        title: "Protecting Your WhatsApp: 5 Crucial Settings",
-        excerpt: "WhatsApp is a primary target for scammers. Ensure your privacy and security by enabling these five hidden security features today.",
-        date: "March 10, 2026",
-        author: "Privacy First",
-        category: "Social Media",
-        image: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=1374&auto=format&fit=crop",
-        slug: "whatsapp-security-settings"
-    },
-    {
-        id: 5,
-        title: "Is that KYC SMS Legitimate? Here's How to Tell",
-        excerpt: "Received an urgent SMS about your bank account or KYC? Don't click that link. We show you the anatomical differences between real and fake SMS.",
-        date: "March 05, 2026",
-        author: "Team ScamFreeIndia",
-        category: "Safety Guide",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1470&auto=format&fit=crop",
-        slug: "kyc-sms-verification"
-    },
-    {
-        id: 6,
-        title: "Crypto Scams: How to Secure Your Digital Wallet",
-        excerpt: "As crypto gains popularity, so do digital wallet thefts. Learn about hardware wallets, seed phrase security, and common crypto-draining links.",
-        date: "Feb 28, 2026",
-        author: "Blockchain Team",
-        category: "Crypto",
-        image: "https://images.unsplash.com/photo-1621416848440-2369dadaf355?q=80&w=1374&auto=format&fit=crop",
-        slug: "crypto-wallet-security"
-    }
-]
+import { BLOG_POSTS } from "./data"
 
 export default function BlogPage() {
     return (

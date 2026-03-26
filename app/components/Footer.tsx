@@ -31,7 +31,7 @@ export default function Footer() {
                     <div className="space-y-6">
                         <h4 className="text-white font-bold uppercase tracking-wider text-lg">Quick Links</h4>
                         <ul className="space-y-3">
-                            <li><a href="/about-7" className="hover:text-brand-primary transition-colors">About Us</a></li>
+                            <li><a href="/about" className="hover:text-brand-primary transition-colors">About Us</a></li>
                             <li><a href="/contact" className="hover:text-brand-primary transition-colors">Contact Us</a></li>
                             <li><a href="/blog" className="hover:text-brand-primary transition-colors">Blog</a></li>
                             <li><a href="https://razorpay.me/@scamfreeind" target="_blank" rel="noopener noreferrer" className="text-brand-blue font-bold hover:brightness-110 transition-all text-lg">Register Your Query</a></li>
