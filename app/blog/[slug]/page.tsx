@@ -2,7 +2,6 @@ import Header from "@/app/components/Header"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { BLOG_POSTS } from "../data"
 import { Metadata } from "next"
 import Footer from "@/app/components/Footer"
 
@@ -10,9 +9,36 @@ interface Props {
     params: Promise<{ slug: string }>
 }
 
+async function getPost(slug: string) {
+    try {
+        const res = await fetch(`http://127.0.0.1:8000/api/blogs/${slug}`, {
+            next: { revalidate: 60 }
+        })
+        if (!res.ok) return null
+        const data = await res.json()
+        return data.success ? data.data : null
+    } catch (error) {
+        console.error("Error fetching post:", error)
+        return null
+    }
+}
+
+async function getAllPosts() {
+    try {
+        const res = await fetch(`http://127.0.0.1:8000/api/blogs`, {
+            next: { revalidate: 3600 }
+        })
+        if (!res.ok) return []
+        const data = await res.json()
+        return data.success ? data.data.data : []
+    } catch (error) {
+        return []
+    }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params
-    const post = BLOG_POSTS.find((p) => p.slug === slug)
+    const post = await getPost(slug)
 
     if (!post) {
         return {
@@ -27,21 +53,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-    return BLOG_POSTS.map((post) => ({
+    const posts = await getAllPosts()
+    return posts.map((post: any) => ({
         slug: post.slug,
     }))
 }
 
 export default async function BlogPost({ params }: Props) {
     const { slug } = await params
-    const post = BLOG_POSTS.find((p) => p.slug === slug)
+    const post = await getPost(slug)
 
     if (!post) {
         notFound()
     }
 
-    // Get related posts (excluding current)
-    const relatedPosts = BLOG_POSTS.filter((p) => p.slug !== slug).slice(0, 3)
+    // Get related posts (mocked or from general list for now)
+    const allPosts = await getAllPosts()
+    const relatedPosts = allPosts.filter((p: any) => p.slug !== slug).slice(0, 3)
 
     return (
         <div className="bg-brand-bg text-brand-primary min-h-screen relative font-sans selection:bg-brand-blue/30 selection:text-brand-primary">
@@ -51,7 +79,7 @@ export default async function BlogPost({ params }: Props) {
                 {/* Hero Section */}
                 <div className="relative h-[50vh] min-h-[400px] w-full mb-12">
                     <Image
-                        src={post.image}
+                        src={post.image || "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop"}
                         alt={post.title}
                         fill
                         className="object-cover"
@@ -81,7 +109,7 @@ export default async function BlogPost({ params }: Props) {
                                 </span>
                                 <span className="text-brand-secondary text-sm flex items-center gap-2">
                                     <span className="w-1 h-1 rounded-full bg-brand-border" />
-                                    8 min read
+                                    {post.read_time || '5 min read'}
                                 </span>
                             </div>
 
@@ -118,7 +146,11 @@ export default async function BlogPost({ params }: Props) {
                                         </div>
                                         <div>
                                             <p className="text-sm font-bold">Written by</p>
-                                            <p className="text-brand-blue font-bold">{post.author}</p>
+                                            <p className="text-brand-blue font-bold">
+                                                {typeof post.author === 'string' 
+                                                    ? post.author 
+                                                    : (post.author as any)?.name || (post.author as any)?.username || 'Team ScamFreeIndia'}
+                                            </p>
                                         </div>
                                     </div>
 
@@ -153,7 +185,7 @@ export default async function BlogPost({ params }: Props) {
                                 <div className="mt-8 pt-8 border-t border-brand-border">
                                     <h4 className="text-sm font-bold uppercase tracking-widest text-brand-blue mb-4">Related Topics</h4>
                                     <div className="space-y-4">
-                                        {relatedPosts.map((rp) => (
+                                        {relatedPosts.map((rp: any) => (
                                             <Link key={rp.slug} href={`/blog/${rp.slug}`} className="group block">
                                                 <p className="text-sm font-bold group-hover:text-brand-blue transition-colors line-clamp-2 mb-1">
                                                     {rp.title}

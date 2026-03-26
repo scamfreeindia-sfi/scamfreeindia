@@ -2,15 +2,59 @@ import Header from "../components/Header"
 import Image from "next/image"
 import BlogList from "./BlogList"
 import { Metadata } from "next"
+import { BLOG_POSTS } from "./data"
 
 export const metadata: Metadata = {
     title: "Blog & Awareness | Stay Scam-Free Today",
     description: "Read latest scam alerts, security guides, and online fraud insights from the expert team at ScamFreeIndia. Stay informed, stay safe.",
 }
 
-import { BLOG_POSTS } from "./data"
+async function getBlogs(page = 1) {
+    try {
+        const res = await fetch(`http://127.0.0.1:8000/api/blogs?page=${page}`, {
+            next: { revalidate: 60 }, // Cache for 1 minute
+            cache: 'no-store' // Added for dev to see changes instantly
+        })
+        
+        if (!res.ok) {
+            throw new Error('Failed to fetch blogs')
+        }
+        
+        return res.json()
+    } catch (error) {
+        console.error("Error fetching blogs:", error)
+        return null
+    }
+}
 
-export default function BlogPage() {
+export default async function BlogPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ page?: string }>
+}) {
+    const { page } = await searchParams
+    const currentPage = parseInt(page || '1')
+    const apiResponse = await getBlogs(currentPage)
+    
+    // Fallback: If API fails OR returns success=true but data array is empty
+    let blogData: any = null
+    
+    if (apiResponse?.success && apiResponse.data?.data && apiResponse.data.data.length > 0) {
+        // Use API data
+        blogData = apiResponse.data
+    } else {
+        // Fallback to static data
+        console.log("No data from API or empty data, falling back to static BLOG_POSTS")
+        blogData = {
+            data: BLOG_POSTS,
+            current_page: 1,
+            last_page: 1,
+            total: BLOG_POSTS.length,
+            next_page_url: null,
+            prev_page_url: null
+        }
+    }
+
     return (
         <div className="bg-brand-bg text-brand-primary min-h-screen relative font-sans selection:bg-brand-blue/30 selection:text-brand-primary pt-24 pb-12">
             <Header />
@@ -33,8 +77,12 @@ export default function BlogPage() {
             </section>
 
             {/* Blog Grid with Client-Side Interaction */}
-            <BlogList posts={BLOG_POSTS} />
+            <BlogList 
+                initialData={blogData} 
+                currentPage={currentPage}
+            />
 
+            {/* ... Rest of the component ... */}
             {/* Newsletter */}
             <section className="px-6 md:px-16 pb-24">
                 <div className="max-w-5xl mx-auto bg-brand-card border border-brand-border rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden text-center">

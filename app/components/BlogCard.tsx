@@ -7,7 +7,7 @@ interface BlogCardProps {
     title: string
     excerpt: string
     date: string
-    author: string
+    author: any
     category: string
     image: string
     slug: string
@@ -19,7 +19,7 @@ export default function BlogCard({ title, excerpt, date, author, category, image
             {/* Image Container */}
             <div className="relative h-48 overflow-hidden">
                 <Image
-                    src={image}
+                    src={image || "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop"}
                     alt={title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -34,7 +34,11 @@ export default function BlogCard({ title, excerpt, date, author, category, image
                 <div className="flex items-center gap-2 text-brand-secondary text-xs mb-3">
                     <span>{date}</span>
                     <span className="w-1 h-1 rounded-full bg-brand-border"></span>
-                    <span>{author}</span>
+                    <span>
+                        {typeof author === 'string' 
+                            ? author 
+                            : (author as any)?.name || (author as any)?.username || 'Team ScamFreeIndia'}
+                    </span>
                 </div>
 
                 <h3 className="text-xl font-bold text-brand-primary mb-3 leading-tight group-hover:text-brand-blue transition-colors">

@@ -41,11 +41,11 @@ export default function Review() {
     useEffect(() => {
         const updateWidth = () => {
             if (window.innerWidth < 768) {
-                setCardWidth(240);
-                setGap(0);
+                setCardWidth(window.innerWidth - 48);
+                setGap(20);
             } else {
-                setCardWidth(480);
-                setGap(0);
+                setCardWidth(420);
+                setGap(32);
             }
         };
         updateWidth();
@@ -68,7 +68,7 @@ export default function Review() {
                     People Who  <span className="bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green text-transparent">Trusted Us</span>
                 </h2>
 
-                <div className="relative h-[280px] w-full overflow-visible">
+                <div className="relative min-h-[350px] md:min-h-[420px] w-full overflow-visible flex items-center">
                     <div
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
@@ -85,20 +85,19 @@ export default function Review() {
                                     key={review.id}
                                     onClick={() => setActiveIndex(index)}
                                     style={{ width: `${cardWidth}px` }}
-                                    className={`relative bg-[#0F0F0F] p-5 md:p-6 rounded-2xl border transition-all duration-500 flex flex-col cursor-pointer
+                                    className={`relative bg-[#0F0F0F] p-4 md:p-5 rounded-2xl border transition-all duration-500 flex flex-col cursor-pointer
                                         ${isActive
                                             ? 'scale-100 border-white/20 bg-[#151515] z-10 shadow-[0_0_30px_-5px_rgba(239,68,68,0.2)]'
-                                            : 'opacity-20 scale-90 blur-[1px] border-white/5 grayscale pointer-events-none'
+                                            : 'opacity-40 scale-90 blur-[1px] border-white/5 grayscale pointer-events-none'
                                         }
                                     `}
                                 >
                                     <div>
-                                        <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
+                                        <p className="text-gray-300 text-[10px] md:text-xs leading-relaxed">
                                             {review.text}
                                         </p>
                                     </div>
-
-                                    <div className="flex items-center justify-between mt-6">
+                                    <div className="flex flex-wrap items-center justify-between mt-auto pt-6 gap-4">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 flex-shrink-0">
                                                 <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white font-bold text-sm">
@@ -106,22 +105,22 @@ export default function Review() {
                                                 </div>
                                             </div>
                                             <div className="flex flex-col">
-                                                <p className="text-[12px] font-semibold text-white leading-tight">{review.name.toLowerCase()}</p>
-                                                <div className="mt-1 flex items-center gap-1.5 px-2 py-0.5 bg-black/40 rounded-full border border-white/10 w-fit">
-                                                    <svg className="w-2.5 h-2.5" viewBox="0 0 24 24">
+                                                <p className="text-xs font-semibold text-white leading-tight">{review.name.toLowerCase()}</p>
+                                                <div className="mt-1.5 flex items-center gap-1.5 px-2.5 py-1 bg-white/5 rounded-full border border-white/10 w-fit">
+                                                    <svg className="w-3 h-3" viewBox="0 0 24 24">
                                                         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
                                                         <path d="M12 23c3.11 0 5.72-1.01 7.63-2.74l-3.57-2.77c-1.06.72-2.43 1.15-4.06 1.15-3.13 0-5.78-2.12-6.73-4.97H1.61v2.87C3.51 20.31 7.48 23 12 23z" fill="#34A853" />
                                                         <path d="M5.27 13.67C5.02 12.92 4.88 12.12 4.88 11.3c0-.82.14-1.62.39-2.37V6.06H1.61C.58 8.12 0 10.42 0 12.8s.58 4.68 1.61 6.74l3.66-2.87z" fill="#FBBC05" />
                                                         <path d="M12 4.75c1.69 0 3.2.58 4.39 1.72l3.29-3.29C17.71 1.29 15.11 0 12 0 7.48 0 3.51 2.69 1.61 6.06l3.66 2.87c.95-2.85 3.6-4.97 6.74-4.97z" fill="#EA4335" />
                                                     </svg>
-                                                    <span className="text-[9px] text-gray-400 font-medium">View on Google!</span>
+                                                    <span className="text-[10px] text-gray-400 font-medium whitespace-nowrap">View on Google!</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="flex gap-1 bg-[#2A2A2A] p-2 px-4 rounded-full border border-white/5 h-fit self-end">
+                                        <div className="flex gap-1 bg-white/5 p-2 px-3.5 rounded-full border border-white/10 h-fit">
                                             {[...Array(5)].map((_, i) => (
-                                                <svg key={i} className="w-3 h-3 text-[#FF4444]" fill="currentColor" viewBox="0 0 20 20">
+                                                <svg key={i} className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                                 </svg>
                                             ))}
