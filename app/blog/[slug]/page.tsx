@@ -100,9 +100,9 @@ export default async function BlogPost({ params }: Props) {
                             </Link>
 
                             <div className="flex flex-wrap items-center gap-3 mb-6">
-                                <span className="px-3 py-1 rounded-full bg-brand-blue text-white text-[10px] font-black uppercase tracking-wider">
+                                {/* <span className="px-3 py-1 rounded-full bg-brand-blue text-white text-[10px] font-black uppercase tracking-wider">
                                     {post.category}
-                                </span>
+                                </span> */}
                                 <span className="text-brand-secondary text-sm flex items-center gap-2">
                                     <span className="w-1 h-1 rounded-full bg-brand-border" />
                                     {post.date}
@@ -113,7 +113,7 @@ export default async function BlogPost({ params }: Props) {
                                 </span>
                             </div>
 
-                            <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
+                            <h1 className="text-4xl md:text-5xl space-y-2 space-x-2 font-black tracking-tight leading-tight">
                                 {post.title}
                             </h1>
                         </div>
@@ -122,7 +122,7 @@ export default async function BlogPost({ params }: Props) {
 
                 {/* Content Section */}
                 <div className="px-6 md:px-16">
-                    <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
 
                         {/* Article Body */}
                         <div className="lg:col-span-8">
@@ -145,10 +145,10 @@ export default async function BlogPost({ params }: Props) {
                                             />
                                         </div>
                                         <div>
-                                            <p className="text-sm font-bold">Written by</p>
+                                            <p className="text-sm  font-bold">Written by</p>
                                             <p className="text-brand-blue font-bold">
-                                                {typeof post.author === 'string' 
-                                                    ? post.author 
+                                                {typeof post.author === 'string'
+                                                    ? post.author
                                                     : (post.author as any)?.name || (post.author as any)?.username || 'Team ScamFreeIndia'}
                                             </p>
                                         </div>
