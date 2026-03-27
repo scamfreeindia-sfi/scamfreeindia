@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 async function getBlogs(page = 1) {
     try {
         const res = await fetch(`http://127.0.0.1:8000/api/blogs?page=${page}`, {
-            next: { revalidate: 60 }, // Cache for 1 minute
-            cache: 'no-store' // Added for dev to see changes instantly
+            next: { revalidate: 60 },
+            cache: 'no-store'
         })
 
         if (!res.ok) {
@@ -37,14 +37,11 @@ export default async function BlogPage({
     const currentPage = parseInt(page || '1')
     const apiResponse = await getBlogs(currentPage)
 
-    // Fallback: If API fails OR returns success=true but data array is empty
     let blogData: any = null
 
     if (apiResponse?.success && apiResponse.data?.data && apiResponse.data.data.length > 0) {
-        // Use API data
         blogData = apiResponse.data
     } else {
-        // Fallback to static data
         console.log("No data from API or empty data, falling back to static BLOG_POSTS")
         blogData = {
             data: BLOG_POSTS,

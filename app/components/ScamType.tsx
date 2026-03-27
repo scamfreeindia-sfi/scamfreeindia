@@ -79,9 +79,9 @@ export default function FraudSection() {
                         <circle cx="1000" cy="720" r="8" stroke="#3B82F6" strokeOpacity="0.2" strokeWidth="1" fill="none" />
 
                         {/* Bottom Center Line */}
-                        <path d="M 600 500 L 600 850" />
-                        <circle cx="600" cy="850" r="4" fill="#3B82F6" fillOpacity="0.6" stroke="none" />
-                        <circle cx="600" cy="850" r="8" stroke="#3B82F6" strokeOpacity="0.2" strokeWidth="1" fill="none" />
+                        <path d="M 600 500 L 600 865" />
+                        <circle cx="600" cy="500" r="4" fill="#3B82F6" fillOpacity="0.6" stroke="none" />
+                        <circle cx="600" cy="500" r="8" stroke="#3B82F6" strokeOpacity="0.2" strokeWidth="1" fill="none" />
 
                         {/* Bottom Left Line - Curved */}
                         <path d="M 600 500 Q 400 550 200 720" />
