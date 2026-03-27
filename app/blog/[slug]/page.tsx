@@ -71,27 +71,50 @@ export default async function BlogPost({ params }: Props) {
     const allPosts = await getAllPosts()
     const relatedPosts = allPosts.filter((p: any) => p.slug !== slug).slice(0, 3)
 
+    const backendUrl = "http://127.0.0.1:8000";
+    let postImage = post.image || post.image_url || post.thumbnail || post.featured_image || post.img;
+    let displayImage = "";
+
+    if (postImage && typeof postImage === 'string') {
+        if (postImage.startsWith('http')) {
+            displayImage = postImage;
+        } else {
+            const cleanPath = postImage.replace(/^\/+/, "");
+            displayImage = `${backendUrl}/${cleanPath}`;
+        }
+    }
+
+    if (!displayImage) {
+        displayImage = "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop";
+    }
+
     return (
         <div className="bg-brand-bg text-brand-primary min-h-screen relative font-sans selection:bg-brand-blue/30 selection:text-brand-primary">
             <Header />
 
-            <main className="pt-24 pb-20">
+            <main className="pt-20 pb-20">
                 {/* Hero Section */}
-                <div className="relative h-[50vh] min-h-[400px] w-full mb-12">
+                <div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
                     <Image
-                        src={post.image || "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop"}
+                        src={displayImage}
                         alt={post.title}
                         fill
-                        className="object-cover"
+                        unoptimized
+                        className="object-cover scale-105 transition-transform duration-1000 ease-out"
                         priority
+                        sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-bg via-brand-bg/40 to-transparent" />
 
-                    <div className="absolute bottom-0 left-0 w-full px-6 md:px-16 pb-12">
+                    {/* Multi-layered Premium Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/20 via-transparent to-brand-bg" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-brand-bg/80 via-brand-bg/20 to-transparent" />
+                    <div className="absolute inset-0 bg-brand-blue/5 mix-blend-overlay" />
+
+                    <div className="absolute bottom-0 left-0 w-full px-6 md:px-16 pb-16">
                         <div className="max-w-4xl mx-auto">
                             <Link
                                 href="/blog"
-                                className="inline-flex items-center text-brand-blue text-sm font-bold uppercase tracking-widest mb-6 hover:translate-x-[-4px] transition-transform"
+                                className="inline-flex items-center text-brand-blue text-xs font-black uppercase tracking-[0.2em] mb-8 hover:translate-x-[-4px] transition-all bg-brand-blue/10 backdrop-blur-md px-4 py-2 rounded-lg border border-brand-blue/20"
                             >
                                 <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -99,23 +122,12 @@ export default async function BlogPost({ params }: Props) {
                                 Back to All Blogs
                             </Link>
 
-                            <div className="flex flex-wrap items-center gap-3 mb-6">
-                                {/* <span className="px-3 py-1 rounded-full bg-brand-blue text-white text-[10px] font-black uppercase tracking-wider">
-                                    {post.category}
-                                </span> */}
-                                <span className="text-brand-secondary text-sm flex items-center gap-2">
-                                    <span className="w-1 h-1 rounded-full bg-brand-border" />
-                                    {post.date}
-                                </span>
-                                <span className="text-brand-secondary text-sm flex items-center gap-2">
-                                    <span className="w-1 h-1 rounded-full bg-brand-border" />
-                                    {post.read_time || '5 min read'}
-                                </span>
+                            <div className="relative group">
+                                <div className="absolute -left-6 top-0 w-1 h-full bg-brand-blue shadow-[0_0_15px_rgba(0,112,243,0.5)] hidden md:block" />
+                                <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white drop-shadow-2xl lowercase">
+                                    {post.title}
+                                </h1>
                             </div>
-
-                            <h1 className="text-4xl md:text-5xl space-y-2 space-x-2 font-black tracking-tight leading-tight">
-                                {post.title}
-                            </h1>
                         </div>
                     </div>
                 </div>

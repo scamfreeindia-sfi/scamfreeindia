@@ -42,9 +42,9 @@ export default function Footer() {
                     <div className="space-y-6">
                         <h4 className="text-white font-bold uppercase tracking-wider text-lg">Legal</h4>
                         <ul className="space-y-3">
-                            <li><a href="/privacypolicy" className="hover:text-brand-primary transition-colors">Privacy Policy</a></li>
-                            <li><a href="/termsandconditions" className="hover:text-brand-primary transition-colors">Terms & Conditions</a></li>
-                            <li><a href="/policy" className="hover:text-brand-primary transition-colors">Refund Policy</a></li>
+                            <li><a href="/privacy-policy" className="hover:text-brand-primary transition-colors">Privacy Policy</a></li>
+                            <li><a href="/terms-and-conditions" className="hover:text-brand-primary transition-colors">Terms & Conditions</a></li>
+                            <li><a href="/refund-policy" className="hover:text-brand-primary transition-colors">Refund Policy</a></li>
                         </ul>
                     </div>
 

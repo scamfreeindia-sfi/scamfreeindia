@@ -3,6 +3,7 @@ import Image from "next/image"
 import BlogList from "./BlogList"
 import { Metadata } from "next"
 import { BLOG_POSTS } from "./data"
+import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
     title: "Blog & Awareness | Stay Scam-Free Today",
@@ -15,11 +16,11 @@ async function getBlogs(page = 1) {
             next: { revalidate: 60 }, // Cache for 1 minute
             cache: 'no-store' // Added for dev to see changes instantly
         })
-        
+
         if (!res.ok) {
             throw new Error('Failed to fetch blogs')
         }
-        
+
         return res.json()
     } catch (error) {
         console.error("Error fetching blogs:", error)
@@ -35,10 +36,10 @@ export default async function BlogPage({
     const { page } = await searchParams
     const currentPage = parseInt(page || '1')
     const apiResponse = await getBlogs(currentPage)
-    
+
     // Fallback: If API fails OR returns success=true but data array is empty
     let blogData: any = null
-    
+
     if (apiResponse?.success && apiResponse.data?.data && apiResponse.data.data.length > 0) {
         // Use API data
         blogData = apiResponse.data
@@ -77,16 +78,15 @@ export default async function BlogPage({
             </section>
 
             {/* Blog Grid with Client-Side Interaction */}
-            <BlogList 
-                initialData={blogData} 
+            <BlogList
+                initialData={blogData}
                 currentPage={currentPage}
             />
 
             {/* ... Rest of the component ... */}
             {/* Newsletter */}
-            <section className="px-6 md:px-16 pb-24">
+            {/* <section className="px-6 md:px-16 pb-24">
                 <div className="max-w-5xl mx-auto bg-brand-card border border-brand-border rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden text-center">
-                    {/* Background decoration */}
                     <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-brand-blue opacity-[0.03] blur-[80px]"></div>
                     <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-64 h-64 bg-brand-blue opacity-[0.03] blur-[80px]"></div>
 
@@ -110,37 +110,9 @@ export default async function BlogPage({
                         Join 25,000+ Indians staying scam-free
                     </p>
                 </div>
-            </section>
+            </section> */}
 
-            {/* FOOTER */}
-            <footer className="px-6 md:px-16 py-12 border-t border-brand-border bg-brand-section text-brand-secondary text-sm">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                    <div className="flex items-center gap-2">
-                        <div className="border-1 border-[#FFA500] rounded-full w-11 h-11 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20">
-                            <Image
-                                src="/logo.png"
-                                alt="ScamFreeIndia Logo"
-                                width={48}
-                                height={48}
-                                className="w-full h-full object-contain p-1"
-                                priority
-                            />
-                        </div>
-                        <span className="text-brand-primary font-bold tracking-wide">
-                            ScamFreeIndia
-                        </span>
-                    </div>
-
-                    <p>
-                        Disclaimer: We provide guidance and advisory services only. No guaranteed recovery.
-                    </p>
-
-                    <div className="flex gap-4">
-                        <a href="#" className="hover:text-brand-primary transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-brand-primary transition-colors">Terms of Service</a>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     )
 }

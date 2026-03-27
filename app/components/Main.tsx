@@ -5,6 +5,8 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import SebiIntermediaries from "./SebiIntermediaries";
 import Review from "./Review";
+import Awareness from "./Awareness";
+
 export default function Main() {
     const [form, setForm] = useState({
         name: "",
@@ -217,56 +219,7 @@ export default function Main() {
             <Review />
 
 
-            <section className="py-20 px-6 md:px-16 max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-                    <div>
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Recent Scam Awareness</h2>
-                        <p className="text-brand-secondary max-w-xl">Stay informed about the latest online frauds and how to protect yourself.</p>
-                    </div>
-                    <a href="/blog" className="inline-flex items-center text-brand-blue font-medium hover:text-white transition-colors">
-                        View All Articles <span className="ml-1">&rarr;</span>
-                    </a>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-6">
-                    {[
-                        {
-                            title: "Reporting Scams Effectively: Contact Resources for a Scam-Free India",
-                            category: "Awareness",
-                            date: "March 20, 2026"
-                        },
-                        {
-                            title: "How a Broker Can Scam Investors in India",
-                            category: "Broker Scam",
-                            date: "March 18, 2026"
-                        },
-                        {
-                            title: "SEBI Register Research Analyst (RA) Scam in India",
-                            category: "Investment Scam",
-                            date: "March 15, 2026"
-                        }
-                    ].map((blog, blogIndex) => (
-                        <div key={blogIndex} className="group flex flex-col bg-brand-card rounded-2xl border border-brand-border overflow-hidden hover:border-brand-blue/50 transition-all cursor-pointer">
-                            <div className="h-48 bg-[#0A0A0A] w-full border-b border-brand-border relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#111] to-black opacity-50"></div>
-                                <div className="absolute inset-0 flex items-center justify-center text-brand-secondary/30">
-                                    <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                </div>
-                            </div>
-                            <div className="p-6 flex flex-col flex-grow">
-                                <div className="flex justify-between items-center mb-4">
-                                    <span className="text-xs font-semibold px-2 py-1 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">{blog.category}</span>
-                                    <span className="text-xs text-brand-secondary">{blog.date}</span>
-                                </div>
-                                <h3 className="text-lg font-bold group-hover:text-brand-blue transition-colors mb-4 text-white">{blog.title}</h3>
-                                <div className="mt-auto">
-                                    <span className="text-sm text-brand-secondary group-hover:text-brand-primary transition-colors inline-flex items-center">Read article &rarr;</span>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            <Awareness />
         </main>
     )
 }

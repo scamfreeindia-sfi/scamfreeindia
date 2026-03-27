@@ -30,7 +30,7 @@ export default function ContactPage() {
                                     <input
                                         type="text"
                                         id="name"
-                                        placeholder="John Doe"
+                                        placeholder="Scam Free"
                                         className="w-full bg-brand-bg border border-brand-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors text-brand-primary"
                                     />
                                 </div>
@@ -39,7 +39,7 @@ export default function ContactPage() {
                                     <input
                                         type="email"
                                         id="email"
-                                        placeholder="john@example.com"
+                                        placeholder="info@scamfreeindia.com"
                                         className="w-full bg-brand-bg border border-brand-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors text-brand-primary"
                                     />
                                 </div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
                                 className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-brand-blue/20 active:scale-[0.98]"
                             >
                                 Send Message
-                            </button>
+                            </button>read
                         </form>
                     </div>
 

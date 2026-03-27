@@ -36,9 +36,9 @@ export default function BlogList({ initialData, currentPage }: BlogListProps) {
     
     const filteredPosts = selectedCategory === "All Posts"
         ? posts
-        : posts.filter(post => post.category === selectedCategory)
+        : posts.filter(post => (post.category || (post as any).category_name || "Awareness") === selectedCategory)
 
-    const categories = ["All Posts", ...new Set(posts.map(p => p.category).filter(c => c !== "All Posts"))]
+    const categories = ["All Posts", ...new Set(posts.map(p => p.category || (p as any).category_name || "Awareness").filter(c => c !== "All Posts"))]
 
     const hasNextPage = initialData?.next_page_url !== null
     const hasPrevPage = initialData?.prev_page_url !== null

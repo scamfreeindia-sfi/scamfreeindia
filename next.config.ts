@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Allow development from ngrok
+  allowedDevOrigins: ['*'] as any,
   images: {
+    unoptimized: true, // Bypasses the proxy which is blocking private IPs (127.0.0.1)
     remotePatterns: [
       {
         protocol: 'https',
@@ -14,12 +17,19 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8000',
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '8000',
       }
     ],
   },
-  experimental: {
-    allowedDevOrigins: ['faustina-postpalpebral-euphoniously.ngrok-free.dev'],
-  } as any,
 };
 
 export default nextConfig;
