@@ -1,6 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Contact Us | Get Expert Help for Online Frauds",
+    description: "Lost money in an online scam? Contact our experts for free guidance on reporting cases to government authorities and navigating the recovery process.",
+};
 
 export default function ContactPage() {
     return (

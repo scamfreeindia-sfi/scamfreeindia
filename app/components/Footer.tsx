@@ -1,5 +1,7 @@
 "use client"
 import Image from "next/image"
+import Link from "next/link"
+
 export default function Footer() {
     return (
         <footer className="px-6 md:px-16 py-16 border-t border-brand-border bg-brand-section text-brand-secondary text-sm">
@@ -8,7 +10,7 @@ export default function Footer() {
                     {/* Brand and Description */}
                     <div className="space-y-6">
                         <div className="flex items-center gap-2">
-                            <div className="rounded-full w-12 h-12 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20">
+                            <Link href="/" className="rounded-full w-12 h-12 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20">
                                 <Image
                                     src="/logo.png"
                                     alt="ScamFreeIndia Logo"
@@ -17,7 +19,7 @@ export default function Footer() {
                                     className="w-full h-full object-contain p-1"
                                     priority
                                 />
-                            </div>
+                            </Link>
                             <span className="text-brand-primary text-xl font-extrabold tracking-tight">
                                 ScamFreeIndia
                             </span>
@@ -30,22 +32,26 @@ export default function Footer() {
                     {/* Quick Links */}
                     <div className="space-y-6">
                         <h4 className="text-white font-bold uppercase tracking-wider text-lg">Quick Links</h4>
-                        <ul className="space-y-3">
-                            <li><a href="/about" className="hover:text-brand-primary transition-colors">About Us</a></li>
-                            <li><a href="/contact" className="hover:text-brand-primary transition-colors">Contact Us</a></li>
-                            <li><a href="/blog" className="hover:text-brand-primary transition-colors">Blog</a></li>
-                            <li><a href="https://razorpay.me/@scamfreeind" target="_blank" rel="noopener noreferrer" className="text-brand-blue font-bold hover:brightness-110 transition-all text-lg">Register Your Query</a></li>
-                        </ul>
+                        <nav aria-label="Footer Quick Links">
+                            <ul className="space-y-3">
+                                <li><Link href="/about" className="hover:text-brand-primary transition-colors">About Us</Link></li>
+                                <li><Link href="/contact" className="hover:text-brand-primary transition-colors">Contact Us</Link></li>
+                                <li><Link href="/blog" className="hover:text-brand-primary transition-colors">Blog</Link></li>
+                                <li><a href="https://razorpay.me/@scamfreeind" target="_blank" rel="noopener noreferrer" className="text-brand-blue font-bold hover:brightness-110 transition-all text-lg">Register Your Query</a></li>
+                            </ul>
+                        </nav>
                     </div>
 
                     {/* Legal */}
                     <div className="space-y-6">
                         <h4 className="text-white font-bold uppercase tracking-wider text-lg">Legal</h4>
-                        <ul className="space-y-3">
-                            <li><a href="/privacy-policy" className="hover:text-brand-primary transition-colors">Privacy Policy</a></li>
-                            <li><a href="/terms-and-conditions" className="hover:text-brand-primary transition-colors">Terms & Conditions</a></li>
-                            <li><a href="/refund-policy" className="hover:text-brand-primary transition-colors">Refund Policy</a></li>
-                        </ul>
+                        <nav aria-label="Footer Legal Links">
+                            <ul className="space-y-3">
+                                <li><Link href="/privacy-policy" className="hover:text-brand-primary transition-colors">Privacy Policy</Link></li>
+                                <li><Link href="/terms-and-conditions" className="hover:text-brand-primary transition-colors">Terms & Conditions</Link></li>
+                                <li><Link href="/refund-policy" className="hover:text-brand-primary transition-colors">Refund Policy</Link></li>
+                            </ul>
+                        </nav>
                     </div>
 
                     {/* Contact Info */}
@@ -96,4 +102,4 @@ export default function Footer() {
             </div>
         </footer>
     );
-}
+}

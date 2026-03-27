@@ -46,11 +46,50 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
     }
 
+    const backendUrl = "http://127.0.0.1:8000";
+    let postImage = post.image || post.image_url || post.thumbnail || post.featured_image || post.img;
+    let displayImage = "https://www.scamfreeindia.com/og-image.png";
+
+    if (postImage && typeof postImage === 'string') {
+        if (postImage.startsWith('http')) {
+            displayImage = postImage;
+        } else {
+            const cleanPath = postImage.replace(/^\/+/, "");
+            displayImage = `${backendUrl}/${cleanPath}`;
+        }
+    }
+
     return {
-        title: `${post.title} | ScamFreeIndia Awareness`,
-        description: post.excerpt,
+        title: `${post.title}`,
+        description: post.excerpt || post.summary || `Read about ${post.title} on ScamFreeIndia Awareness blog. stay safe from online fraud.`,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt || post.summary,
+            url: `https://www.scamfreeindia.com/blog/${slug}`,
+            type: 'article',
+            publishedTime: post.created_at,
+            authors: [typeof post.author === 'string' ? post.author : (post.author?.name || 'ScamFreeIndia Team')],
+            images: [
+                {
+                    url: displayImage,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: post.excerpt || post.summary,
+            images: [displayImage],
+        },
+        alternates: {
+            canonical: `/blog/${slug}`,
+        }
     }
 }
+
 
 export async function generateStaticParams() {
     const posts = await getAllPosts()
@@ -88,8 +127,40 @@ export default async function BlogPost({ params }: Props) {
         displayImage = "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop";
     }
 
+    const blogLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "image": displayImage,
+        "author": {
+            "@type": "Person",
+            "name": typeof post.author === 'string'
+                ? post.author
+                : (post.author as any)?.name || (post.author as any)?.username || 'Team ScamFreeIndia'
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ScamFreeIndia",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.scamfreeindia.com/logo.png"
+            }
+        },
+        "datePublished": post.created_at,
+        "dateModified": post.updated_at || post.created_at,
+        "description": post.excerpt || post.summary,
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://www.scamfreeindia.com/blog/${slug}`
+        }
+    };
+
     return (
         <div className="bg-brand-bg text-brand-primary min-h-screen relative font-sans selection:bg-brand-blue/30 selection:text-brand-primary">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(blogLd) }}
+            />
             <Header />
 
             <main className="pt-20 pb-20">

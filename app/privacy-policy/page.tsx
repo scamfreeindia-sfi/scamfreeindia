@@ -1,6 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Privacy Policy | ScamFreeIndia",
+    description: "Read our commitment to your privacy and how we handle personal data responsibly in accordance with applicable Indian laws.",
+};
 
 /**
  * Privacy Policy Page

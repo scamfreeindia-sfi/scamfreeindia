@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useState, useEffect } from "react"
 
 export default function Header() {
@@ -33,7 +34,7 @@ export default function Header() {
                     }`}
             >
                 {/* Logo */}
-                <a href="/" className="flex items-center gap-2 group">
+                <Link href="/" className="flex items-center gap-2 group">
                     <div className="rounded-full w-11 h-11 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105">
                         <Image
                             src="/logo.png"
@@ -48,12 +49,12 @@ export default function Header() {
                     <span className="text-brand-primary font-bold tracking-wide hidden sm:block text-lg">
                         ScamFreeIndia
                     </span>
-                </a>
+                </Link>
 
                 {/* Navigation */}
                 <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-14 text-sm font-medium text-brand-secondary">
                     {navItems.map((item) => (
-                        <a
+                        <Link
                             key={item}
                             href={
                                 item === "Home" ? "/" : 
@@ -66,15 +67,15 @@ export default function Header() {
                             <span>{item}</span>
                             {/* Animated underline */}
                             <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
-                        </a>
+                        </Link>
                     ))}
                 </nav>
 
                 <div className="flex items-center gap-3">
                     {/* Desktop CTA */}
-                    <a href="/#report" className="hidden sm:inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-5 py-2.5 rounded-lg active:scale-95">
+                    <Link href="/#report" className="hidden sm:inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-5 py-2.5 rounded-lg active:scale-95">
                         Get Started
-                    </a>
+                    </Link>
 
                     {/* Mobile Toggle */}
                     <button
@@ -96,7 +97,7 @@ export default function Header() {
                             }`}
                     >
                         {navItems.map((item, idx) => (
-                            <a
+                            <Link
                                 key={item}
                                  href={
                                     item === "Home" ? "/" : 
@@ -109,11 +110,11 @@ export default function Header() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {item}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>
             </div>
         </header>
     )
-}
+}

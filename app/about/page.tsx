@@ -1,6 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "About Us | Our Mission for a Scam-Free India",
+    description: "Learn about ScamFreeIndia's mission to protect Indian citizens from online fraud. Our vision is a secure digital ecosystem through awareness and expert guidance.",
+};
 
 export default function AboutPage() {
     return (

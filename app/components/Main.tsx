@@ -58,7 +58,7 @@ export default function Main() {
                         <div className="absolute top-1/2 -translate-y-1/2 left-0 -z-10 opacity-10 pointer-events-none select-none w-full max-w-lg">
                             <Image
                                 src="/logo.png"
-                                alt="Hero Background"
+                                alt="ScamFreeIndia Logo Background - Protect Yourself from Online Fraud"
                                 width={1200}
                                 height={800}
                                 sizes="(max-width: 768px) 100vw, 1200px"
