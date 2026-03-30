@@ -14,7 +14,7 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ title, excerpt, date, author, category, image, ...props }: any) {
-    const backendUrl = "http://127.0.0.1:8000";
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
     let rawImage =
         image ||

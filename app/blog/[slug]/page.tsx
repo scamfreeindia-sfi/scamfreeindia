@@ -4,36 +4,56 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Footer from "@/app/components/Footer"
+import { BLOG_POSTS } from "../data"
 
 interface Props {
     params: Promise<{ slug: string }>
 }
 
 async function getPost(slug: string) {
+    const apiUrl = process.env.API_URL || 'http://127.0.0.1:8000';
     try {
-        const res = await fetch(`http://127.0.0.1:8000/api/blogs/${slug}`, {
+        const res = await fetch(`${apiUrl}/api/blogs/${slug}`, {
             next: { revalidate: 60 }
         })
-        if (!res.ok) return null
-        const data = await res.json()
-        return data.success ? data.data : null
+        if (res.ok) {
+            const data = await res.json()
+            if (data.success) return data.data
+        }
     } catch (error) {
-        console.error("Error fetching post:", error)
-        return null
+        console.error("Error fetching post from API:", error)
     }
+
+    // Fallback to static data
+    return BLOG_POSTS.find(p => p.slug === slug) || null
 }
 
 async function getAllPosts() {
+    const apiUrl = process.env.API_URL || 'http://127.0.0.1:8000';
+    let posts = [];
     try {
-        const res = await fetch(`http://127.0.0.1:8000/api/blogs`, {
+        const res = await fetch(`${apiUrl}/api/blogs`, {
             next: { revalidate: 3600 }
         })
-        if (!res.ok) return []
-        const data = await res.json()
-        return data.success ? data.data.data : []
+        if (res.ok) {
+            const data = await res.json()
+            if (data.success) {
+                posts = data.data.data
+            }
+        }
     } catch (error) {
-        return []
+        console.error("Error fetching all blogs from API:", error)
     }
+
+    // Merge API posts with static BLOG_POSTS, preventing duplicates by slug
+    const allPosts = [...posts];
+    BLOG_POSTS.forEach(staticPost => {
+        if (!allPosts.find((p: any) => p.slug === staticPost.slug)) {
+            allPosts.push(staticPost);
+        }
+    });
+
+    return allPosts;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -46,7 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
     }
 
-    const backendUrl = "http://127.0.0.1:8000";
+    const backendUrl = process.env.API_URL || "http://127.0.0.1:8000";
     let postImage = post.image || post.image_url || post.thumbnail || post.featured_image || post.img;
     let displayImage = "https://www.scamfreeindia.com/og-image.png";
 
@@ -106,11 +126,11 @@ export default async function BlogPost({ params }: Props) {
         notFound()
     }
 
-    // Get related posts (mocked or from general list for now)
+    // Get related posts
     const allPosts = await getAllPosts()
     const relatedPosts = allPosts.filter((p: any) => p.slug !== slug).slice(0, 3)
 
-    const backendUrl = "http://127.0.0.1:8000";
+    const backendUrl = process.env.API_URL || "http://127.0.0.1:8000";
     let postImage = post.image || post.image_url || post.thumbnail || post.featured_image || post.img;
     let displayImage = "";
 
