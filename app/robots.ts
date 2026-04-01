@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/', // Block API routes if they exist
     },
-    sitemap: 'https://www.scamfreeindia.com/sitemap.xml',
+    sitemap: 'https://www.scamfreeind.in/sitemap.xml',
   }
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 async function getBlogs(page = 1) {
-    const apiUrl = process.env.API_URL || 'http://127.0.0.1:8000';
+    const apiUrl = process.env.API_URL || 'https://scamfreeind.in';
     try {
         const res = await fetch(`${apiUrl}/api/blogs?page=${page}`, {
             next: { revalidate: 60 },

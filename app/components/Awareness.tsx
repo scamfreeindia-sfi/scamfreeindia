@@ -7,7 +7,7 @@ import { BLOG_POSTS } from "../blog/data"
 
 export default function Awareness() {
     const [blogs, setBlogs] = useState<any[]>([])
-    const backendUrl = "http://127.0.0.1:8000"
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "https://scamfreeind.in"
 
     useEffect(() => {
         async function fetchBlogs() {

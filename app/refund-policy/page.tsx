@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 /**
  * Refund Policy Page
  * 
- * This page contains the official Refund Policy from scamfreeindia.com
+ * This page contains the official Refund Policy from scamfreeind.in
  */
 export default function RefundPolicy() {
     return (

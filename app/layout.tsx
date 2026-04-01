@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.scamfreeindia.com"),
+  metadataBase: new URL("https://www.scamfreeind.in"),
   title: {
     default: "ScamFreeIndia | Expert Help Recovering Lost Money",
     template: "%s | ScamFreeIndia",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://www.scamfreeindia.com",
+    url: "https://www.scamfreeind.in",
     title: "ScamFreeIndia | Expert Help Recovering Your Lost Money",
     description: "Expert guidance for recovering funds from online scams. Specialized in trading, loan, and social media fraud cases in India.",
     siteName: "ScamFreeIndia",
@@ -94,8 +94,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "ScamFreeIndia",
-    "url": "https://www.scamfreeindia.com",
-    "logo": "https://www.scamfreeindia.com/logo.png",
+    "url": "https://www.scamfreeind.in",
+    "logo": "https://www.scamfreeind.in/logo.png",
     "description": "Expert consultancy for online fraud recovery and cyber awareness in India.",
     "sameAs": [
       // Add social media links here

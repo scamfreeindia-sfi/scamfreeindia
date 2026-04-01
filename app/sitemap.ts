@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
  
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://www.scamfreeindia.com'
+  const baseUrl = 'https://www.scamfreeind.in'
 
   // Static routes
   const staticRoutes = [
@@ -22,7 +22,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic blog routes
   let blogRoutes: any[] = []
   try {
-    const res = await fetch('http://127.0.0.1:8000/api/blogs', {
+    const apiUrl = process.env.API_URL || 'https://scamfreeind.in'
+    const res = await fetch(`${apiUrl}/api/blogs`, {
       next: { revalidate: 3600 }
     })
     const data = await res.json()

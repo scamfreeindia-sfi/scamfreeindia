@@ -14,7 +14,7 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ title, excerpt, date, author, category, image, ...props }: any) {
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "https://scamfreeind.in";
 
     let rawImage =
         image ||
@@ -68,7 +68,7 @@ export default function BlogCard({ title, excerpt, date, author, category, image
                 )} */}
 
                 <h3 className="text-xl font-bold text-brand-primary mb-3 leading-tight group-hover:text-brand-blue transition-colors line-clamp-2">
-                    {title}
+                    {title} 
                 </h3>
 
                 {displayExcerpt && (

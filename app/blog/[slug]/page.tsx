@@ -11,7 +11,7 @@ interface Props {
 }
 
 async function getPost(slug: string) {
-    const apiUrl = process.env.API_URL || 'http://127.0.0.1:8000';
+    const apiUrl = process.env.API_URL || 'https://scamfreeind.in';
     try {
         const res = await fetch(`${apiUrl}/api/blogs/${slug}`, {
             next: { revalidate: 60 }
@@ -29,7 +29,7 @@ async function getPost(slug: string) {
 }
 
 async function getAllPosts() {
-    const apiUrl = process.env.API_URL || 'http://127.0.0.1:8000';
+    const apiUrl = process.env.API_URL || 'https://scamfreeind.in';
     let posts = [];
     try {
         const res = await fetch(`${apiUrl}/api/blogs`, {
@@ -66,9 +66,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
     }
 
-    const backendUrl = process.env.API_URL || "http://127.0.0.1:8000";
+    const backendUrl = process.env.API_URL || "https://scamfreeind.in";
     let postImage = post.image || post.image_url || post.thumbnail || post.featured_image || post.img;
-    let displayImage = "https://www.scamfreeindia.com/og-image.png";
+    let displayImage = "https://www.scamfreeind.in/og-image.png";
 
     if (postImage && typeof postImage === 'string') {
         if (postImage.startsWith('http')) {
@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         openGraph: {
             title: post.title,
             description: post.excerpt || post.summary,
-            url: `https://www.scamfreeindia.com/blog/${slug}`,
+            url: `https://www.scamfreeind.in/blog/${slug}`,
             type: 'article',
             publishedTime: post.created_at,
             authors: [typeof post.author === 'string' ? post.author : (post.author?.name || 'ScamFreeIndia Team')],
@@ -130,7 +130,7 @@ export default async function BlogPost({ params }: Props) {
     const allPosts = await getAllPosts()
     const relatedPosts = allPosts.filter((p: any) => p.slug !== slug).slice(0, 3)
 
-    const backendUrl = process.env.API_URL || "http://127.0.0.1:8000";
+    const backendUrl = process.env.API_URL || "https://scamfreeind.in";
     let postImage = post.image || post.image_url || post.thumbnail || post.featured_image || post.img;
     let displayImage = "";
 
@@ -163,7 +163,7 @@ export default async function BlogPost({ params }: Props) {
             "name": "ScamFreeIndia",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.scamfreeindia.com/logo.png"
+                "url": "https://www.scamfreeind.in/logo.png"
             }
         },
         "datePublished": post.created_at,
@@ -171,7 +171,7 @@ export default async function BlogPost({ params }: Props) {
         "description": post.excerpt || post.summary,
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://www.scamfreeindia.com/blog/${slug}`
+            "@id": `https://www.scamfreeind.in/blog/${slug}`
         }
     };
 
@@ -215,7 +215,7 @@ export default async function BlogPost({ params }: Props) {
 
                             <div className="relative group">
                                 <div className="absolute -left-6 top-0 w-1 h-full bg-brand-blue shadow-[0_0_15px_rgba(0,112,243,0.5)] hidden md:block" />
-                                <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white drop-shadow-2xl lowercase">
+                                <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white drop-shadow-2xl ">
                                     {post.title}
                                 </h1>
                             </div>
