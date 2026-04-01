@@ -93,9 +93,9 @@ export default function Awareness() {
                                     <span className="text-[10px] font-black px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full border border-brand-blue/20 uppercase tracking-widest">
                                         {blog.category || (blog as any).category_name || "Awareness"}
                                     </span>
-                                    <span className="text-[10px] text-brand-secondary font-bold uppercase tracking-wider">
+                                    {/* <span className="text-[10px] text-brand-secondary font-bold uppercase tracking-wider">
                                         {blog.date || new Date(blog.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
-                                    </span>
+                                    </span> */}
                                 </div>
                                 <h3 className="text-xl font-bold group-hover:text-brand-blue transition-colors mb-4 text-white leading-tight line-clamp-2">
                                     {blog.title}
