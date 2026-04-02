@@ -43,53 +43,38 @@ export default function BlogCard({ title, excerpt, date, author, category, image
     const { slug } = props;
 
     return (
-        <div className="bg-brand-card border border-brand-border rounded-2xl overflow-hidden group hover:border-brand-blue/50 transition-all duration-300 flex flex-col h-full shadow-lg shadow-black/20">
-            <div className="relative aspect-video overflow-hidden blur-2">
-                <Image
-                    src={displayImage}
-                    alt={title}
-                    fill
-                    unoptimized
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="transition-transform duration-500 group-hover:scale-105 "
-                />
-
-                {/* <div className="absolute top-4 left-4 bg-brand-blue/90 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                    {displayCategory}
-                </div> */}
+        <div className="bg-[#111111] border border-white/5 rounded-2xl overflow-hidden group hover:border-white/10 transition-all duration-300 flex flex-col h-full shadow-2xl">
+            {/* Image Container with Padding */}
+            <div className="p-4 pb-0">
+                <div className="relative aspect-video overflow-hidden rounded-xl">
+                    <Image
+                        src={displayImage}
+                        alt={title}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                </div>
             </div>
 
             {/* Content */}
-            <div className="p-6 flex flex-col flex-1">
-                {/* {displayDate && (
-                    <div className="flex items-center gap-2 text-brand-secondary text-[10px] mb-3 uppercase tracking-widest font-bold">
-                        <span>{new Date(displayDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-                    </div>
-                )} */}
-
-                <h3 className="text-xl font-bold text-brand-primary mb-3 leading-tight group-hover:text-brand-blue transition-colors line-clamp-2">
-                    {title} 
+            <div className="p-5 flex flex-col flex-1">
+                <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-snug group-hover:text-brand-blue/80 transition-colors line-clamp-2">
+                    {title}
                 </h3>
 
                 {displayExcerpt && (
-                    <p className="text-brand-secondary text-sm mb-6 flex-1 line-clamp-3">
+                    <p className="text-gray-400 text-sm mb-4 flex-1 line-clamp-2 leading-relaxed">
                         {displayExcerpt}
                     </p>
                 )}
 
                 <Link
                     href={`/blog/${slug}`}
-                    className="inline-flex items-center text-brand-blue font-semibold text-sm hover:underline group/link mt-auto"
+                    className="inline-flex items-center text-[#FF4D4D] font-bold text-sm hover:underline transition-all mt-auto"
                 >
-                    Read More
-                    <svg
-                        className="w-4 h-4 ml-1 transition-transform group-hover/link:translate-x-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    Read More!
                 </Link>
             </div>
         </div>

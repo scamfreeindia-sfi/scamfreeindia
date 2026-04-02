@@ -59,18 +59,31 @@ export default async function BlogPage({
             <Header />
 
             {/* Hero Section */}
-            <section className="px-6 md:px-16 pt-12 pb-20">
+            <section className="px-6 md:px-16 pt-12 pb-12">
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-col items-center text-center space-y-6">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-xs font-bold uppercase tracking-wider mb-2">
-                            Knowledge Center
-                        </div>
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight max-w-3xl">
-                            Insights to Keep You <span className="bg-gradient-to-r from-brand-blue to-blue-400 bg-clip-text text-transparent">Scam-Free</span>
+                    <div className="flex flex-col items-center text-center space-y-8">
+                        <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight max-w-3xl text-white">
+                            Latest Blogs & <span className="text-[#FF4D4D]">Updates!</span>
                         </h1>
-                        <p className="text-brand-secondary text-lg max-w-2xl">
-                            Stay ahead of online fraud with our expert analysis, safety guides, and the latest security trends to protect your digital identity across India.
-                        </p>
+                        
+                        {/* Search Bar */}
+                        <div className="w-full max-w-2xl relative group">
+                            <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-gray-500">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <input 
+                                type="text" 
+                                placeholder='Search for "Ponzi Scams"'
+                                className="w-full bg-[#E5E7EB] text-gray-900 px-14 py-4 rounded-xl font-medium focus:outline-none focus:ring-2 focus:ring-[#FF4D4D]/20 transition-all placeholder:text-gray-500 shadow-xl"
+                            />
+                            <div className="absolute inset-y-0 right-5 flex items-center text-gray-900">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4.5h18M6.75 9h10.5M10.5 13.5h3" />
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
