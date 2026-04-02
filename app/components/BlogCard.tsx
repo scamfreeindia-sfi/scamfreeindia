@@ -72,7 +72,7 @@ export default function BlogCard({ title, excerpt, date, author, category, image
 
                 <Link
                     href={`/blog/${slug}`}
-                    className="inline-flex items-center text-[#FF4D4D] font-bold text-sm hover:underline transition-all mt-auto"
+                    className="inline-flex items-center text-[#FFA500] font-bold text-sm hover:underline transition-all mt-auto"
                 >
                     Read More!
                 </Link>

@@ -122,7 +122,7 @@ export default function BlogList({ initialData, currentPage }: BlogListProps) {
                 )}
 
                 {/* Sticky Report Banner */}
-                <div className="fixed bottom-6 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:w-max z-50">
+                {/* <div className="fixed bottom-6 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:w-max z-50">
                     <div className="bg-[#0F172A]/90 backdrop-blur-xl border border-white/10 p-2 pl-6 rounded-full flex flex-col md:flex-row items-center gap-4 shadow-2xl">
                         <div className="flex items-center gap-3">
                             <span className="text-yellow-400">
@@ -146,7 +146,7 @@ export default function BlogList({ initialData, currentPage }: BlogListProps) {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </section>
     )

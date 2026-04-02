@@ -4,7 +4,6 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 
 interface VideoData {
-    // video_section_title?: string
     video_section_title_color: string
     video_section_subtitle: string | null
     video_section_subtitle_color: string
@@ -61,7 +60,7 @@ export default function Video() {
     if (apiData?.video_section_video) {
         const videoId = getYoutubeId(apiData.video_section_video)
         videos.push({
-            title: apiData?.video_section_title || "Latest Awareness Case",
+            title: "Latest Awareness Case",
             url: apiData.video_section_video,
             thumbnail: videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f",
             category: "LATEST CASE",
@@ -111,10 +110,9 @@ export default function Video() {
                     </div>
                     
                     <h2
-                        className="text-4xl md:text-6xl font-black tracking-tighter"
-                        style={{ color: apiData?.video_section_title_color || "#fff" }}
+                        className="text-4xl md:text-6xl font-black tracking-tighter text-white"
                     >
-                        {/* {apiData?.video_section_title || "Deep Dive Into Scams"} */}
+                        Latest Awareness
                     </h2>
 
                     {apiData?.video_section_subtitle && (

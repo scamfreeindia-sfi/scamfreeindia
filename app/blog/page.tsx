@@ -63,7 +63,7 @@ export default async function BlogPage({
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col items-center text-center space-y-8">
                         <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight max-w-3xl text-white">
-                            Latest Blogs & <span className="text-[#FF4D4D]">Updates!</span>
+                            Latest Blogs & <span className="text-[#FFA500]">Updates!</span>
                         </h1>
                         
                         {/* Search Bar */}
@@ -76,7 +76,7 @@ export default async function BlogPage({
                             <input 
                                 type="text" 
                                 placeholder='Search for "Ponzi Scams"'
-                                className="w-full bg-[#E5E7EB] text-gray-900 px-14 py-4 rounded-xl font-medium focus:outline-none focus:ring-2 focus:ring-[#FF4D4D]/20 transition-all placeholder:text-gray-500 shadow-xl"
+                                className="w-full bg-[#E5E7EB] text-gray-900 px-14 py-4 rounded-xl font-medium focus:outline-none focus:ring-2 focus:ring-[#FFA500]/20 transition-all placeholder:text-gray-500 shadow-xl"
                             />
                             <div className="absolute inset-y-0 right-5 flex items-center text-gray-900">
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
