@@ -21,8 +21,7 @@ async function getBlogs(page = 1, searchQuery = "") {
 
     try {
         const res = await fetch(endpoint, {
-            next: { revalidate: 60 },
-            cache: 'no-store'
+            next: { revalidate: 60 }
         })
 
         if (!res.ok) {
@@ -31,20 +30,6 @@ async function getBlogs(page = 1, searchQuery = "") {
 
         const json = await res.json()
 
-        // Normalize search results if they differ from standard pagination
-        // If it's a search, we might need to wrap the data in a structure BlogList expects
-        if (searchQuery && json.success) {
-            return {
-                ...json,
-                data: {
-                    data: json.data,
-                    current_page: 1,
-                    last_page: 1,
-                    total: json.data?.length || 0
-                }
-            }
-        }
-
         return json
     } catch (error) {
         console.error("Error fetching blogs:", error)
@@ -52,12 +37,15 @@ async function getBlogs(page = 1, searchQuery = "") {
     }
 }
 
-export default async function BlogPage({
-    searchParams,
-}: {
-    searchParams: Promise<{ page?: string; search?: string }>
+export default async function BlogPage(props: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-    const { page, search } = await searchParams
+    const resolvedSearchParams = await props.searchParams
+    const rawPage = resolvedSearchParams.page
+    const rawSearch = resolvedSearchParams.search
+    
+    const page = Array.isArray(rawPage) ? rawPage[0] : rawPage
+    const search = Array.isArray(rawSearch) ? rawSearch[0] : rawSearch
     const currentPage = parseInt(page || '1')
     const searchQuery = search || ''
     const apiResponse = await getBlogs(currentPage, searchQuery)

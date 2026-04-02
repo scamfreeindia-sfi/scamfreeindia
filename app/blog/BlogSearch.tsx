@@ -10,6 +10,9 @@ export default function BlogSearch() {
     const [query, setQuery] = useState(searchParams.get("search") || "")
 
     useEffect(() => {
+        const currentSearch = searchParams.get("search") || "";
+        if (query === currentSearch) return;
+
         const params = new URLSearchParams(searchParams)
         if (query) {
             params.set("search", query)
