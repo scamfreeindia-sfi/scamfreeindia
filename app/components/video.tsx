@@ -28,7 +28,8 @@ export default function Video() {
 
         const fetchData = async () => {
             try {
-                const response = await fetch("https://scamfreeind.in/api/video-section", {
+                const backendUrl = process.env.NEXT_PUBLIC_API_URL || "https://scamfreeind.in"
+                const response = await fetch(`${backendUrl}/api/video-section`, {
                     signal: controller.signal
                 })
                 const result = await response.json()
@@ -102,7 +103,7 @@ export default function Video() {
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16 space-y-4">
-                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-widest animate-pulse">
+                    <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-black uppercase tracking-widest animate-pulse">
                         Live Awareness
                     </div>
 
@@ -129,7 +130,7 @@ export default function Video() {
                                 href={video.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`group relative block rounded-[1.5rem] overflow-hidden bg-brand-card border border-white/5 hover:border-red-600/30 transition-all duration-500 hover:-translate-y-1 shadow-2xl hover:shadow-red-600/5 ${video.isShorts ? "aspect-[9/16]" : "aspect-video"}`}
+                                className={`group relative block rounded-[1.5rem] mx-auto w-full overflow-hidden bg-brand-card border border-white/5 hover:border-red-600/30 transition-all duration-500 hover:-translate-y-1 shadow-2xl hover:shadow-red-600/5 ${video.isShorts ? "max-w-[340px] aspect-[9/16]" : "aspect-video"}`}
                             >
                                 <Image
                                     src={video.thumbnail}
@@ -153,7 +154,7 @@ export default function Video() {
                                 </div>
 
                                 <div className="absolute top-5 left-5 right-5 flex justify-between items-start pointer-events-none">
-                                    <span className="text-[10px] font-black bg-red-600 text-white px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
+                                    <span className="text-xs font-black bg-red-600 text-white px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
                                         {video.category}
                                     </span>
                                 </div>
@@ -163,7 +164,7 @@ export default function Video() {
                                         {video.title}
                                     </h3>
 
-                                    <div className="mt-4 flex items-center gap-2 text-red-500 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+                                    <div className="mt-4 flex items-center gap-2 text-red-500 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
                                         <span>Click to Watch</span>
                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
