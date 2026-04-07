@@ -7,7 +7,6 @@ import SebiIntermediaries from "./SebiIntermediaries";
 import Review from "./Review";
 import Awareness from "./Awareness";
 import Video from "./video";
-import Expert from "./expert";
 
 export default function Main() {
     const [form, setForm] = useState({
@@ -218,7 +217,6 @@ export default function Main() {
 
             <FraudSection />
             <SebiIntermediaries />
-            <Expert />
             <Review />
             <Video />
             <Awareness />
