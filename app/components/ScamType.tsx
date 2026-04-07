@@ -6,7 +6,7 @@ export default function FraudSection() {
         { title: "Task / Like & Earn", icon: "thumbs-up", description: "Victims are paid initially for liking videos, then asked to 'invest' for premium assignments." },
         { title: "Courier / Customs", icon: "package", description: "Fake calls from 'FedEx' or 'Customs' claiming illegal parcels are intercepted in your name." },
         { title: "Loan App Harassment", icon: "credit-card", description: "Unregistered apps provide small loans, then access contacts to morph photos and extort money." },
-        { title: "Fake Ipo Scam", icon: "trending-up", description: "fake IPO websites or send fraudulent documents to lure investors with the promise of high returns." },
+        { title: "Fake IPO Scam", icon: "trending-up", description: "Fake IPO websites or send fraudulent documents to lure investors with the promise of high returns." },
         { title: "Ponzi Scam", icon: "shield", description: "Scammers promise high returns, use new investors’ money to pay earlier ones, and keep the rest." }
     ];
 
@@ -53,17 +53,13 @@ export default function FraudSection() {
                     Fraudsters are constantly evolving their tactics. Stay informed about the most prevalent online scams affecting people today.
                 </p>
             </div>
-            {/* DESKTOP RADIAL VIEW - 8 Item Octagon */}
             <div className="hidden lg:block relative w-full max-w-[1200px] h-[1000px] mx-auto mt-16 mb-8">
-                {/* Connecting Lines SVG - Premium Curved "Broken Lines" */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 1200 1000" fill="none">
                     <g stroke="#3B82F6" strokeWidth="2" strokeDasharray="8 12" strokeOpacity="0.3" strokeLinecap="round">
-                        {/* Top Center Line */}
                         <path d="M 600 500 L 600 150" />
                         <circle cx="600" cy="150" r="4" fill="#3B82F6" fillOpacity="0.6" stroke="none" />
                         <circle cx="600" cy="150" r="8" stroke="#3B82F6" strokeOpacity="0.2" strokeWidth="1" fill="none" />
 
-                        {/* Top Right Line - Curved */}
                         <path d="M 600 500 Q 800 450 1000 280" />
                         <circle cx="1000" cy="280" r="4" fill="#3B82F6" fillOpacity="0.6" stroke="none" />
                         <circle cx="1000" cy="280" r="8" stroke="#3B82F6" strokeOpacity="0.2" strokeWidth="1" fill="none" />

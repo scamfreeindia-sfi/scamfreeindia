@@ -17,7 +17,7 @@ export default function PrivacyPolicy() {
     return (
         <main className="min-h-screen bg-brand-bg text-brand-primary flex flex-col">
             <Header />
-            
+
             <div className="flex-grow pt-32 pb-20 px-6 max-w-4xl mx-auto">
                 {/* Header Section */}
                 <div className="text-center mb-16 animate-fade-in">
@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
 
                 {/* Content Section */}
                 <div className="bg-brand-card p-8 md:p-12 rounded-3xl border border-brand-border shadow-soft leading-relaxed space-y-10 text-brand-secondary">
-                    
+
                     <section>
                         <h2 className="text-2xl font-bold text-white mb-4 border-l-4 border-brand-primary pl-4">Disclaimer</h2>
                         <div className="space-y-4">
@@ -91,7 +91,7 @@ export default function PrivacyPolicy() {
                             </ul>
                             <p>Once personal information is shared with a third party in accordance with this policy, Scamfree India does not control and is not responsible for how that third party stores, protects, or uses the information. While we strive to work with reputable partners, we do not guarantee their privacy or security practices.</p>
                             <div className="p-4 bg-brand-blue/10 border border-brand-blue/20 rounded-xl">
-                                <p className="text-brand-primary">For any privacy-related queries, you may contact us at: 📧 <a href="mailto:info@scamfreeind.in" className="underline">info@scamfreeind.in</a></p>
+                                <p className="text-brand-primary">For any privacy-related queries, you may contact us at: 📧 <a href="mailto:info@scamfreeindia.in" className="underline">info@scamfreeindia.in</a></p>
                             </div>
                         </div>
                     </section>
