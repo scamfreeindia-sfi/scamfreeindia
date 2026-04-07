@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.scamfreeind.in"),
   title: {
-    default: "ScamFreeIndia | Expert Help Recovering Lost Money",
+    default: "ScamFreeIndia",
     template: "%s | ScamFreeIndia",
   },
   description: "Victim of an online scam? ScamFreeIndia provides expert consultancy to help you report and recover funds from trading, loan, telegram, and task-based frauds. Act now within 24 hours.",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://www.scamfreeind.in",
-    title: "ScamFreeIndia | Expert Help Recovering Your Lost Money",
+    title: "ScamFreeIndia",
     description: "Expert guidance for recovering funds from online scams. Specialized in trading, loan, and social media fraud cases in India.",
     siteName: "ScamFreeIndia",
     images: [
