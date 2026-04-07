@@ -129,7 +129,7 @@ export default function Main() {
                             <>
                                 <div className="mb-6">
                                     <h2 className="text-2xl font-bold mb-2">
-                                        Register Your Query
+                                        Book Your Consultation
                                     </h2>
                                     <p className="text-sm text-brand-secondary">
                                         Fill in the details below and our team will reach out.
@@ -196,7 +196,7 @@ export default function Main() {
                                         {isSubmitting ? (
                                             <span className="w-5 h-5 border-2 border-brand-bg border-t-transparent rounded-full animate-spin"></span>
                                         ) : (
-                                            "Register Your Query \u2192"
+                                            "Book Your Consultation \u2192"
                                         )}
                                     </button>
 
