@@ -91,7 +91,7 @@ export default function PrivacyPolicy() {
                             </ul>
                             <p>Once personal information is shared with a third party in accordance with this policy, Scamfree India does not control and is not responsible for how that third party stores, protects, or uses the information. While we strive to work with reputable partners, we do not guarantee their privacy or security practices.</p>
                             <div className="p-4 bg-brand-blue/10 border border-brand-blue/20 rounded-xl">
-                                <p className="text-brand-primary">For any privacy-related queries, you may contact us at: 📧 <a href="mailto:info@scamfreeindia.in" className="underline">info@scamfreeindia.in</a></p>
+                                <p className="text-brand-primary">For any privacy-related queries, you may contact us at: 📧 <a href="mailto:info@scamfreeindia.com" className="underline">info@scamfreeindia.com</a></p>
                             </div>
                         </div>
                     </section>

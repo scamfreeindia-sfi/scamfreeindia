@@ -13,6 +13,18 @@ export default function Awareness() {
         async function fetchBlogs() {
             try {
                 const res = await fetch(`${backendUrl}/api/blogs`)
+                
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await res.text();
+                    console.error("Received non-JSON response:", text.substring(0, 100));
+                    throw new Error("Expected JSON response but received something else");
+                }
+
                 const data = await res.json()
                 if (data.success && data.data?.data) {
                     setBlogs(data.data.data.slice(0, 3))

@@ -32,6 +32,18 @@ export default function Video() {
                 const response = await fetch(`${backendUrl}/api/video-section`, {
                     signal: controller.signal
                 })
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await response.text();
+                    console.error("Received non-JSON response:", text.substring(0, 100));
+                    throw new Error("Expected JSON response but received something else");
+                }
+
                 const result = await response.json()
                 if (result.success && result.data) {
                     setApiData(result.data)

@@ -22,6 +22,18 @@ export default function Expert() {
             const backendUrl = process.env.NEXT_PUBLIC_API_URL || "https://scamfreeind.in";
             try {
                 const response = await fetch(`${backendUrl}/api/expert-section`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await response.text();
+                    console.error("Received non-JSON response:", text.substring(0, 100));
+                    throw new Error("Expected JSON response but received something else");
+                }
+
                 const result = await response.json();
 
                 if (result.success && result.data) {

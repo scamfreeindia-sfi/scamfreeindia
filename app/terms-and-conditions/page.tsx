@@ -79,7 +79,7 @@ export default function TermsAndConditions() {
                     <section>
                         <h2 className="text-2xl font-bold text-white mb-4 border-l-4 border-brand-blue pl-4">5. Support, Disputes & Resolution</h2>
                         <div className="space-y-4">
-                            <p>If you have any issue, you must contact us first at: 📧 <a href="mailto:info@scamfreeindia.in" className="underline text-brand-primary">info@scamfreeindia.in</a></p>
+                            <p>If you have any issue, you must contact us first at: 📧 <a href="mailto:info@scamfreeindia.com" className="underline text-brand-primary">info@scamfreeindia.com</a></p>
                             <p>We resolve most concerns within 3–5 business days. Filing a chargeback or complaint without contacting us first may be treated as malicious misuse of rights and defamation.</p>
                         </div>
                     </section>
@@ -137,7 +137,7 @@ export default function TermsAndConditions() {
                         <h2 className="text-2xl font-bold text-white mb-4">Contact & Support</h2>
                         <p>For queries, clarification, or dispute resolution:</p>
                         <div className="mt-4 text-brand-primary space-y-1">
-                            <p>📧 Email: <a href="mailto:info@scamfreeindia.in" className="underline">info@scamfreeindia.in</a></p>
+                            <p>📧 Email: <a href="mailto:info@scamfreeindia.com" className="underline">info@scamfreeindia.com</a></p>
                             <p>📞 Phone: <a href="tel:8054433907" className="underline">8054433907</a></p>
                         </div>
                     </section>

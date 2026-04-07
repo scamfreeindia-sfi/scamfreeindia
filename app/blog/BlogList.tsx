@@ -56,11 +56,20 @@ export default function BlogList({ initialData, currentPage: initialPage }: Blog
                     : `${apiUrl}/api/blogs?page=${currentPage}`
 
                 const res = await fetch(endpoint)
-                if (res.ok) {
-                    const json = await res.json()
-                    if (json.success) {
-                        setData(json.data)
-                    }
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await res.text();
+                    console.error("Received non-JSON response:", text.substring(0, 100));
+                    throw new Error("Expected JSON response but received something else");
+                }
+
+                const json = await res.json()
+                if (json.success) {
+                    setData(json.data)
                 }
             } catch (error) {
                 console.error("Error fetching blogs on client:", error)
