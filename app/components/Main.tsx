@@ -218,7 +218,7 @@ export default function Main() {
 
             <FraudSection />
             <SebiIntermediaries />
-            {/* <Expert /> */}
+            <Expert />
             <Review />
             <Video />
             <Awareness />
