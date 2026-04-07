@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import BlogCard from "../components/BlogCard"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 
 interface BlogPost {
     id: number
@@ -29,10 +30,49 @@ interface BlogListProps {
     currentPage: number
 }
 
-export default function BlogList({ initialData, currentPage }: BlogListProps) {
+export default function BlogList({ initialData, currentPage: initialPage }: BlogListProps) {
+    const searchParams = useSearchParams()
     const [selectedCategory, setSelectedCategory] = useState("All Posts")
+    const [data, setData] = useState<PaginationData | null>(initialData)
+    const [loading, setLoading] = useState(false)
 
-    const posts = initialData?.data || []
+    const currentPage = parseInt(searchParams.get("page") || initialPage.toString())
+    const searchQuery = searchParams.get("search") || ""
+
+    useEffect(() => {
+        // Skip fetching if it's the initial load and matches initialData (optional optimization)
+        // For simplicity, we fetch if params exist and aren't defaults
+        if (!searchParams.has("page") && !searchParams.has("search")) {
+            setData(initialData)
+            return
+        }
+
+        const fetchBlogs = async () => {
+            setLoading(true)
+            try {
+                const apiUrl = 'https://scamfreeind.in'
+                const endpoint = searchQuery
+                    ? `${apiUrl}/api/blogs/search?search=${encodeURIComponent(searchQuery)}`
+                    : `${apiUrl}/api/blogs?page=${currentPage}`
+
+                const res = await fetch(endpoint)
+                if (res.ok) {
+                    const json = await res.json()
+                    if (json.success) {
+                        setData(json.data)
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching blogs on client:", error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchBlogs()
+    }, [currentPage, searchQuery, initialData, searchParams])
+
+    const posts = data?.data || []
     
     const filteredPosts = selectedCategory === "All Posts"
         ? posts
@@ -40,8 +80,8 @@ export default function BlogList({ initialData, currentPage }: BlogListProps) {
 
     const categories = ["All Posts", ...new Set(posts.map(p => p.category || (p as any).category_name || "Awareness").filter(c => c !== "All Posts"))]
 
-    const hasNextPage = initialData?.next_page_url !== null
-    const hasPrevPage = initialData?.prev_page_url !== null
+    const hasNextPage = data?.next_page_url !== null
+    const hasPrevPage = data?.prev_page_url !== null
 
     return (
         <section className="px-6 md:px-16 pb-24">

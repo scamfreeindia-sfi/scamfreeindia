@@ -5,6 +5,7 @@ import BlogSearch from "./BlogSearch"
 import { Metadata } from "next"
 import { BLOG_POSTS } from "./data"
 import Footer from "../components/Footer"
+import { Suspense } from "react"
 
 export const metadata: Metadata = {
     title: "Blog & Awareness | Stay Scam-Free Today",
@@ -37,17 +38,9 @@ async function getBlogs(page = 1, searchQuery = "") {
     }
 }
 
-export default async function BlogPage(props: {
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}) {
-    const resolvedSearchParams = await props.searchParams
-    const rawPage = resolvedSearchParams.page
-    const rawSearch = resolvedSearchParams.search
-    
-    const page = Array.isArray(rawPage) ? rawPage[0] : rawPage
-    const search = Array.isArray(rawSearch) ? rawSearch[0] : rawSearch
-    const currentPage = parseInt(page || '1')
-    const searchQuery = search || ''
+export default async function BlogPage() {
+    const currentPage = 1
+    const searchQuery = ""
     const apiResponse = await getBlogs(currentPage, searchQuery)
 
     let blogData: any = null
@@ -81,16 +74,26 @@ export default async function BlogPage(props: {
                             Latest Blogs & <span className="text-[#FFA500]">Updates!</span>
                         </h1>
 
-                        <BlogSearch />
+                        <Suspense fallback={<div className="h-10 w-full max-w-2xl bg-white/5 animate-pulse rounded-xl" />}>
+                            <BlogSearch />
+                        </Suspense>
                     </div>
                 </div>
             </section>
 
             {/* Blog Grid with Client-Side Interaction */}
-            <BlogList
-                initialData={blogData}
-                currentPage={currentPage}
-            />
+            <Suspense fallback={
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-16 animate-pulse">
+                    {[1, 2, 3, 4, 5, 6].map(i => (
+                        <div key={i} className="h-64 bg-white/5 rounded-3xl" />
+                    ))}
+                </div>
+            }>
+                <BlogList
+                    initialData={blogData}
+                    currentPage={currentPage}
+                />
+            </Suspense>
 
             <Footer />
         </div>

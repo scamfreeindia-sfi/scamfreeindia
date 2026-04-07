@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Allow development from ngrok
+  output: 'export',
+
   allowedDevOrigins: ['*'] as any,
+
   images: {
-    unoptimized: true, // Bypasses the proxy which is blocking private IPs (127.0.0.1)
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
