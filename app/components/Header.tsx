@@ -1,3 +1,4 @@
+
 "use client"
 
 import Image from "next/image"
@@ -46,7 +47,7 @@ export default function Header() {
                         />
                     </div>
 
-                    <span className="text-brand-primary font-bold tracking-wide hidden sm:block text-lg">
+                    <span className="text-brand-primary font-bold tracking-wide text-lg">
                         ScamFreeIndia
                     </span>
                 </Link>
@@ -57,10 +58,10 @@ export default function Header() {
                         <Link
                             key={item}
                             href={
-                                item === "Home" ? "/" : 
-                                item === "Blog" ? "/blog" : 
-                                item === "About" ? "/about" : 
-                                "/contact"
+                                item === "Home" ? "/" :
+                                    item === "Blog" ? "/blog" :
+                                        item === "About" ? "/about" :
+                                            "/contact"
                             }
                             className="relative group transition-colors hover:text-brand-primary text-lg"
                         >
@@ -99,11 +100,11 @@ export default function Header() {
                         {navItems.map((item, idx) => (
                             <Link
                                 key={item}
-                                 href={
-                                    item === "Home" ? "/" : 
-                                    item === "Blog" ? "/blog" : 
-                                    item === "About" ? "/about" : 
-                                    "/contact"
+                                href={
+                                    item === "Home" ? "/" :
+                                        item === "Blog" ? "/blog" :
+                                            item === "About" ? "/about" :
+                                                "/contact"
                                 }
                                 className={`px-5 py-4 text-sm font-medium text-brand-secondary hover:text-brand-primary hover:bg-white/5 transition ${idx !== navItems.length - 1 ? "border-b border-brand-border" : ""
                                     }`}
@@ -117,4 +118,4 @@ export default function Header() {
             </div>
         </header>
     )
-}
+}
