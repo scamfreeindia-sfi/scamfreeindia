@@ -64,7 +64,6 @@ export default function Main() {
                                 height={800}
                                 sizes="(max-width: 768px) 100vw, 1200px"
                                 className="w-full h-auto object-contain"
-                                priority
                             />
                         </div>
 

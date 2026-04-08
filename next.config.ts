@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
+  basePath: "",
+  assetPrefix: process.env.NODE_ENV === 'production' ? "https://scamfreeind.in" : "",
 
   // trailingSlash is safe for static hosting
   trailingSlash: true,

@@ -149,3 +149,207 @@ body {
   font-family: monospace;
   border: 1px solid var(--color-brand-border);
 }
+
+/* Expert Section Styles */
+.expert-section {
+  padding: 6rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.expert-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  .expert-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .expert-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.expert-card {
+  background: var(--color-brand-card);
+  border: 1px solid var(--color-brand-border);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.expert-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-blue), transparent);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.expert-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+.expert-card:hover::after {
+  transform: scaleX(1);
+}
+
+.expert-card-featured {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: radial-gradient(circle at top right, #1e2230, var(--color-brand-card));
+}
+
+.expert-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--color-brand-blue);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  z-index: 10;
+}
+
+.expert-image-container {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 2.5rem;
+  position: relative;
+  border-radius: 3rem;
+  padding: 10px;
+}
+
+.expert-image-border-animate {
+  position: absolute;
+  inset: 0;
+  border-radius: 3rem;
+  padding: 2px;
+  background: linear-gradient(45deg, var(--color-brand-blue), transparent, var(--color-brand-blue));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotate-hue 6s linear infinite;
+}
+
+@keyframes rotate-hue {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.expert-image-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  border: 4px solid var(--color-brand-bg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.expert-name {
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.04em;
+  color: var(--color-brand-primary);
+}
+
+.expert-role {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 2rem;
+  color: var(--color-brand-blue);
+}
+
+.expert-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-border), transparent);
+  margin: 0 0 2rem 0;
+}
+
+.expert-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.expert-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-brand-secondary);
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.expert-info-item:hover {
+  color: var(--color-brand-primary);
+}
+
+.expert-info-item svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-brand-blue);
+  flex-shrink: 0;
+}
+
+.expert-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-brand-border);
+  color: white;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.expert-btn:hover {
+  background: var(--color-brand-blue);
+  border-color: var(--color-brand-blue);
+  box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.4);
+  transform: scale(1.02);
+}
+
+.expert-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.expert-btn:hover svg {
+  transform: translateX(5px);
+}

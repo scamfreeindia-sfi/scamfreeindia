@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         openGraph: {
             title: post.title,
             description: post.excerpt || post.summary,
-            url: `https://www.scamfreeind.in/blog/${slug}`,
+            url: `https://scamfreeind.in/blog/${slug}`,
             type: 'article',
             publishedTime: post.created_at,
             authors: [typeof post.author === 'string' ? post.author : (post.author?.name || 'ScamFreeIndia Team')],
@@ -163,7 +163,7 @@ export default async function BlogPost({ params }: Props) {
             "name": "ScamFreeIndia",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.scamfreeind.in/logo.png"
+                "url": "https://scamfreeind.in/logo.png"
             }
         },
         "datePublished": post.created_at,
@@ -171,7 +171,7 @@ export default async function BlogPost({ params }: Props) {
         "description": post.excerpt || post.summary,
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://www.scamfreeind.in/blog/${slug}`
+            "@id": `https://scamfreeind.in/blog/${slug}`
         }
     };
 
@@ -193,6 +193,7 @@ export default async function BlogPost({ params }: Props) {
                         unoptimized
                         className="object-cover scale-105 transition-transform duration-1000 ease-out"
                         priority
+                        loading="eager"
                         sizes="100vw"
                     />
 
