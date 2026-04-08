@@ -122,7 +122,11 @@ export default function BlogList({ initialData, currentPage: initialPage }: Blog
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-x-10 md:gap-y-12">
                     {filteredPosts.map((post, idx) => (
-                        <BlogCard key={`blog-${post.id}-${idx}`} {...post} />
+                        <BlogCard 
+                            key={`blog-${post.id}-${idx}`} 
+                            {...post} 
+                            isPriority={idx < 3}
+                        />
                     ))}
                 </div>
                 

@@ -52,6 +52,8 @@ export default function BlogCard({ title, excerpt, date, author, category, image
                         alt={title}
                         fill
                         unoptimized
+                        priority={props.isPriority}
+                        loading={props.isPriority ? "eager" : "lazy"}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
