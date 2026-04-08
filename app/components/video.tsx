@@ -22,6 +22,8 @@ interface VideoItem {
 export default function Video() {
     const [apiData, setApiData] = useState<VideoData | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemsPerPage = 4
 
     useEffect(() => {
         const controller = new AbortController()
@@ -103,17 +105,30 @@ export default function Video() {
             url: "#",
             thumbnail: "https://images.unsplash.com/photo-1621416848440-2369dadaf355",
             category: "FRAUD FREE"
+        },
+        {
+            title: "Cyber Security Awareness 2024",
+            url: "#",
+            thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
+            category: "SECURITY"
         }
     ]
 
     const displayVideos = [...videos, ...staticVideos.slice(videos.length)]
+    
+    // Pagination logic
+    const totalPages = Math.ceil(displayVideos.length / itemsPerPage)
+    const currentVideos = displayVideos.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    )
 
     return (
         <section className="py-24 px-6 bg-[#0a0a0b] relative overflow-hidden" id="video">
             <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto relative z-10">
+            <div className="max-w-6xl mx-auto relative z-10">
                 <div className="text-center mb-16 space-y-4">
                     <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-black uppercase tracking-widest animate-pulse">
                         Live Awareness
@@ -135,57 +150,95 @@ export default function Video() {
                         <p className="text-gray-500 font-bold uppercase tracking-widest text-xs">Analyzing Data...</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-                        {displayVideos.map((video, idx) => (
-                            <a
-                                key={idx}
-                                href={video.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`group relative block rounded-[1.5rem] mx-auto w-full overflow-hidden bg-brand-card border border-white/5 hover:border-red-600/30 transition-all duration-500 hover:-translate-y-1 shadow-2xl hover:shadow-red-600/5 ${video.isShorts ? "max-w-[340px] aspect-[9/16]" : "aspect-video"}`}
-                            >
-                                <Image
-                                    src={video.thumbnail}
-                                    alt={video.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
-                                    unoptimized={video.thumbnail.includes('youtube')}
-                                />
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-start">
+                            {currentVideos.map((video, idx) => (
+                                <a
+                                    key={idx}
+                                    href={video.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`group relative block rounded-[1.25rem] mx-auto w-full overflow-hidden bg-brand-card border border-white/5 hover:border-red-600/30 transition-all duration-500 hover:-translate-y-1 shadow-2xl hover:shadow-red-600/5 ${video.isShorts ? "max-w-[260px] aspect-[9/16]" : "aspect-video"}`}
+                                >
+                                    <Image
+                                        src={video.thumbnail}
+                                        alt={video.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                                        unoptimized={video.thumbnail.includes('youtube')}
+                                    />
 
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="relative">
-                                        <div className="absolute inset-0 bg-red-600 rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
-                                        <div className="relative w-16 h-16 bg-red-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-black/50">
-                                            <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M7 6v12l10-6z" />
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <div className="relative">
+                                            <div className="absolute inset-0 bg-red-600 rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+                                            <div className="relative w-16 h-16 bg-red-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-black/50">
+                                                <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M7 6v12l10-6z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="absolute top-5 left-5 right-5 flex justify-between items-start pointer-events-none">
+                                        <span className="text-xs font-black bg-red-600 text-white px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
+                                            {video.category}
+                                        </span>
+                                    </div>
+
+                                    <div className="absolute bottom-0 left-0 right-0 p-6 pb-8 bg-gradient-to-t from-black to-transparent">
+                                        <h3 className="text-lg md:text-xl font-extrabold text-white leading-tight drop-shadow-md">
+                                            {video.title}
+                                        </h3>
+
+                                        <div className="mt-4 flex items-center gap-2 text-red-500 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+                                            <span>Click to Watch</span>
+                                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                             </svg>
                                         </div>
                                     </div>
+                                </a>
+                            ))}
+                        </div>
+
+                        {totalPages > 1 && (
+                            <div className="mt-16 flex justify-center items-center gap-4">
+                                <button
+                                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                                    disabled={currentPage === 1}
+                                    className="p-3 rounded-full border border-white/10 hover:border-red-600/50 disabled:opacity-30 disabled:hover:border-white/10 transition-all duration-300 group"
+                                >
+                                    <svg className="w-5 h-5 text-white group-hover:text-red-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                
+                                <div className="flex gap-2">
+                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                        <button
+                                            key={page}
+                                            onClick={() => setCurrentPage(page)}
+                                            className={`w-10 h-10 rounded-full font-bold transition-all duration-300 ${currentPage === page ? "bg-red-600 text-white shadow-lg shadow-red-600/40" : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white"}`}
+                                        >
+                                            {page}
+                                        </button>
+                                    ))}
                                 </div>
 
-                                <div className="absolute top-5 left-5 right-5 flex justify-between items-start pointer-events-none">
-                                    <span className="text-xs font-black bg-red-600 text-white px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
-                                        {video.category}
-                                    </span>
-                                </div>
-
-                                <div className="absolute bottom-0 left-0 right-0 p-8 pb-10 bg-gradient-to-t from-black to-transparent">
-                                    <h3 className="text-xl md:text-2xl font-extrabold text-white leading-tight drop-shadow-md">
-                                        {video.title}
-                                    </h3>
-
-                                    <div className="mt-4 flex items-center gap-2 text-red-500 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
-                                        <span>Click to Watch</span>
-                                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-                        ))}
-                    </div>
+                                <button
+                                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                                    disabled={currentPage === totalPages}
+                                    className="p-3 rounded-full border border-white/10 hover:border-red-600/50 disabled:opacity-30 disabled:hover:border-white/10 transition-all duration-300 group"
+                                >
+                                    <svg className="w-5 h-5 text-white group-hover:text-red-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        )}
+                    </>
                 )}
 
                 {!isLoading && !apiData && displayVideos.length === 0 && (
