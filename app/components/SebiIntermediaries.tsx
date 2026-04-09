@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import React from 'react';
 
 const SebiIntermediaries = () => {
@@ -12,6 +13,7 @@ const SebiIntermediaries = () => {
                 "Misleading or risky recommendations",
                 "Hidden fees and charges"
             ],
+            href: "/blog/how-a-broker-can-scam-investors-in-india"
         },
         {
             title: "Research Analyst",
@@ -22,7 +24,7 @@ const SebiIntermediaries = () => {
                 "Charges high research or subscription fees",
                 "Gives risky tips or stops responding after payment"
             ],
-
+            href: "/blog/sebi-register-research-analyst-ra-scam-in-india"
         },
         {
             title: "Investment Adviser",
@@ -33,7 +35,7 @@ const SebiIntermediaries = () => {
                 "Charges advisory or portfolio fees",
                 "Gives unsuitable or risky investment advice"
             ],
-
+            href: "/blog/sebi-registered-investment-advisor-scam-in-india"
         },
     ];
 
@@ -48,13 +50,14 @@ const SebiIntermediaries = () => {
                     Fraudsters are constantly evolving their tactics. Stay informed about the most prevalent online scams affecting people today.
                 </p>
             </div>
+
             <div className="max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-3 gap-12 items-stretch">
 
                     {intermediaries.map((item, index) => (
-                        <div
-                            key={index}
-                            className="
+                        <Link key={index} href={item.href} className="block group">
+                            <div
+                                className="
                                 relative flex flex-col
                                 bg-[#111217] border border-[#1F2937]
                                 rounded-[2.5rem]
@@ -65,76 +68,77 @@ const SebiIntermediaries = () => {
                                 hover:border-red-500/40
 
                                 transition-all duration-500 ease-out
-                                p-10 pt-32 text-center group
+                                p-10 pt-32 text-center
 
                                 before:absolute before:inset-0
                                 before:rounded-[2.5rem]
                                 before:bg-gradient-to-r before:from-red-500/0 before:via-red-500/10 before:to-orange-400/0
-                                before:opacity-0 hover:before:opacity-100
+                                before:opacity-0 group-hover:before:opacity-100
                                 before:transition-all before:duration-500
                             "
-                        >
+                            >
 
-                            {/* Top Badge */}
-                            <div className="absolute -top-[1.2px] left-1/2 -translate-x-1/2 w-[82%] z-20">
-                                <div className="relative">
+                                {/* Top Badge */}
+                                <div className="absolute -top-[1.2px] left-1/2 -translate-x-1/2 w-[82%] z-20">
+                                    <div className="relative">
 
-                                    <div className="absolute -top-0 -left-[18px] w-[22px] h-[14px] rounded-tr-[16px]" />
-                                    <div className="absolute -top-0 -right-[18px] w-[22px] h-[14px] rounded-tl-[16px]" />
-                                    <div className="absolute top-0 left-0 right-0 h-[6px]" />
+                                        <div className="absolute -top-0 -left-[18px] w-[22px] h-[14px] rounded-tr-[16px]" />
+                                        <div className="absolute -top-0 -right-[18px] w-[22px] h-[14px] rounded-tl-[16px]" />
+                                        <div className="absolute top-0 left-0 right-0 h-[6px]" />
 
                                     <div className="relative rounded-b-[2.8rem] bg-[#181A20] pt-7 pb-6 px-4 shadow-lg group-hover:bg-[#1F222A] transition-all duration-500">
-                                        <h3 className="
-                                            text-[26px] font-extrabold tracking-tighter leading-none mb-1
-                                            text-white
-                                            group-hover:bg-gradient-to-r group-hover:from-red-500 group-hover:to-orange-400
-                                            group-hover:bg-clip-text group-hover:text-transparent
-                                            transition-all duration-500
-                                        ">
-                                            {item.title}
-                                        </h3>
+                                            <h3 className="
+                                                text-[26px] font-extrabold tracking-tighter leading-none mb-1
+                                                text-white
+                                                group-hover:bg-gradient-to-r group-hover:from-red-500 group-hover:to-orange-400
+                                                group-hover:bg-clip-text group-hover:text-transparent
+                                                transition-all duration-500
+                                            ">
+                                                {item.title}
+                                            </h3>
+                                        </div>
                                     </div>
                                 </div>
+
+                                {/* Tagline */}
+                                <div className="mb-10 min-h-[80px] flex items-center justify-center">
+                                    <p className="text-[#9CA3AF] group-hover:text-[#E5E7EB] font-medium leading-[1.65] text-[18px] max-w-[240px] mx-auto tracking-tight transition-colors duration-300">
+                                        {item.tagline}
+                                    </p>
+                                </div>
+
+                                {/* Divider */}
+                                <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-10" />
+
+                                {/* Features */}
+                                <ul className="space-y-[1.4rem] text-left px-2">
+                                    {item.features.map((feature, featureIndex) => (
+                                        <li key={featureIndex} className="flex items-start gap-3.5 group/item">
+                                            <div className="flex-shrink-0 mt-[0.55rem]">
+                                                <div className="
+                                                    w-[6.5px] h-[6.5px] rounded-full 
+                                                    bg-red-500 
+                                                    shadow-[0_0_12px_rgba(239,68,68,0.6)]
+                                                    group-hover/item:scale-125
+                                                    transition-all duration-300
+                                                " />
+                                            </div>
+
+                                            <span className="
+                                                text-[15.5px] text-[#9CA3AF] font-medium leading-[1.5]
+                                                transition-colors duration-300
+                                                group-hover/item:text-white
+                                            ">
+                                                {feature}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+
                             </div>
-
-                            {/* Tagline */}
-                            <div className="mb-10 min-h-[80px] flex items-center justify-center">
-                                <p className="text-[#9CA3AF] group-hover:text-[#E5E7EB] font-medium leading-[1.65] text-[18px] max-w-[240px] mx-auto tracking-tight transition-colors duration-300">
-                                    {item.tagline}
-                                </p>
-                            </div>
-
-                            {/* Divider */}
-                            <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-10" />
-
-                            {/* Features */}
-                            <ul className="space-y-[1.4rem] text-left px-2">
-                                {item.features.map((feature, featureIndex) => (
-                                    <li key={featureIndex} className="flex items-start gap-3.5 group/item">
-
-                                        <div className="flex-shrink-0 mt-[0.55rem]">
-                                            <div className="
-                                                w-[6.5px] h-[6.5px] rounded-full 
-                                                bg-red-500 
-                                                shadow-[0_0_12px_rgba(239,68,68,0.6)]
-                                                group-hover/item:scale-125
-                                                transition-all duration-300
-                                            " />
-                                        </div>
-
-                                        <span className="
-                                            text-[15.5px] text-[#9CA3AF] font-medium leading-[1.5]
-                                            transition-colors duration-300
-                                            group-hover/item:text-white
-                                        ">
-                                            {feature}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                        </div>
+                        </Link>
                     ))}
+
                 </div>
             </div>
 

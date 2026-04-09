@@ -5,6 +5,9 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Footer from "@/app/components/Footer"
 import { BLOG_POSTS } from "../data"
+import AdvisoryAction from "@/app/components/AdvisoryAction";
+import ShareLink from "@/app/components/ShareLink"
+
 
 interface Props {
     params: Promise<{ slug: string }>
@@ -30,15 +33,33 @@ async function getPost(slug: string) {
 
 async function getAllPosts() {
     const apiUrl = process.env.API_URL || 'https://scamfreeind.in';
-    let posts = [];
+    let allApiPosts: any[] = [];
+    let currentPage = 1;
+    let hasMore = true;
+
     try {
-        const res = await fetch(`${apiUrl}/api/blogs`, {
-            next: { revalidate: 3600 }
-        })
-        if (res.ok) {
-            const data = await res.json()
-            if (data.success) {
-                posts = data.data.data
+        while (hasMore) {
+            const res = await fetch(`${apiUrl}/api/blogs?page=${currentPage}`, {
+                next: { revalidate: 3600 }
+            })
+            if (res.ok) {
+                const data = await res.json()
+                if (data.success) {
+                    const pagePosts = data.data.data || [];
+                    allApiPosts = [...allApiPosts, ...pagePosts];
+
+                    // Check if there are more pages
+                    const lastPage = data.data.last_page || 1;
+                    if (currentPage < lastPage) {
+                        currentPage++;
+                    } else {
+                        hasMore = false;
+                    }
+                } else {
+                    hasMore = false;
+                }
+            } else {
+                hasMore = false;
             }
         }
     } catch (error) {
@@ -46,14 +67,14 @@ async function getAllPosts() {
     }
 
     // Merge API posts with static BLOG_POSTS, preventing duplicates by slug
-    const allPosts = [...posts];
+    const finalPosts = [...allApiPosts];
     BLOG_POSTS.forEach(staticPost => {
-        if (!allPosts.find((p: any) => p.slug === staticPost.slug)) {
-            allPosts.push(staticPost);
+        if (!finalPosts.find((p: any) => p.slug === staticPost.slug)) {
+            finalPosts.push(staticPost);
         }
     });
 
-    return allPosts;
+    return finalPosts;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -258,18 +279,7 @@ export default async function BlogPost({ params }: Props) {
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-2">
-                                        <p className="text-sm text-brand-secondary mr-2 font-bold uppercase tracking-wider">Share</p>
-                                        <button className="p-2 rounded-lg bg-brand-card border border-brand-border hover:border-brand-blue transition-colors group">
-                                            <svg className="w-5 h-5 group-hover:text-brand-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
-                                        </button>
-                                        <button className="p-2 rounded-lg bg-brand-card border border-brand-border hover:border-brand-blue transition-colors group">
-                                            <svg className="w-5 h-5 group-hover:text-brand-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
-                                        </button>
-                                        <button className="p-2 rounded-lg bg-brand-card border border-brand-border hover:border-brand-blue transition-colors group">
-                                            <svg className="w-5 h-5 group-hover:text-brand-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.611 0-1.109-.498-1.109-1.109s.498-1.109 1.109-1.109 1.109.498 1.109 1.109-.498 1.109-1.109 1.109zm7.891 6.891h-1.891v-3.5c0-1.933-2.5-1.722-2.5 0v3.5h-1.891v-6h1.891v.917c.917-1.417 4.391-1.528 4.391 1.583v3.5z" /></svg>
-                                        </button>
-                                    </div>
+                                    <ShareLink />
                                 </div>
                             </article>
                         </div>
@@ -282,9 +292,7 @@ export default async function BlogPost({ params }: Props) {
                                 <p className="text-brand-secondary text-sm mb-6">
                                     Our experts can help you understand the next steps and how to report it to authorities.
                                 </p>
-                                <a href="/#report" className="w-full inline-flex justify-center py-4 bg-brand-blue text-white font-black rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-brand-blue/20">
-                                    TALK TO AN EXPERT
-                                </a>
+                                <AdvisoryAction />
 
                                 <div className="mt-8 pt-8 border-t border-brand-border">
                                     <h4 className="text-sm font-bold uppercase tracking-widest text-brand-blue mb-4">Related Topics</h4>
@@ -305,29 +313,7 @@ export default async function BlogPost({ params }: Props) {
                         </aside>
                     </div>
                 </div>
-            </main>
-
-            {/* Newsletter Section */}
-            <section className="px-6 md:px-16 pb-24">
-                <div className="max-w-5xl mx-auto bg-brand-card border border-brand-border rounded-[2.5rem] p-8 md:p-16 text-center relative overflow-hidden">
-                    <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-brand-blue opacity-[0.03] blur-[80px]"></div>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Stay Alert, Stay Safe</h2>
-                    <p className="text-brand-secondary text-lg mb-10 max-w-xl mx-auto">
-                        Get weekly updates on the latest scams targeting Indians and how to protect yourself.
-                    </p>
-                    <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="flex-1 bg-brand-bg border border-brand-border rounded-xl px-6 py-4 focus:ring-2 focus:ring-brand-blue/50 outline-none transition-all"
-                        />
-                        <button className="bg-brand-blue text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-brand-blue/20 hover:bg-brand-blue/90 transition-all">
-                            Subscribe
-                        </button>
-                    </form>
-                </div>
-            </section>
-
+            </main>        
             {/* Footer */}
             <Footer />
         </div>

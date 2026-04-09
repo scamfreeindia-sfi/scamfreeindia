@@ -3,6 +3,7 @@ import Header from "./Header"
 import Image from "next/image"
 import Main from "./Main"
 import Footer from "./Footer"
+import WhatsAppButton from "./WhatsAppButton"
 
 
 export default function Home() {
@@ -16,6 +17,8 @@ export default function Home() {
       <Main />
 
       <Footer />
+
+      <WhatsAppButton />
 
     </div>
   )

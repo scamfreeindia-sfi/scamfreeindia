@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
+import ShareLink from "./ShareLink";
 
 export default function Footer() {
     return (
@@ -92,11 +93,7 @@ export default function Footer() {
                                 &copy; 2026 Scam Free India. All rights reserved.
                             </p>
                         </div>
-
-                        {/* Payment Trust Badge or similar could go here */}
-                        <div className="flex items-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-300">
-                            {/* Add small icons for trust/payment if needed */}
-                        </div>
+                        <ShareLink />
                     </div>
                 </div>
             </div>
