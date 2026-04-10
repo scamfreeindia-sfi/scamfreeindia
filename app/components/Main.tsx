@@ -7,6 +7,7 @@ import SebiIntermediaries from "./SebiIntermediaries";
 import Review from "./Review";
 import Awareness from "./Awareness";
 import Video from "./video";
+import ComplaintGuide from "./ComplaintGuide";
 
 export default function Main() {
     const [form, setForm] = useState({
@@ -64,6 +65,7 @@ export default function Main() {
                                 height={800}
                                 sizes="(max-width: 768px) 100vw, 1200px"
                                 className="w-full h-auto object-contain"
+                                priority
                             />
                         </div>
 
@@ -243,6 +245,7 @@ export default function Main() {
             <SebiIntermediaries />
             <Review />
             <Video />
+            <ComplaintGuide />
             <Awareness />
         </main>
     )

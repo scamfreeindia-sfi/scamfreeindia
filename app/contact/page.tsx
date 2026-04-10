@@ -126,10 +126,24 @@ export default function ContactPage() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <div>
+                                <div className="w-full">
                                     <h4 className="font-bold text-lg mb-1">Office Location</h4>
                                     <p className="text-brand-secondary">Sco 29 Mohali citi centre F block aerocity, 140306</p>
-                                    <p className="text-xs text-brand-secondary/60 mt-1">Punjab, India</p>
+                                    <p className="text-xs text-brand-secondary/60 mt-1 mb-4">Punjab, India</p>
+
+                                    {/* Google Maps Embed */}
+                                    <div className="w-full rounded-2xl overflow-hidden border border-brand-border/50 shadow-inner h-64 mt-6 opacity-90 hover:opacity-100 transition-opacity">
+                                        <iframe 
+                                            src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Sco%2029,%20Citi%20Centre,%20F%20Block,%20Aerocity,%20Mohali,%20Punjab%20140306+(ScamFreeIndia)&t=&z=14&ie=UTF8&iwloc=B&output=embed" 
+                                            width="100%" 
+                                            height="100%" 
+                                            style={{ border: 0 }} 
+                                            allowFullScreen={true}
+                                            loading="lazy" 
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                            title="ScamFreeIndia Office Location"
+                                        ></iframe>
+                                    </div>
                                 </div>
                             </div>
                         </div>

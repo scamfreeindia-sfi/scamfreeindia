@@ -37,11 +37,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "scamfreeind.in",
+        hostname: "scamfreeindia.com",
       },
       {
         protocol: "https",
-        hostname: "www.scamfreeind.in",
+        hostname: "www.scamfreeindia.com",
       },
     ],
   },

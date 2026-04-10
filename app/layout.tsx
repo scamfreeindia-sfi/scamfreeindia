@@ -16,22 +16,17 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://scamfreeind.in"),
+  metadataBase: new URL("https://scamfreeindia.com"),
   title: {
-    default: "ScamFreeIndia",
+    default: "Online Scam & Fraud Recovery Consultancy India | ScamFreeIndia",
     template: "%s | ScamFreeIndia",
   },
   description: "Victim of an online scam? ScamFreeIndia provides expert consultancy to help you report and recover funds from trading, loan, telegram, and task-based frauds. Act now within 24 hours.",
   keywords: [
     "online scam recovery india",
     "report online fraud india",
-    "trading scam recovery",
-    "cyber crime complaint india",
-    "recover money from scammers",
-    "scam free india",
-    "financial fraud help",
-    "telegram task scam recovery",
-    "stock market fraud recovery"
+    "financial cyber crime complaint",
+    "recover money from scammers"
   ],
   authors: [{ name: "ScamFreeIndia Team" }],
   creator: "ScamFreeIndia",
@@ -55,8 +50,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://scamfreeind.in",
-    title: "ScamFreeIndia",
+    url: "https://scamfreeindia.com",
+    title: "Online Scam & Fraud Recovery Consultancy India | ScamFreeIndia",
     description: "Expert guidance for recovering funds from online scams. Specialized in trading, loan, and social media fraud cases in India.",
     siteName: "ScamFreeIndia",
     images: [
@@ -75,13 +70,14 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
     creator: "@ScamFreeIndia",
   },
-  alternates: {
-    canonical: "/",
-  },
+
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
     apple: "/logo.png",
+  },
+  verification: {
+    google: "0NO7UQZ1Sj52KHXHQpv-_B_lqxQMUBL5Ug6Nij007kk",
   },
   other: {
     "facebook-domain-verification": "6rihsqxe1ggn8oocy0yadb61sb8gdp",
@@ -95,21 +91,59 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "ScamFreeIndia",
-    "url": "https://scamfreeind.in",
-    "logo": "https://scamfreeind.in/logo.png",
-    "description": "Expert consultancy for online fraud recovery and cyber awareness in India.",
-    "sameAs": [
-      // Add social media links here
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+91-8054433907",
-      "contactType": "customer service",
-      "areaServed": "IN",
-      "availableLanguage": ["en", "hi"]
-    }
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://scamfreeindia.com/#organization",
+        "name": "ScamFreeIndia",
+        "url": "https://scamfreeindia.com",
+        "logo": "https://scamfreeindia.com/logo.png",
+        "description": "Expert consultancy for online fraud recovery and cyber awareness in India. Specializing in financial cybercrime complaints.",
+        "founder": {
+          "@type": "Person",
+          "name": "Jaskaran Singh",
+          "jobTitle": "Founder & Anti-Fraud Specialist"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Sco 29, Citi Centre, F Block, Aerocity",
+          "addressLocality": "Mohali",
+          "addressRegion": "Punjab",
+          "postalCode": "140306",
+          "addressCountry": "IN"
+        },
+        "telephone": "+91-8054433907",
+        "email": "info@scamfreeindia.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-8054433907",
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["en", "hi"]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://scamfreeindia.com/#website",
+        "url": "https://scamfreeindia.com",
+        "name": "ScamFreeIndia",
+        "publisher": {
+          "@id": "https://scamfreeindia.com/#organization"
+        }
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://scamfreeindia.com/about",
+        "url": "https://scamfreeindia.com/about",
+        "name": "About ScamFreeIndia & Founder Jaskaran Singh"
+      },
+      {
+        "@type": "ContactPage",
+        "@id": "https://scamfreeindia.com/contact",
+        "url": "https://scamfreeindia.com/contact",
+        "name": "Contact ScamFreeIndia"
+      }
+    ]
   };
 
   return (

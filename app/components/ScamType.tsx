@@ -53,7 +53,19 @@ export default function FraudSection() {
                     Fraudsters are constantly evolving their tactics. Stay informed about the most prevalent online scams affecting people today.
                 </p>
             </div>
-            <div className="hidden lg:block relative w-full max-w-[1200px] h-[1000px] mx-auto mt-16 mb-8">
+
+            {/* SEO & Screen Reader Friendly List (Indexed only once) */}
+            <ul className="sr-only">
+                {scamsList.map((scam, i) => (
+                    <li key={i}>
+                        <h3>{scam.title}</h3>
+                        <p>{scam.description}</p>
+                    </li>
+                ))}
+            </ul>
+
+            {/* DESKTOP VISUAL VIEW */}
+            <div aria-hidden="true" className="hidden lg:block relative w-full max-w-[1200px] h-[1000px] mx-auto mt-16 mb-8">
                 <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 1200 1000" fill="none">
                     <g stroke="#3B82F6" strokeWidth="2" strokeDasharray="8 12" strokeOpacity="0.3" strokeLinecap="round">
                         <path d="M 600 500 L 600 150" />
@@ -162,7 +174,7 @@ export default function FraudSection() {
             </div>
 
             {/* MOBILE MARQUEE VIEW (HIDDEN ON DESKTOP) */}
-            <div className="block lg:hidden w-full relative flex flex-col gap-6 select-none bg-brand-bg/50 py-10 border-y border-white/5 shadow-inner mt-8">
+            <div aria-hidden="true" className="block lg:hidden w-full relative flex flex-col gap-6 select-none bg-brand-bg/50 py-10 border-y border-white/5 shadow-inner mt-8">
                 <div className="absolute top-0 bottom-0 left-0 w-16 md:w-48 bg-gradient-to-r from-brand-section to-transparent z-10 pointer-events-none"></div>
                 <div className="absolute top-0 bottom-0 right-0 w-16 md:w-48 bg-gradient-to-l from-brand-section to-transparent z-10 pointer-events-none"></div>
 

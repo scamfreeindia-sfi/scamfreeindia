@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1. Force HTTPS (Solve HTTP vs HTTPS conflict)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Force non-www (Solve www vs non-www redirect issues)
+RewriteCond %{HTTP_HOST} ^www\.scamfreeindia\.com [NC]
+RewriteRule ^(.*)$ https://scamfreeindia.com/$1 [L,R=301]
+
+# 3. Next.js Static Export Routing (Fix broken links on refresh)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ $1.html [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+</IfModule>

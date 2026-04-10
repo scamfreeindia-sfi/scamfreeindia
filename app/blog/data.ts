@@ -147,5 +147,79 @@ export const BLOG_POSTS = [
         category: "Crypto",
         image: "https://images.unsplash.com/photo-1621416848440-2369dadaf355?q=80&w=1374&auto=format&fit=crop",
         slug: "crypto-wallet-security"
+    },
+    {
+        id: 7,
+        title: "UPI Scam Kya Hota Hai? (Real Case Study & Prevention)",
+        excerpt: "Learn how a single fake QR code wiped out ₹85,000 from a businessman's account. Understand how the 'Collect Request' scam works and how to protect your hard-earned money.",
+        content: `
+            <p>Unified Payments Interface (UPI) has revolutionized how India pays, but it has also given rise to a new breed of cybercriminals. Here is a real-world breakdown of exactly how UPI scams happen.</p>
+
+            <h2>Real Case Study: The "Receive Money" Trap</h2>
+            <p>Mr. Sharma, a local shop owner in Delhi, received a WhatsApp message claiming he had won a cashback of ₹5,000 from a popular payment app. The message included a link and instructions to "Enter your UPI PIN to receive the money into your bank account."</p>
+            <p>Believing it to be a genuine reward, Mr. Sharma clicked the link. It opened his UPI app directly with a pre-filled amount. Without reading the small text that said <strong>"Paying to"</strong> instead of "Receiving from", he entered his 6-digit UPI PIN. Instantly, ₹5,000 was deducted from his account. Before he could freeze the bank account, the scammers initiated multiple transactions, stealing a total of ₹85,000.</p>
+
+            <h2>How UPI Frauds Actually Work</h2>
+            <ul>
+                <li><strong>The Reverse Payment Request:</strong> Scammers send you a "Collect Request" via PhonePe, GPay, or Paytm. When you approve it and type your PIN, money <em>leaves</em> your account. You NEVER need to enter your PIN to receive money.</li>
+                <li><strong>Fake Customer Care:</strong> Scammers manipulate Google search results to list their numbers as "Bank Customer Care." When you call them, they tell you to download apps like AnyDesk or TeamViewer, giving them complete remote control of your phone.</li>
+                <li><strong>OLX / Quikr QR Code Scam:</strong> While selling an item, the "buyer" sends a QR code and says, "Scan this to receive payment." Scanning a QR code ALWAYS sends money, it never receives it.</li>
+            </ul>
+
+            <h2>Steps to Avoid UPI Scams</h2>
+            <ol>
+                <li><strong>The Golden Rule:</strong> UPI PIN is ONLY used to deduct money from your account. Never enter your PIN to receive a payment or cashback.</li>
+                <li><strong>Read the Screen:</strong> Before pressing 'Pay', always read the name of the receiver and the text "Sending ₹XX".</li>
+                <li><strong>Do Not Download Screen-Sharing Apps:</strong> Never install AnyDesk, QuickSupport, or TeamViewer on the advice of a "customer care executive".</li>
+            </ol>
+
+            <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 1rem; margin-top: 2rem;">
+                <h3 style="color: #ef4444; margin-top: 0;">What to do if you are scammed?</h3>
+                <p><strong>Government Helpline:</strong> Dial <strong>1930</strong> immediately. This is the official Cyber Crime helpline established by the Ministry of Home Affairs. You must also register a formal complaint at <a href="https://cybercrime.gov.in" target="_blank" style="color: #ef4444; text-decoration: underline;">cybercrime.gov.in</a>.</p>
+                <p>Call your bank immediately to freeze the UPI ID and block your debit cards to prevent further unauthorized transactions.</p>
+            </div>
+        `,
+        date: "April 08, 2026",
+        author: "Fraud Investigation Unit",
+        category: "Case Study",
+        image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1470&auto=format&fit=crop",
+        slug: "upi-scam-kya-hota-hai-case-study"
+    },
+    {
+        id: 8,
+        title: "OLX Fraud Kaise Hota Hai? (Army Officer Impersonation Scam)",
+        excerpt: "Trying to sell your old phone or furniture? Scammers posing as Army Officers are targeting online sellers. Read this real case study to spot the red flags.",
+        content: `
+            <p>Second-hand marketplaces like OLX, Quikr, and Facebook Marketplace are hunting grounds for organized scam syndicates. The most notorious among them is the "Army Officer Advance Payment" scam.</p>
+
+            <h2>Real Case Study: The Fake Army Man</h2>
+            <p>Rahul listed his second-hand sofa on OLX for ₹15,000. Within an hour, he received a call from a man claiming to be "Subedar Amit" from the Indian Army, recently transferred to our city. The caller sounded highly disciplined, agreed to the price without bargaining, and even sent a photo of a fake Army ID card and PAN card on WhatsApp to build trust.</p>
+            <p>"Amit" stated that army rules require transactions through a specific "Merchant UPI account" and said he would send ₹10 as a test transaction. Rahul received ₹10 successfully. Building on this trust, Amit sent a QR code to Rahul, claiming, "Scan this to receive the remaining ₹14,990."</p>
+            <p>When Rahul scanned it, his UPI app asked for his PIN. Amit manipulated him on the call, saying, "Yes, sir, enter the PIN to verify your identity so the army server can release the funds." As soon as Rahul entered his PIN, ₹14,990 was deducted from his own bank account instead of being credited.</p>
+
+            <h2>The Psychology Behind the OLX Scam</h2>
+            <ul>
+                <li><strong>Authority & Trust:</strong> Scammers use the reputation of the Armed Forces or Police to disarm victims. Genuine personnel will rarely flash their ID cards for private transactions.</li>
+                <li><strong>The Token Payment Hook:</strong> Sending ₹1 or ₹10 to build initial trust is a classic psychological hook. Once you see money entering your account, your guard drops.</li>
+                <li><strong>Urgency:</strong> Scammers always create pressure, claiming they are "on duty" or "the truck is waiting," forcing you to press buttons in a panic.</li>
+            </ul>
+
+            <h2>Steps to Protect Yourself on OLX & Quikr</h2>
+            <ol>
+                <li><strong>Never Accept Advance Online Payments:</strong> Always insist on a face-to-face meeting in a public place. Only accept cash or scan <em>their</em> phone face-to-face.</li>
+                <li><strong>Beware of Fake IDs:</strong> Scammers steal photos of real soldiers from social media and Photoshop fake ID cards. Do not trust WhatsApp ID cards.</li>
+                <li><strong>Never Scan QR Codes to Receive:</strong> A QR code is strictly for <em>giving</em> money.</li>
+            </ol>
+
+            <div style="background: rgba(34, 197, 94, 0.1); border-left: 4px solid #22c55e; padding: 1rem; margin-top: 2rem;">
+                <h3 style="color: #22c55e; margin-top: 0;">Emergency Action Plan</h3>
+                <p>If you have lost money via an OLX fraud, immediately call the National Cyber Crime Helpline at <strong>1930</strong>. Inform your bank's fraud department within the first 2 hours, as the "Golden Hour" heavily increases the chances of tracing and blocking the funds in the scammer's beneficiary bank account.</p>
+            </div>
+        `,
+        date: "April 05, 2026",
+        author: "Cyber Safety Team",
+        category: "Marketplace Scams",
+        image: "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=1470&auto=format&fit=crop",
+        slug: "olx-fraud-kaise-hota-hai-case-study"
     }
 ]

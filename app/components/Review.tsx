@@ -108,6 +108,7 @@ export default function Review() {
                             return (
                                 <div
                                     key={`${review.id}-${index}`}
+                                    aria-hidden={index >= reviews.length ? "true" : undefined}
                                     onClick={() => setActivePos(effectiveIndex)}
                                     style={{
                                         width: `${cardWidth}px`,
