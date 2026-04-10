@@ -45,7 +45,7 @@ export default function ContactPage() {
                                     <input
                                         type="email"
                                         id="email"
-                                        placeholder="info@scamfreeind.in"
+                                        placeholder="info@scamfreeindia.com"
                                         className="w-full bg-brand-bg border border-brand-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors text-brand-primary"
                                     />
                                 </div>
@@ -133,13 +133,13 @@ export default function ContactPage() {
 
                                     {/* Google Maps Embed */}
                                     <div className="w-full rounded-2xl overflow-hidden border border-brand-border/50 shadow-inner h-64 mt-6 opacity-90 hover:opacity-100 transition-opacity">
-                                        <iframe 
-                                            src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Sco%2029,%20Citi%20Centre,%20F%20Block,%20Aerocity,%20Mohali,%20Punjab%20140306+(ScamFreeIndia)&t=&z=14&ie=UTF8&iwloc=B&output=embed" 
-                                            width="100%" 
-                                            height="100%" 
-                                            style={{ border: 0 }} 
+                                        <iframe
+                                            src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Sco%2029,%20Citi%20Centre,%20F%20Block,%20Aerocity,%20Mohali,%20Punjab%20140306+(ScamFreeIndia)&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+                                            width="100%"
+                                            height="100%"
+                                            style={{ border: 0 }}
                                             allowFullScreen={true}
-                                            loading="lazy" 
+                                            loading="lazy"
                                             referrerPolicy="no-referrer-when-downgrade"
                                             title="ScamFreeIndia Office Location"
                                         ></iframe>
