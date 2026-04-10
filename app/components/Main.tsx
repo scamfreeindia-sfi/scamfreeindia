@@ -19,13 +19,14 @@ export default function Main() {
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const [isSuccess, setIsSuccess] = useState(false)
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://scamfreeind.in"
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsSubmitting(true)
 
         try {
-            const response = await fetch("/api/report", {
+            const response = await fetch(`${apiBaseUrl}/api/scam/lead`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
