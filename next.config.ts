@@ -1,17 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath: "",
-  assetPrefix: "/",
-
-  // trailingSlash is safe for static hosting
-  trailingSlash: true,
-
-  allowedDevOrigins: ["*"] as any,
+  reactStrictMode: true,
 
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
