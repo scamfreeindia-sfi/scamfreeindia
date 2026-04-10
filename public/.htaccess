@@ -9,18 +9,19 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.scamfreeindia\.com [NC]
 RewriteRule ^(.*)$ https://scamfreeindia.com/$1 [L,R=301]
 
-# 3) Skip rewrites for real files/folders
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^_next/ - [L]
+# 3) Allow static files (VERY IMPORTANT)
+RewriteCond %{REQUEST_URI} ^/_next/ [OR]
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf)$
+RewriteRule ^ - [L]
 
-# 4) Serve exported route folders (trailingSlash: true)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.+?)/?$ /$1/index.html [L]
+# 4) If folder exists → serve index.html inside it
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+)$ /$1/index.html [L]
 
-# 5) Fallback to homepage
+# 5) If file not found → try .html version
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ /$1.html [L]
+
+# 6) Fallback to homepage
 RewriteRule ^$ /index.html [L]
 </IfModule>
