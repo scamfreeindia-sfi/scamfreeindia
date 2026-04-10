@@ -1,20 +1,26 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-# 1. Force HTTPS (Solve HTTP vs HTTPS conflict)
+# 1) Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 2. Force non-www (Solve www vs non-www redirect issues)
+# 2) Force non-www
 RewriteCond %{HTTP_HOST} ^www\.scamfreeindia\.com [NC]
 RewriteRule ^(.*)$ https://scamfreeindia.com/$1 [L,R=301]
 
-# 3. Next.js Static Export Routing (Fix broken links on refresh)
+# 3) Skip rewrites for real files/folders
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ $1.html [L]
+RewriteRule ^_next/ - [L]
 
+# 4) Serve exported route folders (trailingSlash: true)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.html [L]
+RewriteRule ^(.+?)/?$ /$1/index.html [L]
+
+# 5) Fallback to homepage
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ /index.html [L]
 </IfModule>
