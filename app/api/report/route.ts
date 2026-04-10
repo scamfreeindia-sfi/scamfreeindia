@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const apiBaseUrl = process.env.API_URL || "https://scamfreeindia.com";
+    const apiBaseUrl = process.env.API_URL || "https://scamfreeind.in";
 
     // Proxy the request to the local API
     const response = await fetch(`${apiBaseUrl}/api/scam/lead`, {

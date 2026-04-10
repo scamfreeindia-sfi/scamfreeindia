@@ -45,7 +45,7 @@ export default function ContactPage() {
                                     <input
                                         type="email"
                                         id="email"
-                                        placeholder="info@scamfreeindia.com"
+                                        placeholder="info@scamfreeind.in"
                                         className="w-full bg-brand-bg border border-brand-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors text-brand-primary"
                                     />
                                 </div>
@@ -114,7 +114,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-lg mb-1">Email Support</h4>
-                                    <a href="mailto:info@scamfreeindia.com" className="text-brand-secondary hover:text-brand-primary transition-colors">info@scamfreeindia.com</a>
+                                    <a href="mailto:info@scamfreeind.in" className="text-brand-secondary hover:text-brand-primary transition-colors">info@scamfreeind.in</a>
                                     <p className="text-xs text-brand-secondary/60 mt-1">Response within 24 hours</p>
                                 </div>
                             </div>

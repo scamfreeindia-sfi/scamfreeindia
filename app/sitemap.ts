@@ -5,7 +5,7 @@ import { BLOG_POSTS } from './blog/data'
 export const dynamic = 'force-static'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://scamfreeindia.com'
+  const baseUrl = 'https://scamfreeind.in'
 
   // Static routes
   const staticRoutes = [
@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic blog routes
   let blogRoutes: any[] = []
   try {
-    const apiUrl = process.env.API_URL || 'https://scamfreeindia.com'
+    const apiUrl = process.env.API_URL || 'https://scamfreeind.in'
     const res = await fetch(`${apiUrl}/api/blogs`, {
       next: { revalidate: 3600 }
     })
