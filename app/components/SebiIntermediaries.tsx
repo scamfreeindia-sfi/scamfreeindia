@@ -63,13 +63,14 @@ const SebiIntermediaries = () => {
                             <div
                                 className="
                                 relative flex flex-col h-full
-                                bg-[#111217] border border-[#1F2937]
+                                bg-[#111217] 
+                                border border-red-500/40 md:border-[#1F2937]
                                 rounded-[2rem] md:rounded-[2.5rem]
-                                shadow-[0_4px_24px_rgba(0,0,0,0.3)]
+                                shadow-[0_25px_60px_rgba(0,0,0,0.6)] md:shadow-[0_4px_24px_rgba(0,0,0,0.3)]
 
-                                hover:shadow-[0_25px_60px_rgba(0,0,0,0.6)]
-                                hover:-translate-y-2 hover:scale-[1.01]
-                                hover:border-red-500/40
+                                md:hover:shadow-[0_25px_60px_rgba(0,0,0,0.6)]
+                                md:hover:-translate-y-2 md:hover:scale-[1.01]
+                                md:hover:border-red-500/40
 
                                 transition-all duration-500 ease-out
                                 p-6 pt-24 md:p-10 md:pt-32 text-center
@@ -77,7 +78,7 @@ const SebiIntermediaries = () => {
                                 before:absolute before:inset-0
                                 before:rounded-[2rem] md:before:rounded-[2.5rem]
                                 before:bg-gradient-to-r before:from-red-500/0 before:via-red-500/10 before:to-orange-400/0
-                                before:opacity-0 group-hover:before:opacity-100
+                                before:opacity-100 md:before:opacity-0 md:group-hover:before:opacity-100
                                 before:transition-all before:duration-500
                             "
                             >
@@ -90,12 +91,13 @@ const SebiIntermediaries = () => {
                                         <div className="absolute -top-0 -right-[18px] w-[22px] h-[14px] rounded-tl-[16px]" />
                                         <div className="absolute top-0 left-0 right-0 h-[6px]" />
 
-                                        <div className="relative rounded-b-[2rem] md:rounded-b-[2.8rem] bg-[#181A20] pt-5 pb-4 md:pt-7 md:pb-6 px-4 shadow-lg group-hover:bg-[#1F222A] transition-all duration-500">
+                                        <div className="relative rounded-b-[2rem] md:rounded-b-[2.8rem] bg-[#1F222A] md:bg-[#181A20] pt-5 pb-4 md:pt-7 md:pb-6 px-4 shadow-lg md:group-hover:bg-[#1F222A] transition-all duration-500">
                                             <h3 className="
                                                 text-[20px] md:text-[26px] font-extrabold tracking-tighter leading-none mb-1
-                                                text-white
-                                                group-hover:bg-gradient-to-r group-hover:from-red-500 group-hover:to-orange-400
-                                                group-hover:bg-clip-text group-hover:text-transparent
+                                                bg-gradient-to-r from-red-500 to-orange-400 bg-clip-text text-transparent
+                                                md:text-white
+                                                md:group-hover:bg-gradient-to-r md:group-hover:from-red-500 md:group-hover:to-orange-400
+                                                md:group-hover:bg-clip-text md:group-hover:text-transparent
                                                 transition-all duration-500
                                             ">
                                                 {item.title}
@@ -106,7 +108,7 @@ const SebiIntermediaries = () => {
 
                                 {/* Tagline */}
                                 <div className="mb-8 md:mb-10 min-h-[70px] md:min-h-[80px] flex items-center justify-center">
-                                    <p className="text-[#9CA3AF] group-hover:text-[#E5E7EB] font-medium leading-[1.6] md:leading-[1.65] text-base md:text-[18px] max-w-[240px] mx-auto tracking-tight transition-colors duration-300">
+                                    <p className="text-[#E5E7EB] md:text-[#9CA3AF] md:group-hover:text-[#E5E7EB] font-medium leading-[1.6] md:leading-[1.65] text-base md:text-[18px] max-w-[240px] mx-auto tracking-tight transition-colors duration-300">
                                         {item.tagline}
                                     </p>
                                 </div>
@@ -129,9 +131,9 @@ const SebiIntermediaries = () => {
                                             </div>
 
                                             <span className="
-                                                text-[14px] md:text-[15.5px] text-[#9CA3AF] font-medium leading-[1.5]
+                                                text-[14px] md:text-[15.5px] text-white md:text-[#9CA3AF] font-medium leading-[1.5]
                                                 transition-colors duration-300
-                                                group-hover/item:text-white
+                                                md:group-hover:text-white
                                             ">
                                                 {feature}
                                             </span>
