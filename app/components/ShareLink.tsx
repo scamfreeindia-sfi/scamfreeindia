@@ -70,17 +70,21 @@ export default function ShareLink() {
                 </svg>
             </a>
             {/* Youtube */}
-            <a
+           <a
                 href={shareLinks.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-brand-card border border-brand-border hover:border-brand-primary transition-colors group"
                 aria-label="Visit Youtube"
-            >
-                <svg className="w-5 h-5 group-hover:text-brand-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.009 3.827H5.045z" />
+                >
+                <svg
+                    className="w-5 h-5 group-hover:text-brand-primary transition-colors"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path d="M23.498 6.186a2.99 2.99 0 00-2.104-2.118C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.394.568A2.99 2.99 0 00.502 6.186 31.4 31.4 0 000 12a31.4 31.4 0 00.502 5.814 2.99 2.99 0 002.104 2.118C4.49 20.5 12 20.5 12 20.5s7.51 0 9.394-.568a2.99 2.99 0 002.104-2.118A31.4 31.4 0 0024 12a31.4 31.4 0 00-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z" />
                 </svg>
-            </a>
+                </a>
 
 
         </div>
