@@ -5,7 +5,7 @@ import { BLOG_POSTS } from './blog/data'
 export const dynamic = 'force-static'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://scamfreeind.in'
+  const baseUrl = 'https://scamfreeindia.com'
 
   // Static routes
   const staticRoutes = [
@@ -50,7 +50,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   } catch (error) {
     console.warn('API unavailable for sitemap generation, falling back to local data...')
-    // Fallback to local hardcoded data during build time if the external API is down or building statically
     blogRoutes = BLOG_POSTS.map((post) => ({
        url: `${baseUrl}/blog/${post.slug}`,
        lastModified: new Date(post.date),
