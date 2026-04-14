@@ -18,6 +18,7 @@ export default function ShareLink() {
         whatsapp: `https://wa.me/918054433907?text=${encodeURIComponent(`I lost money in an online scam, please help me. (Reference: ${fullUrl})`)}`,
         instagram: `https://www.instagram.com/scamfreeindia.co/`,
         twitter: `https://x.com/AnkitSh906`,
+        youtube: `https://www.youtube.com/@ScamFreeInd`,
 
     };
 
@@ -63,6 +64,18 @@ export default function ShareLink() {
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-brand-card border border-brand-border hover:border-brand-primary transition-colors group"
                 aria-label="Share on X"
+            >
+                <svg className="w-5 h-5 group-hover:text-brand-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.009 3.827H5.045z" />
+                </svg>
+            </a>
+            {/* Youtube */}
+            <a
+                href={shareLinks.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-brand-card border border-brand-border hover:border-brand-primary transition-colors group"
+                aria-label="Visit Youtube"
             >
                 <svg className="w-5 h-5 group-hover:text-brand-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.009 3.827H5.045z" />

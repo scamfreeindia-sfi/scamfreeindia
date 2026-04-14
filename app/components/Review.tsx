@@ -81,13 +81,13 @@ export default function Review() {
     }, [isPaused]);
 
     return (
-        <div className="bg-[#050505] py-8 overflow-hidden border-t border-white/5 relative">
+        <div className="bg-[#050505] overflow-hidden border-t border-white/5 relative">
             <div className="max-w-7xl mx-auto px-4 relative z-10">
-                <h2 className="text-2xl md:text-5xl font-bold text-center mb-12 md:mb-16 tracking-tight text-white">
+                <h2 className="text-2xl md:text-5xl font-bold text-center tracking-tight text-white mt-3">
                     People Who  <span className="bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green text-transparent">Trusted Us</span>
                 </h2>
 
-                <div className="relative min-h-[400px] md:min-h-[450px] w-full overflow-visible flex items-center">
+                <div className="relative min-h-[400px] md:min-h-[450px] w-full overflow-hidden flex items-center">
                     <div
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}

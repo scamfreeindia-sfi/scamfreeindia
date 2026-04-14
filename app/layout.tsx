@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "Victim of an online scam? ScamFreeIndia provides expert consultancy to help you report cyber fraud cases including trading, loan, telegram, and task-based scams. Get guidance within 24 hours.",
 
   keywords: [
-    "online scam help india",
+    "online scam in india",
     "report online fraud india",
     "cyber crime complaint india",
     "financial fraud help india",

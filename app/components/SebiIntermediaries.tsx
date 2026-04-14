@@ -51,14 +51,18 @@ const SebiIntermediaries = () => {
                 </p>
             </div>
 
-            <div className="max-w-7xl mx-auto">
-                <div className="grid lg:grid-cols-3 gap-12 items-stretch">
+            <div className="max-w-7xl mx-auto relative group/carousel">
+                {/* Optional: Subtle gradient fade on edges for mobile */}
+                <div className="absolute left-0 top-0 bottom-0 w-10 bg-gradient-to-r from-[#0B0B0D] to-transparent z-30 pointer-events-none lg:hidden" />
+                <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[#0B0B0D] to-transparent z-30 pointer-events-none lg:hidden" />
+
+                <div className="flex lg:grid lg:grid-cols-3 gap-8 lg:gap-12 items-stretch overflow-x-auto lg:overflow-x-visible no-scrollbar snap-x snap-mandatory scroll-pl-6 pb-8 lg:pb-0 px-6 lg:px-0">
 
                     {intermediaries.map((item, index) => (
-                        <Link key={index} href={item.href} className="block group">
+                        <Link key={index} href={item.href} className="block group shrink-0 w-[88%] sm:w-[80%] lg:w-full snap-center">
                             <div
                                 className="
-                                relative flex flex-col
+                                relative flex flex-col h-full
                                 bg-[#111217] border border-[#1F2937]
                                 rounded-[2.5rem]
                                 shadow-[0_4px_24px_rgba(0,0,0,0.3)]

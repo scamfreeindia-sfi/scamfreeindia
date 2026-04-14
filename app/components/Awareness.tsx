@@ -40,7 +40,7 @@ export default function Awareness() {
     }, [])
 
     return (
-        <section className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
+        <section className="px-6 md:px-16 max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                 <div className="space-y-4">
                     <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-[11px] font-black uppercase tracking-widest">

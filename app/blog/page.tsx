@@ -38,7 +38,7 @@ async function getBlogs(page = 1, searchQuery = "") {
     }
 }
 
-export default async function BlogPage() {
+async function BlogContent() {
     const currentPage = 1
     const searchQuery = ""
     const apiResponse = await getBlogs(currentPage, searchQuery)
@@ -65,6 +65,16 @@ export default async function BlogPage() {
     }
 
     return (
+        <BlogList
+            initialData={blogData}
+            currentPage={currentPage}
+        />
+    )
+}
+
+export default function BlogPage() {
+
+    return (
         <div className="bg-brand-bg text-brand-primary min-h-screen relative font-sans selection:bg-brand-blue/30 selection:text-brand-primary pt-24 pb-12">
             <Header />
             <section className="px-6 md:px-16 pt-12 pb-12">
@@ -89,10 +99,7 @@ export default async function BlogPage() {
                     ))}
                 </div>
             }>
-                <BlogList
-                    initialData={blogData}
-                    currentPage={currentPage}
-                />
+                <BlogContent />
             </Suspense>
 
             <Footer />

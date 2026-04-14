@@ -88,8 +88,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     const backendUrl = process.env.API_URL || "https://scamfreeind.in";
+    const frontendUrl = "https://scamfreeindia.com";
     let postImage = post.image || post.image_url || post.thumbnail || post.featured_image || post.img;
-    let displayImage = "https://www.scamfreeind.in/og-image.png";
+    let displayImage = "https://www.scamfreeindia.com/og-image.png";
 
     if (postImage && typeof postImage === 'string') {
         if (postImage.startsWith('http')) {
@@ -106,7 +107,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         openGraph: {
             title: post.title,
             description: post.excerpt || post.summary,
-            url: `https://scamfreeind.in/blog/${slug}`,
+            url: `${frontendUrl}/blog/${slug}`,
             type: 'article',
             publishedTime: post.created_at,
             authors: [typeof post.author === 'string' ? post.author : (post.author?.name || 'ScamFreeIndia Team')],
@@ -126,7 +127,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             images: [displayImage],
         },
         alternates: {
-            canonical: `/blog/${slug}`,
+            canonical: `${frontendUrl}/blog/${slug}`,
         }
     }
 }
@@ -184,7 +185,7 @@ export default async function BlogPost({ params }: Props) {
             "name": "ScamFreeIndia",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://scamfreeind.in/logo.png"
+                "url": "https://scamfreeindia.com/logo.png"
             }
         },
         "datePublished": post.created_at,
@@ -192,7 +193,7 @@ export default async function BlogPost({ params }: Props) {
         "description": post.excerpt || post.summary,
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://scamfreeind.in/blog/${slug}`
+            "@id": `https://scamfreeindia.com/blog/${slug}`
         }
     };
 

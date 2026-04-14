@@ -174,7 +174,7 @@ export default function FraudSection() {
             </div>
 
             {/* MOBILE MARQUEE VIEW (HIDDEN ON DESKTOP) */}
-            <div aria-hidden="true" className="block lg:hidden w-full relative flex flex-col gap-6 select-none bg-brand-bg/50 py-10 border-y border-white/5 shadow-inner mt-8">
+            <div aria-hidden="true" className="block lg:hidden w-full relative flex flex-col gap-6 select-none bg-brand-bg/50 py-10 border-y border-white/5 shadow-inner mt-8 overflow-hidden">
                 <div className="absolute top-0 bottom-0 left-0 w-16 md:w-48 bg-gradient-to-r from-brand-section to-transparent z-10 pointer-events-none"></div>
                 <div className="absolute top-0 bottom-0 right-0 w-16 md:w-48 bg-gradient-to-l from-brand-section to-transparent z-10 pointer-events-none"></div>
 
