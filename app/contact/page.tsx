@@ -79,7 +79,7 @@ export default function ContactPage() {
                                 className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-brand-blue/20 active:scale-[0.98]"
                             >
                                 Send Message
-                            </button>read
+                            </button>
                         </form>
                     </div>
 
@@ -114,7 +114,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-lg mb-1">Email Support</h4>
-                                    <a href="mailto:info@scamfreeind.in" className="text-brand-secondary hover:text-brand-primary transition-colors">info@scamfreeind.in</a>
+                                    <a href="mailto:info@scamfreeindia.com" className="text-brand-secondary hover:text-brand-primary transition-colors">info@scamfreeindia.com</a>
                                     <p className="text-xs text-brand-secondary/60 mt-1">Response within 24 hours</p>
                                 </div>
                             </div>
