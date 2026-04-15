@@ -28,7 +28,7 @@ export default function AboutPage() {
                                     alt="Jaskaran Singh"
                                     width={260}
                                     height={260}
-                                    className="rounded-full border-4 border-brand-blue shadow-xl object-cover"
+                                    className="rounded-full shadow-xl object-cover"
                                 />
                             </div>
                             <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none text-white">
