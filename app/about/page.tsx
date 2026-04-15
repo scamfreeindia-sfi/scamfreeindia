@@ -26,9 +26,9 @@ export default function AboutPage() {
                                 <Image
                                     src="/jaskaran.jpeg"
                                     alt="Jaskaran Singh"
-                                    width={260}
-                                    height={260}
-                                    className="rounded-full shadow-xl object-cover"
+                                    width={360}
+                                    height={360}
+                                    className="shadow-xl object-cover"
                                 />
                             </div>
                             <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none text-white">

@@ -1,13 +1,15 @@
+import Link from 'next/link';
+
 export default function FraudSection() {
     const scamsList = [
-        { title: "Digital Arrest Fraud", icon: "shield", description: "Fake 'police' or officers claiming you are 'digitally arrested' and must pay fines immediately." },
-        { title: "Investment & Crypto", icon: "trending-up", description: "Promises of impossibly high returns on fake trading platforms or bogus crypto investments." },
-        { title: "Job / Employment", icon: "briefcase", description: "Fraudsters offer fake high-paying opportunities, demanding upfront 'training' fees." },
-        { title: "Task / Like & Earn", icon: "thumbs-up", description: "Victims are paid initially for liking videos, then asked to 'invest' for premium assignments." },
-        { title: "Courier / Customs", icon: "package", description: "Fake calls from 'FedEx' or 'Customs' claiming illegal parcels are intercepted in your name." },
-        { title: "Loan App Harassment", icon: "credit-card", description: "Unregistered apps provide small loans, then access contacts to morph photos and extort money." },
-        { title: "Fake IPO Scam", icon: "trending-up", description: "Fake IPO websites or send fraudulent documents to lure investors with the promise of high returns." },
-        { title: "Ponzi Scam", icon: "shield", description: "Scammers promise high returns, use new investors’ money to pay earlier ones, and keep the rest." }
+        { title: "Digital Arrest Fraud", icon: "shield", description: "Fake 'police' or officers claiming you are 'digitally arrested' and must pay fines immediately.", href: "/blog/digital-arrest-scam-in-india" },
+        { title: "Investment & Crypto", icon: "trending-up", description: "Promises of impossibly high returns on fake trading platforms or bogus crypto investments.", href: "/blog/crypto-scam-awareness-in-india" },
+        { title: "Job / Employment", icon: "briefcase", description: "Fraudsters offer fake high-paying opportunities, demanding upfront 'training' fees.", href: "/blog/job-employment-work-from-home-scam-in-india" },
+        { title: "Task / Like & Earn", icon: "thumbs-up", description: "Victims are paid initially for liking videos, then asked to 'invest' for premium assignments.", href: "/blog/job-employment-work-from-home-scam-in-india" },
+        { title: "Courier / Customs", icon: "package", description: "Fake calls from 'FedEx' or 'Customs' claiming illegal parcels are intercepted in your name.", href: "/blog/courier-customs-scam-in-india" },
+        { title: "Loan App Harassment", icon: "credit-card", description: "Unregistered apps provide small loans, then access contacts to morph photos and extort money.", href: "/blog/fake-loan-scam-in-india" },
+        { title: "Fake IPO Scam", icon: "trending-up", description: "Fake IPO websites or send fraudulent documents to lure investors with the promise of high returns.", href: "/blog/fake-ipo-scam-in-india" },
+        { title: "Ponzi Scam", icon: "shield", description: "Scammers promise high returns, use new investors’ money to pay earlier ones, and keep the rest.", href: "/blog/ponzi-scam-in-india" }
     ];
 
     const getIcon = (name: string) => {
@@ -25,7 +27,7 @@ export default function FraudSection() {
     const ScamCard = ({ scam }: { scam: any }) => {
         if (!scam) return null;
         return (
-            <div className="w-[300px] sm:w-[350px] shrink-0 bg-brand-card rounded-2xl border border-brand-border p-5 flex items-start gap-4 hover:border-brand-blue/40 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-blue/10 bg-opacity-95 backdrop-blur-sm group relative z-10 mx-4 lg:mx-0">
+            <Link href={scam.href} className="w-[300px] sm:w-[350px] shrink-0 bg-brand-card rounded-2xl border border-brand-border p-5 flex items-start gap-4 hover:border-brand-blue/40 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-blue/10 bg-opacity-95 backdrop-blur-sm group relative z-10 mx-4 lg:mx-0">
                 <div className="w-12 h-12 rounded-xl bg-brand-section flex items-center justify-center text-brand-red border border-brand-border group-hover:bg-brand-blue/10 group-hover:text-brand-blue group-hover:border-brand-blue/30 transition-colors shrink-0">
                     {getIcon(scam.icon)}
                 </div>
@@ -33,7 +35,7 @@ export default function FraudSection() {
                     <h3 className="font-bold text-[17px] text-white leading-tight">{scam.title}</h3>
                     <p className="text-brand-secondary text-[13px] leading-relaxed">{scam.description}</p>
                 </div>
-            </div>
+            </Link>
         );
     };
 
