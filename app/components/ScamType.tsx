@@ -132,10 +132,14 @@ export default function FraudSection() {
                         <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent" />
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-brand-blue/20 to-brand-red/10" />
 
-                        <div className="relative z-10 w-24 h-24 bg-brand-section rounded-full flex items-center justify-center border border-white/5 shadow-2xl overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green text-2xl">
-                            {/* Person Icon representing Investigator */}
-                            <div className="text-2xl font-bold">Cyber</div>
+                        <div className="relative z-10 w-24 h-24 bg-brand-section rounded-full flex items-center justify-center border border-white/10 shadow-2xl overflow-hidden group/center hover:border-brand-blue/20 transition-all duration-500">
                             <div className="absolute inset-0 bg-brand-blue/5 animate-pulse" />
+                            <Link 
+                                href="/blog/how-to-file-a-cyber-crime-complaint-in-india"
+                                className="relative z-10 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green hover:scale-110 transition-transform duration-300"
+                            >
+                                Cyber
+                            </Link>
                         </div>
                     </div>
                 </div>

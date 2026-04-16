@@ -31,7 +31,7 @@ async function getPost(slug: string) {
     return BLOG_POSTS.find(p => p.slug === slug) || null
 }
 
-async function getAllPosts() {
+async function getAllPosts(maxPages: number = 0) {
     const apiUrl = process.env.API_URL || 'https://scamfreeind.in';
     let allApiPosts: any[] = [];
     let currentPage = 1;
@@ -50,7 +50,7 @@ async function getAllPosts() {
 
                     // Check if there are more pages
                     const lastPage = data.data.last_page || 1;
-                    if (currentPage < lastPage) {
+                    if (currentPage < lastPage && (maxPages === 0 || currentPage < maxPages)) {
                         currentPage++;
                     } else {
                         hasMore = false;
@@ -148,8 +148,8 @@ export default async function BlogPost({ params }: Props) {
         notFound()
     }
 
-    // Get related posts
-    const allPosts = await getAllPosts()
+    // Get related posts (only fetch 1 page for speed)
+    const allPosts = await getAllPosts(1)
     const relatedPosts = allPosts.filter((p: any) => p.slug !== slug).slice(0, 3)
 
     const backendUrl = process.env.API_URL || "https://scamfreeind.in";
