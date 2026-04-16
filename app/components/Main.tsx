@@ -59,7 +59,7 @@ export default function Main() {
                     {/* LEFT */}
                     <div className="hidden lg:block space-y-8 relative z-0">
                         <div className="absolute top-1/2 -translate-y-1/2 left-0 -z-10 opacity-10 pointer-events-none select-none w-full max-w-lg">
-                            <Image
+                            {/* <Image
                                 src="/logo.png"
                                 alt="ScamFreeIndia Logo Background - Protect Yourself from Online Fraud"
                                 width={1200}
@@ -67,7 +67,7 @@ export default function Main() {
                                 sizes="(max-width: 768px) 100vw, 1200px"
                                 className="w-full h-auto object-contain"
                                 priority
-                            />
+                            /> */}
                         </div>
 
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm font-medium">
