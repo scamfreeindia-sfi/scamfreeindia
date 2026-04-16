@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import AdvisoryAction from '../components/AdvisoryAction';
 
 export const metadata: Metadata = {
     title: "About Jaskaran Singh & ScamFreeIndia | Our Mission",
@@ -157,9 +158,7 @@ export default function AboutPage() {
                             At ScamFree India, we are building more than just awareness — we are building a community that stands strong against fraud.
                         </p>
                         <div className="pt-8 flex flex-wrap justify-center gap-6">
-                            <a href="" className="px-10 py-5 bg-brand-blue text-white font-black text-lg rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-brand-blue/20">
-                                JOIN THE MOVEMENT
-                            </a>
+                            <AdvisoryAction />
                         </div>
                         <div className="pt-12 flex items-center justify-center gap-4 text-xs font-black uppercase tracking-[0.3em] text-brand-secondary/40">
                             <span>Stay Alert</span>

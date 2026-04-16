@@ -23,18 +23,21 @@ export default function LeadPopup({ open, setOpen }: any) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          name: "",
           phone,
+          amount: "",
+          message: ""
         }),
       });
 
-      const data = await res.json();
-
-      if (data.success) {
+      if (res.ok) {
         alert("Submitted successfully!");
         setPhone("");
         setOpen(false);
       } else {
-        alert("Something went wrong");
+        const errorData = await res.json().catch(() => ({}));
+        console.error("Submission failed:", errorData.message || "Unknown error");
+        alert("Something went wrong. Please try again.");
       }
     } catch (err) {
       console.error(err);
