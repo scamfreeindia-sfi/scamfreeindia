@@ -17,7 +17,7 @@ async function getPost(slug: string) {
     const apiUrl = process.env.API_URL || 'https://scamfreeind.in';
     try {
         const res = await fetch(`${apiUrl}/api/blogs/${slug}`, {
-            next: { revalidate: 60 }
+            next: { revalidate: 3600 }
         })
         if (res.ok) {
             const data = await res.json()

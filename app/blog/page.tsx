@@ -22,7 +22,7 @@ async function getBlogs(page = 1, searchQuery = "") {
 
     try {
         const res = await fetch(endpoint, {
-            next: { revalidate: 60 }
+            next: { revalidate: 3600 }
         })
 
         if (!res.ok) {
