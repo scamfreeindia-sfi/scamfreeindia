@@ -16,12 +16,18 @@ RewriteRule ^ - [L]
 
 # 4) If folder exists → serve index.html inside it
 RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
 RewriteRule ^(.+)$ /$1/index.html [L]
 
-# 5) If file not found → try .html version
+# 5) If file not found → try .html version only if it exists
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+)$ /$1.html [L]
 
-# 6) Fallback to homepage
-RewriteRule ^$ /index.html [L]
+# 6) If file is still not found and doesn't match above, return 404
+# Next.js export generates a 404.html. Route unknown paths to it instead of index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/404.html -f
+RewriteRule ^(.*)$ /404.html [L]
 </IfModule>
