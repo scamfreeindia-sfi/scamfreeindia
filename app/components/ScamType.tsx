@@ -56,7 +56,6 @@ export default function FraudSection() {
                 </p>
             </div>
 
-            {/* SEO & Screen Reader Friendly List (Indexed only once) */}
             <ul className="sr-only">
                 {scamsList.map((scam, i) => (
                     <li key={i}>
@@ -134,7 +133,7 @@ export default function FraudSection() {
 
                         <div className="relative z-10 w-24 h-24 bg-brand-section rounded-full flex items-center justify-center border border-white/10 shadow-2xl overflow-hidden group/center hover:border-brand-blue/20 transition-all duration-500">
                             <div className="absolute inset-0 bg-brand-blue/5 animate-pulse" />
-                            <Link 
+                            <Link
                                 href="/blog/how-to-file-a-cyber-crime-complaint-in-india"
                                 className="relative z-10 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green hover:scale-110 transition-transform duration-300"
                             >
@@ -195,6 +194,12 @@ export default function FraudSection() {
                         <ScamCard key={`row2-${scamIndex}`} scam={scam} />
                     ))}
                 </div>
+            </div>
+            <div className="absolute top-[15%] left-[-8%] text-[25vw] font-black text-white/[0.01] [-webkit-text-stroke:1px_rgba(59,130,246,0.04)] select-none pointer-events-none animate-float uppercase italic whitespace-nowrap leading-none z-0">
+                Cyber
+            </div>
+            <div className="absolute bottom-[10%] right-[-8%] text-[25vw] font-black text-white/[0.01] [-webkit-text-stroke:1px_rgba(255,165,0,0.04)] select-none pointer-events-none animate-float-reverse uppercase italic whitespace-nowrap leading-none z-0">
+                Security
             </div>
         </section>
     );

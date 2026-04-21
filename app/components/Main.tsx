@@ -81,8 +81,8 @@ export default function Main() {
                 </div>
             </section>
 
-            <FraudSection />
             <SebiIntermediaries />
+            <FraudSection />
             <Review />
             <Video />
             <ComplaintGuide />
