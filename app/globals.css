@@ -10,6 +10,12 @@
   --color-brand-green: #FFA500;
   --color-brand-red: #EF4444;
   --color-brand-blue: #3B82F6;
+  
+  /* Legal Premium Theme */
+  --color-legal-navy: #0F172A;
+  --color-legal-gold: #D97706;
+  --color-legal-slate: #64748B;
+  --color-legal-bg: #FFFFFF;
 }
 
 body {
@@ -84,18 +90,24 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(-12deg);
   }
+
   50% {
     transform: translateY(-20px) rotate(-10deg);
   }
 }
 
 @keyframes float-reverse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(12deg);
   }
+
   50% {
     transform: translateY(20px) rotate(14deg);
   }
@@ -292,6 +304,8 @@ body {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

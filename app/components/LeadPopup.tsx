@@ -92,10 +92,10 @@ export default function LeadPopup({ open, setOpen }: any) {
             </div>
             <div>
               <h2 className="text-2xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent mb-2">
-                Request Received!
+                Consultation Requested!
               </h2>
               <p className="text-brand-secondary">
-                Our safety experts will call you back within 24 hours to guide you.
+                Our legal experts will call you back within hours to guide you.
               </p>
             </div>
           </div>
@@ -108,10 +108,10 @@ export default function LeadPopup({ open, setOpen }: any) {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                Lost Money? We Can Help
+                Need Advice?
               </h2>
               <p className="text-brand-secondary text-[15px] mt-2">
-                Dealing with fraud is stressful. Leave your number and our expert team will guide you back to safety.
+                Speak with Professionals. Leave your number and our legal team will call you back for a consultation.
               </p>
             </div>
 
@@ -149,7 +149,7 @@ export default function LeadPopup({ open, setOpen }: any) {
                   </>
                 ) : (
                   <>
-                    Request Call Back
+                    Request Consultation
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>

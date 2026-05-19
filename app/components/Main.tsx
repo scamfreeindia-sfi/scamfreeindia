@@ -2,6 +2,7 @@
 import Image from "next/image";
 import FraudSection from "./ScamType"
 import SebiIntermediaries from "./SebiIntermediaries";
+import Experts from "./Experts";
 import Review from "./Review";
 import Awareness from "./Awareness";
 import Video from "./video";
@@ -29,28 +30,24 @@ export default function Main() {
 
                 <div className="relative z-10 w-full px-6 md:px-16 py-12 md:py-20 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 h-full">
                     <div className="max-w-2xl space-y-8 hidden lg:block">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm font-medium backdrop-blur-sm">
+                       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm font-medium backdrop-blur-sm">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-red"></span>
                             </span>
-                            Urgent: Act Within 24 Hours
+                            Urgent: Act Within Hours
                         </div>
 
                         <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight">
-                            Lost Money in <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">Online Scam?</span>
-                        </h1>
-
-                        <p className="text-brand-secondary text-lg md:text-xl leading-relaxed max-w-lg">
-                            Take action within 24 hours to increase recovery chances. Our expert team has helped thousands recover from online fraud.
-                        </p>
+                            Talk to Our<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">Consultants</span>
+                        </h1>                        
 
                         <ul className="space-y-4 text-brand-primary/90 font-medium">
                             {[
-                                "Expert Guidance",
-                                "Fast Response",
-                                "100% Confidential"
+                                "Verified Expert Lawyers",
+                                "100% Secure & Confidential",
+                                "Available 24/7 Support"
                             ].map((item, itemIndex) => (
                                 <li key={itemIndex} className="flex items-center gap-3">
                                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-green/20 flex items-center justify-center border border-brand-green/30 text-brand-green">
@@ -65,7 +62,7 @@ export default function Main() {
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
                             <a
-                                href="https://wa.me/918054433907?text=I%20lost%20money%20in%20an%20online%20scam%2C%20please%20help%20me."
+                                href="https://wa.me/918054433907?text=Hello%2C%20I%20need%20expert%20legal%20consultation.%20Can%20you%20help%20me%3F"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/30 font-bold rounded-xl hover:bg-[#25D366]/20 transition-all active:scale-95 backdrop-blur-md"
@@ -83,6 +80,7 @@ export default function Main() {
 
             <SebiIntermediaries />
             <FraudSection />
+            <Experts />           
             <Review />
             <Video />
             <ComplaintGuide />

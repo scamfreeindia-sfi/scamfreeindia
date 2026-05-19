@@ -52,9 +52,9 @@ export default function Form() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 className="text-2xl font-bold mb-2 text-white">Report Submitted!</h2>
+                                    <h2 className="text-2xl font-bold mb-2 text-white">Consultation Booked!</h2>
                                     <p className="text-brand-secondary">
-                                        Our safety team will contact you within 24 hours.
+                                        Our legal expert team will contact you within 24 hours.
                                     </p>
                                 </div>
                                 <button
@@ -88,18 +88,7 @@ export default function Form() {
                                             onChange={(e) => setForm({ ...form, phone: e.target.value })}
                                         />
                                     </div>
-
-                                    <div className="space-y-1">
-                                        <label htmlFor="amount" className="sr-only">Amount Lost</label>
-                                        <input
-                                            id="amount"
-                                            type="text"
-                                            placeholder="Amount Lost (₹)"
-                                            className="w-full px-4 py-4 rounded-xl bg-black/40 border border-white/10 focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-none transition-all placeholder-gray-500 text-white shadow-inner"
-                                            value={form.amount}
-                                            onChange={(e) => setForm({ ...form, amount: e.target.value })}
-                                        />
-                                    </div>
+                                   
 
                                     <div className="space-y-1">
                                         <label htmlFor="message" className="sr-only">Brief Case Description</label>
@@ -141,7 +130,7 @@ export default function Form() {
                                         <div className="text-center w-full">
                                             <p className="text-sm text-brand-secondary mb-2">Need urgent help?</p>
                                             <a
-                                                href="https://wa.me/918054433907?text=I%20lost%20money%20in%20an%20online%20scam%2C%20please%20help%20me."
+                                                href="https://wa.me/918054433907?text=Hello%2C%20I%20need%20expert%20legal%20consultation.%20Can%20you%20help%20me%3F"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-flex items-center gap-2 text-green-400 font-bold hover:text-green-300 transition-colors group"
