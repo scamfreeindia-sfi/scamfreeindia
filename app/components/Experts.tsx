@@ -4,15 +4,21 @@ import Image from "next/image"
 const experts = [
     {
         name: "Adv. Gaurav Charaya",
-        role: "High Court Lawyer | Delhi, Punjab & Haryana",
+        role: "Advocate at High Court | Punjab & Haryana",
         location: "Chandigarh, India",
         image: "/gaurav.jpeg",       
     },
     {
         name: "Adv. Gunjan Sachdeva",
-        role: "High Court Lawyer | Punjab & Haryana",
+        role: "Advocate at High Court | Punjab & Haryana",
         location: "Chandigarh, India",
         image: "/gunjan.jpeg",
+    },
+    {
+        name: "Neha Bairagee",
+        role: "Advocate at High Court | Delhi",
+        location: "Chandigarh, India",
+        image: "",
     },
     {
         name: "Rahul Kaushal",
@@ -25,7 +31,6 @@ const experts = [
 export default function Experts() {
     return (
         <section id="experts" className="expert-section relative overflow-hidden">
-            {/* Background decorative elements */}
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-blue/5 rounded-full blur-[120px] -z-10 animate-pulse"></div>
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-brand-green/5 rounded-full blur-[120px] -z-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
 
@@ -55,42 +60,39 @@ export default function Experts() {
                                         {expert.name.charAt(0)}
                                     </div>
                                 )}
-                                {/* Overlay gradient on hover */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
                             
-                            {/* Animated Glow effect behind image */}
                             <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-brand-blue to-brand-green opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500 -z-10"></div>
                         </div>
 
-                        <h3 className="expert-name group-hover:text-brand-blue transition-colors duration-300 mt-2">
+                        <h3 className="expert-name group-hover:text-brand-blue transition-colors duration-300 mt-2 leading-tight min-h-[3rem] flex items-center justify-center text-center">
                             {expert.name}
-                        </h3>                        
+                        </h3>  
 
-                        <div className="expert-info w-full space-y-4">
-                            <div className="expert-info-item flex items-center gap-3 justify-center">
-                                <div className="w-9 h-9 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                        <div className="expert-info w-full space-y-1 mt-2">
+                            <div className="expert-info-item flex-col text-center gap-1">
+                                <div className="w-9 h-9 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all duration-300 shrink-0">
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </div>
-                                <span className="text-brand-secondary group-hover:text-brand-primary font-medium transition-colors duration-300">{expert.role}</span>
+                                <span className="text-brand-secondary group-hover:text-brand-primary font-medium transition-colors duration-300 text-[13px] leading-tight">{expert.role}</span>
                             </div>
-                            <div className="expert-info-item flex items-center gap-3 justify-center">
-                                <div className="w-9 h-9 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green group-hover:bg-brand-green group-hover:text-brand-bg transition-all duration-300">
+                            <div className="expert-info-item flex-col text-center gap-1">
+                                <div className="w-9 h-9 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green group-hover:bg-brand-green group-hover:text-brand-bg transition-all duration-300 shrink-0">
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <span className="text-brand-secondary group-hover:text-brand-primary font-medium transition-colors duration-300">{expert.location}</span>
+                                <span className="text-brand-secondary group-hover:text-brand-primary font-medium transition-colors duration-300 text-[13px] leading-tight">{expert.location}</span>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* Decorative background text */}
             <div className="absolute top-1/2 left-0 -translate-x-1/2 -rotate-90 text-[10rem] font-black text-white/[0.02] uppercase pointer-events-none select-none hidden lg:block">
                 Experts
             </div>
