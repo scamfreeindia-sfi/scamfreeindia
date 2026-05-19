@@ -15,7 +15,7 @@ const experts = [
         image: "/gunjan.jpeg",
     },
     {
-        name: "Neha Bairagee",
+        name: "Adv. Neha Bairagee",
         role: "Advocate at High Court | Delhi",
         location: "Chandigarh, India",
         image: "",
