@@ -30,13 +30,13 @@ export default function Header() {
         >
             <div
                 className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled
-                    ? "max-w-5xl bg-brand-card/80 backdrop-blur-xl border border-brand-border shadow-lg rounded-full px-5 py-3"
-                    : "max-w-7xl px-6 md:px-16 py-4"
+                    ? "max-w-5xl bg-brand-card/80 backdrop-blur-xl border border-brand-border shadow-lg rounded-full px-4 py-2.5 sm:px-5 sm:py-3"
+                    : "max-w-7xl px-4 sm:px-6 md:px-16 py-4"
                     }`}
             >
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group">
-                    <div className="rounded-full w-11 h-11 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105">
+                <Link href="/" className="flex items-center gap-1.5 sm:gap-2 group">
+                    <div className="rounded-full w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105">
                         <Image
                             src="/logo.png"
                             alt="ScamFreeIndia Logo"
@@ -47,7 +47,7 @@ export default function Header() {
                         />
                     </div>
 
-                    <span className="text-brand-primary font-bold tracking-wide text-lg">
+                    <span className="text-brand-primary font-bold tracking-wide text-base sm:text-lg">
                         ScamFreeIndia
                     </span>
                 </Link>
@@ -72,9 +72,9 @@ export default function Header() {
                     ))}
                 </nav>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                     {/* Desktop & Mobile CTA */}
-                    <Link href="/lawyer" className="inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-5 py-2.5 rounded-lg active:scale-95">
+                    <Link href="/lawyer" className="inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-xs sm:text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg active:scale-95 whitespace-nowrap">
                         Talk to Lawyer
                     </Link>
 
