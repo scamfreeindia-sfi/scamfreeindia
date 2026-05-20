@@ -42,14 +42,16 @@ export default function LawyerPage() {
         setErrorMessage("")
 
         try {
-            const response = await fetch("/api/lawyer", {
+            const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://scamfreeind.in"
+            const response = await fetch(`${apiBaseUrl}/api/lawyer/lead`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    problemType,
-                    phoneNumber,
+                    name: "Lawyer Booking",
+                    phone_number: phoneNumber,
+                    problem_type: problemType,
                 }),
             })
 
