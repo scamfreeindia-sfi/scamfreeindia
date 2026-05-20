@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiBaseUrl = process.env.API_URL || "https://scamfreeind.in";
+    const apiBaseUrl = "https://scamfreeind.in";
 
     // Format lead data for the external API
     const leadData = {
