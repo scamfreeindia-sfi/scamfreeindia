@@ -77,6 +77,18 @@ export default function Form() {
 
                                 <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
                                     <div className="space-y-1">
+                                        <label htmlFor="name" className="sr-only">Your Name</label>
+                                        <input
+                                            id="name"
+                                            type="text"
+                                            required
+                                            placeholder="Your Name"
+                                            className="w-full px-4 py-4 rounded-xl bg-black/40 border border-white/10 focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-none transition-all placeholder-gray-500 text-white shadow-inner"
+                                            value={form.name}
+                                            onChange={(e) => setForm({ ...form, name: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
                                         <label htmlFor="phone" className="sr-only">Phone Number</label>
                                         <input
                                             id="phone"
