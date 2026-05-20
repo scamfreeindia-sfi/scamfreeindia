@@ -144,7 +144,7 @@ export default function LawyerPage() {
     return (
         <div className="bg-white min-h-screen font-sans text-slate-900 relative overflow-hidden">
             {/* Bottom-Right Background Watermark */}
-            <div className="absolute -right-24 bottom-10 z-0 opacity-[0.05] pointer-events-none select-none">
+            <div className="hidden sm:block absolute -right-24 bottom-10 z-0 opacity-[0.05] pointer-events-none select-none">
                 <Image
                     src="/lawyer.png"
                     alt="Scales of Justice Watermark Bottom"
@@ -155,14 +155,14 @@ export default function LawyerPage() {
 
             <Header />
 
-            <main className="pt-24 pb-16 md:pt-32 relative z-10">
+            <main className="pt-16 pb-16 sm:pt-24 md:pt-32 relative z-10">
                 <section className="max-w-7xl mx-auto px-6 lg:px-8">
-                    <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
+                    <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-20">
 
                         {/* Left Column */}
-                        <div className="flex-1 space-y-10 relative">
+                        <div className="flex-1 space-y-6 sm:space-y-10 relative flex flex-col items-center sm:items-start text-center sm:text-left w-full">
                             {/* Left-Side Centered Background Watermark */}
-                            <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 z-0 opacity-[0.07] pointer-events-none select-none w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] md:w-[650px] md:h-[650px]">
+                            <div className="hidden sm:block absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 z-0 opacity-[0.07] pointer-events-none select-none w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] md:w-[650px] md:h-[650px]">
                                 <Image
                                     src="/lawyer.png"
                                     alt="Scales of Justice Watermark"
@@ -172,20 +172,20 @@ export default function LawyerPage() {
                                 />
                             </div>
 
-                            <div className="space-y-6 relative z-10">
+                            <div className="space-y-4 relative z-10 flex flex-col items-center sm:items-start">
                                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200">
                                     <svg className="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                     </svg>
                                     <span className="text-slate-900 text-sm font-bold tracking-tight">Verified Legal Experts</span>
-                                </div>                                <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+                                </div>                                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 items-center">
                                     <h1 className="text-4xl md:text-6xl font-extrabold text-[#0F172A] leading-tight tracking-tight">
                                         Speak with Verified <br />
                                         <span className="text-[#D97706]">Lawyers Within Minutes</span>
                                     </h1>
 
                                     {/* Full Refund Badge */}
-                                    <div className="relative pl-2 flex-shrink-0">
+                                    <div className="relative pl-0 sm:pl-2 flex-shrink-0">
                                         <button
                                             onClick={() => setIsRefundModalOpen(true)}
                                             type="button"
@@ -196,7 +196,7 @@ export default function LawyerPage() {
                                                 width="120"
                                                 height="120"
                                                 viewBox="0 0 120 120"
-                                                className="drop-shadow-md group-hover:drop-shadow-xl transition-shadow duration-200"
+                                                className="w-20 h-20 sm:w-28 sm:h-28 drop-shadow-md group-hover:drop-shadow-xl transition-shadow duration-200"
                                             >
                                                 <defs>
                                                     <linearGradient id="badge-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -258,13 +258,13 @@ export default function LawyerPage() {
                                     </div>
                                 </div>
 
-                                <p className="text-xl text-slate-600 max-w-2xl leading-relaxed font-medium">
+                                <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed font-medium">
                                     Professional Assistance for Cyber Crime, Fraud, Family, Corporate and other legal matters.
                                 </p>
                             </div>
                             
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+                            <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                                 {trustIndicators.map((item, i) => (
                                     <div key={i} className="flex items-center gap-3 text-slate-700">
                                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
@@ -277,7 +277,7 @@ export default function LawyerPage() {
                                 ))}
                             </div>
 
-                            <div className="flex flex-wrap gap-8 py-6 border-y border-slate-100 relative z-10">
+                            <div className="hidden sm:flex flex-wrap gap-8 py-6 border-y border-slate-100 relative z-10">
                                 {socialProof.map((item, i) => (
                                     <div key={i} className="space-y-1">
                                         <div className="text-2xl font-bold text-[#0F172A]">{item.value}</div>
