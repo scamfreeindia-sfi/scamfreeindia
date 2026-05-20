@@ -73,8 +73,8 @@ export default function Header() {
                 </nav>
 
                 <div className="flex items-center gap-3">
-                    {/* Desktop CTA */}
-                    <Link href="/lawyer" className="hidden sm:inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-5 py-2.5 rounded-lg active:scale-95">
+                    {/* Desktop & Mobile CTA */}
+                    <Link href="/lawyer" className="inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-5 py-2.5 rounded-lg active:scale-95">
                         Talk to Lawyer
                     </Link>
 
