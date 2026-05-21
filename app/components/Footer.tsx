@@ -88,7 +88,7 @@ export default function Footer() {
                     <div className="flex flex-col lg:flex-row justify-between gap-8 items-start">
                         <div className="max-w-3xl">
                             <p className="text-xs text-brand-secondary/70 leading-relaxed mb-4">
-                                <span className="text-brand-primary font-semibold">Disclaimer:</span> ScamFree India is a private consultancy firm. We are not affiliated with any government authority. We do not guarantee recovery of funds. Government complaint portals are free to use.
+                                <span className="text-brand-primary font-semibold">Disclaimer: </span>ScamFree India operates as an independent private consultancy and is not associated with any government body or legal institution. We do not practice law, offer legal representation, or guarantee fund recovery. Government complaint and grievance portals are publicly available and free to access. Our role is limited to providing consultation and assistance services.
                             </p>
                             <p className="text-xs text-brand-secondary/50">
                                 &copy; 2026 Scam Free India. All rights reserved.
