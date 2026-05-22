@@ -10,6 +10,15 @@ interface Expert {
     image: string | null;
 }
 
+interface Lawyer {
+    id: number;
+    name: string;
+    email: string | null;
+    phone: string | null;
+    address: string | null;
+    image: string | null;
+}
+
 const EXPERT_METADATA: Record<
     string,
     { image: string | null; location: string }
@@ -54,7 +63,7 @@ export default function Experts() {
 
     const backendUrl =
         process.env.NEXT_PUBLIC_API_URL ||
-        "http://127.0.0.1:8000";
+        "https://scamfreeind.in";
 
     useEffect(() => {
         async function fetchExperts() {
@@ -85,7 +94,7 @@ export default function Experts() {
                 ) {
                     const mappedExperts =
                         data.lawyers.map(
-                            (lawyer: any): Expert => {
+                            (lawyer: Lawyer): Expert => {
                                 const meta =
                                     EXPERT_METADATA[
                                         lawyer.name
@@ -94,10 +103,6 @@ export default function Experts() {
                                         location:
                                             "Punjab, India",
                                     };
-
-                                // Resolve the image path:
-                                // 1. Use lawyer.image from backend API if set (converting relative path to full URL)
-                                // 2. Otherwise fall back to local static metadata image path
                                 let finalImage = null;
                                 if (lawyer.image) {
                                     finalImage = lawyer.image.startsWith("http")
