@@ -68,7 +68,7 @@ export default function ComplaintGuide() {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="text-2xl font-black text-white tracking-tight mb-2">SEBI SCORES 2.0</h3>
+                            <h3 className="text-2xl font-black text-white tracking-tight mb-2">SEBI Registered</h3>
                             <p className="text-brand-secondary text-sm font-medium">For Stock Market, Trading App & Broker Scams</p>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ export default function ComplaintGuide() {
                         <div className="flex gap-4">
                             <div className="w-8 h-8 rounded-full bg-brand-bg border border-brand-border flex items-center justify-center shrink-0 text-brand-secondary font-bold text-sm">2</div>
                             <div>
-                                <h4 className="text-white font-bold mb-1">Lodge on SCORES 2.0</h4>
+                                <h4 className="text-white font-bold mb-1">Lodge on SCORES</h4>
                                 <p className="text-brand-secondary text-sm leading-relaxed">Visit <a href="https://scores.sebi.gov.in" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline">scores.sebi.gov.in</a> and create an account using your PAN card and Aadhaar linked phone number.</p>
                             </div>
                         </div>
