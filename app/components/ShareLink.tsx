@@ -16,7 +16,7 @@ export default function ShareLink() {
 
     const shareLinks = {
         whatsapp: `https://wa.me/918054433907?text=${encodeURIComponent(`I lost money in an online scam, please help me. (Reference: ${fullUrl})`)}`,
-        instagram: `https://www.instagram.com/scamfreeindia.co/`,
+        instagram: `https://www.instagram.com/scamfreeindia_?igsh=a29weGxqczgwaDhq`,
         twitter: `https://x.com/AnkitSh906`,
         youtube: `https://www.youtube.com/@ScamFreeInd`,
 
