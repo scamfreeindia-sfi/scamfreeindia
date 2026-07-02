@@ -10,7 +10,7 @@ const testimonials = [
     initial: "R",
     color: "bg-blue-600"
   },
-  
+
   {
     name: "Priya Sharma",
     location: "Delhi",
@@ -63,7 +63,7 @@ export default function Testomenial() {
             Trusted by thousands across India
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Client <span className="text-[#25D366]">Testimonials</span>
+            Client <span className="text-[#FFBF00]">Testimonials</span>
           </h2>
           <p className="text-lg text-white/60 max-w-2xl">
             Don't just take our word for it. Here is what people have to say about their experience recovering from fraud with ScamFreeIndia.
