@@ -8,6 +8,7 @@ import Awareness from "./Awareness";
 import Video from "./video";
 import ComplaintGuide from "./ComplaintGuide";
 import Form from "./Form";
+import Testomenial from "./Testomenial";
 
 export default function Main() {
 
@@ -80,6 +81,7 @@ export default function Main() {
 
             <SebiIntermediaries />
             <FraudSection />
+            <Testomenial/>
             <Experts />           
             <Review />
             <Video />
