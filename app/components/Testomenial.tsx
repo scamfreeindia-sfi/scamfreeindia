@@ -1,4 +1,6 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useRef, useState } from 'react';
 
 const testimonials = [
   {
@@ -77,6 +79,30 @@ const testimonials = [
 ];
 
 export default function Testomenial() {
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % testimonials.length);
+    }, 3800);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    const item = slider.children[activeIndex] as HTMLElement | undefined;
+    if (item) {
+      item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }, [activeIndex]);
+
   return (
     <section className="bg-[#050505] py-20 lg:py-32 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -97,12 +123,15 @@ export default function Testomenial() {
           </p>
         </div>
 
-        {/* Traditional grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Horizontal slider layout */}
+        <div
+          ref={sliderRef}
+          className="overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory flex gap-6 scrollbar-hidden"
+        >
           {testimonials.map((testimonial, index) => (
             <div 
               key={index} 
-              className={`bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 sm:p-8 flex flex-col ${index === 3 ? 'md:col-span-2 lg:col-span-1' : ''} ${index === 4 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''}`}
+              className={`min-w-[280px] sm:min-w-[320px] md:min-w-[360px] lg:min-w-[400px] snap-center bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 sm:p-8 flex flex-col`}
             >
               {/* Card Header: Avatar, Name, Case */}
               <div className="flex items-center gap-4 mb-5">

@@ -81,6 +81,15 @@ body {
   }
 }
 
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
 .animate-fade-in {
   animation: fade-in 0.8s ease-out forwards;
 }
