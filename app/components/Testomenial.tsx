@@ -10,6 +10,7 @@ const testimonials = [
     initial: "R",
     color: "bg-blue-600"
   },
+  
   {
     name: "Priya Sharma",
     location: "Delhi",
