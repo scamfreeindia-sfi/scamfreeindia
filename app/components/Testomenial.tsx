@@ -46,6 +46,33 @@ const testimonials = [
     rating: 5,
     initial: "V",
     color: "bg-red-600"
+  },
+  {
+    name: "R.K.",
+    location: "Chandigarh",
+    case: "Investment Scam • ₹4,30,000 Dispute",
+    text: "I was under tremendous stress after losing money in an investment scam. The team helped me prepare all the required complaints, organized my evidence, and guided me through the regulatory process. They were professional and responsive throughout.",
+    rating: 5,
+    initial: "R",
+    color: "bg-cyan-600"
+  },
+  {
+    name: "P.S.",
+    location: "Mumbai",
+    case: "Broker Dispute • ₹2,15,000 Claim",
+    text: "The complaint drafted by the team was detailed and well structured. They explained every step clearly and kept me informed about the progress of my case.",
+    rating: 5,
+    initial: "P",
+    color: "bg-emerald-700"
+  },
+  {
+    name: "A.K.",
+    location: "Bengaluru",
+    case: "Cyber Fraud • ₹95,000 Loss",
+    text: "I contacted the team immediately after the fraud. They guided me on reporting the incident, preserving evidence, and filing the necessary complaints. Their support gave me confidence during a difficult time.",
+    rating: 5,
+    initial: "A",
+    color: "bg-violet-600"
   }
 ];
 
