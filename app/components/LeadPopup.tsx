@@ -13,7 +13,7 @@ export default function LeadPopup({ open, setOpen }: any) {
   useEffect(() => {
     if (open && !isSuccess) {
       const timer = setTimeout(() => {
-        inputRef.current?.focus();
+        inputRef.current?.focus({ preventScroll: true });
       }, 500);
       return () => clearTimeout(timer);
     }
