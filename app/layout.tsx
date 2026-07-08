@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://scamfreeindia.com"),
 
   title: {
-    default: "Report Online Scam & Fraud in India | ScamFreeIndia",
+    default: "Protect Yourself from Cyber Fraud — Report Online Scams in India | ScamFreeIndia",
     template: "%s | ScamFreeIndia",
   },
 
   description:
-    "Victim of an online scam? ScamFreeIndia provides expert consultancy to help you report cyber fraud cases including trading, loan, telegram, and task-based scams. Get guidance within 24 hours.",
+    "Protect yourself from online scams. ScamFreeIndia provides expert consultancy to help you report cyber fraud cases including trading, loan, telegram, and task-based scams. Get guidance within 24 hours.",
 
   keywords: [
     "report online scam india",
