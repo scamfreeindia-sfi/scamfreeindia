@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const testimonials = [
   {
@@ -79,30 +79,6 @@ const testimonials = [
 ];
 
 export default function Testomenial() {
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    const interval = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % testimonials.length);
-    }, 3800);
-
-    return () => window.clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    const item = slider.children[activeIndex] as HTMLElement | undefined;
-    if (item) {
-      item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    }
-  }, [activeIndex]);
-
   return (
     <section className="bg-[#050505] py-20 lg:py-32 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -119,15 +95,12 @@ export default function Testomenial() {
             Client <span className="text-[#FFBF00]">Testimonials</span>
           </h2>
           <p className="text-lg text-white/60 max-w-2xl">
-            Don't just take our word for it. Here is what people have to say about their experience recovering from fraud with ScamFreeIndia.
+            Don't just take our word for it. Here is what people have to say / their experience recovering from fraud with ScamFreeIndia.
           </p>
         </div>
 
         {/* Horizontal slider layout */}
-        <div
-          ref={sliderRef}
-          className="overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory flex gap-6 scrollbar-hidden"
-        >
+        <div className="overflow-x-auto pb-4 -mx-4 px-4 flex gap-6 scrollbar-hidden">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
