@@ -3,7 +3,7 @@
 import React from 'react';
 
 const testimonials = [
-  {
+  { 
     name: "Ramesh Kumar",
     location: "Mumbai",
     case: "Phishing Scam",
