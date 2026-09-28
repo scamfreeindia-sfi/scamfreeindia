@@ -9,9 +9,7 @@ type ChatMessage = {
     link?: { label: string; href: string }
 }
 
-const suggestions = [
-    "I just sent money to a scammer",
-    "What should I prepare for a complaint?",
+const suggestions = [    
     "I want to speak with a lawyer",
 ]
 
@@ -20,8 +18,8 @@ function getReply(message: string): Omit<ChatMessage, "role"> {
 
     if (/lost money|sent money|transferred|paid|upi|bank|urgent|just happened/.test(text)) {
         return {
-            text: "Act quickly: call your bank or payment provider, then dial India's cyber fraud helpline at 1930 and report it on the official portal. Keep transaction references and screenshots. Recovery is not guaranteed, so avoid anyone promising to get your money back for an upfront fee.",
-            link: { label: "Open the cybercrime portal", href: "https://www.cybercrime.gov.in/" },
+            text: "Act quickly: call your bank or payment provider, then dial India's cyber fraud helpline at and report it on the official portal. Keep transaction references and screenshots. Recovery is not guaranteed, so avoid anyone promising to get your money back for an upfront fee.",
+            link: { label: "Home", href: "/" },
         }
     }
 

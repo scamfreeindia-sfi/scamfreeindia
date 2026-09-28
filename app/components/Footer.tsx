@@ -19,7 +19,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                             <Link href="/" className="rounded-full w-12 h-12 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20">
                                 <Image
                                     src={isLawyerPage ? "/lawyer.png" : "/logo.png"}
-                                    alt={isLawyerPage ? "Legal Brief Logo" : "ScamFreeIndia Logo"}
+                                    alt={isLawyerPage ? "The Legal Brief Logo" : "ScamFreeIndia Logo"}
                                     width={48}
                                     height={48}
                                     className="w-full h-full object-contain p-1"
@@ -27,7 +27,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                                 />
                             </Link>
                             <span className="text-brand-primary text-xl font-extrabold tracking-tight">
-                                {isLawyerPage ? "Legal Brief" : "ScamFreeIndia"}
+                                {isLawyerPage ? "The Legal Brief" : "ScamFreeIndia"}
                             </span>
                         </div>
                         <p className="text-brand-secondary leading-relaxed max-w-xs">
@@ -96,7 +96,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                                 <span className="text-brand-primary font-semibold">Disclaimer: </span>ScamFree India operates as an independent private consultancy and is not associated with any government body or legal institution. We do not practice law, offer legal representation, or guarantee fund recovery. Government complaint and grievance portals are publicly available and free to access. Our role is limited to providing consultation and assistance services.
                             </p>
                             <p className="text-xs text-brand-secondary/50">
-                                {isLawyerPage ? "© 2026 Legal Brief. All rights reserved." : "© 2026 ScamFree India. All rights reserved."}
+                                {isLawyerPage ? "© 2026 The Legal Brief. All rights reserved." : "© 2026 ScamFree India. All rights reserved."}
                             </p>
                         </div>
                         <ShareLink />

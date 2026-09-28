@@ -130,21 +130,7 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            <section className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-20" aria-labelledby="urgent-heading">
-                <div className="flex flex-col gap-6 border-l-4 border-brand-red bg-brand-section p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-                    <div className="max-w-3xl">
-                        <p className="text-sm font-bold uppercase text-brand-red">For an active financial cyber fraud</p>
-                        <h2 id="urgent-heading" className="mt-2 text-2xl font-extrabold text-white">Contact your bank and report it promptly</h2>
-                        <p className="mt-3 leading-relaxed text-brand-secondary">Call India&apos;s cyber fraud helpline at 1930 and submit details through the official National Cyber Crime Reporting Portal.</p>
-                    </div>
-                    <div className="flex shrink-0 flex-wrap gap-3">
-                        <a href="tel:1930" className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-red px-5 py-3 font-bold text-white transition hover:brightness-110">Call 1930</a>
-                        <a href="https://www.cybercrime.gov.in/" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-md border border-brand-border px-5 py-3 font-semibold text-white transition hover:border-brand-secondary">Open portal</a>
-                    </div>
-                </div>
-                <p className="mt-5 text-xs leading-relaxed text-brand-secondary/70">ScamFree India is an independent private consultancy, not a government body or law firm. We do not investigate cases, provide legal representation, or guarantee recovery of funds.</p>
-            </section>
-
+           
             <Footer />
         </main>
     )

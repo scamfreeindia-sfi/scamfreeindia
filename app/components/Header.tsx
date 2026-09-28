@@ -42,7 +42,7 @@ export default function Header() {
                     <div className={`rounded-full w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center overflow-hidden shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105 ${isLawyerPage ? "bg-white" : "bg-white/5"}`}>
                         <Image
                             src={isLawyerPage ? "/lawyer.png" : "/logo.png"}
-                            alt={isLawyerPage ? "Legal Brief Logo" : "ScamFreeIndia Logo"}
+                            alt={isLawyerPage ? "The Legal Brief Logo" : "ScamFreeIndia Logo"}
                             width={48}
                             height={48}
                             className="w-full h-full object-contain p-1"
@@ -52,11 +52,11 @@ export default function Header() {
 
                     <div className="flex flex-col leading-tight">
                         <span className="text-brand-primary font-bold tracking-wide text-base sm:text-lg">
-                            {isLawyerPage ? "Legal Brief" : "ScamFreeIndia"}
+                            {isLawyerPage ? "The Legal Brief" : "ScamFreeIndia"}
                         </span>
                         {!isLawyerPage && (
                             <p className="text-[10px] text-center sm:text-xs text-brand-secondary">
-                                by Legal Brief
+                                by The Legal Brief
                             </p>
                         )}
                     </div>
