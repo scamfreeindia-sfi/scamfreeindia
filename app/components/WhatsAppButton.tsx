@@ -9,17 +9,17 @@ const WhatsAppButton = () => {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
 
   return (
-    <a
+    <a                                                                                                    
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white px-5 py-3 rounded-full shadow-[0_4px_15px_rgba(37,211,102,0.4)] hover:bg-[#22c35e] hover:scale-105 active:scale-95 transition-all duration-300 group"
       aria-label="Chat on WhatsApp"
-    >
+    >                                                                                                                                                                                                                                                 
       <div className="relative w-6 h-6 flex items-center justify-center">
         {/* Simple Pulse Effect */}
         <span className="absolute inset-0 rounded-full bg-white opacity-25 group-hover:animate-ping"></span>
-        <svg
+        <svg                                                        
           viewBox="0 0 24 24"
           className="w-6 h-6 fill-current relative z-10"
           xmlns="http://www.w3.org/2000/svg"

@@ -128,38 +128,11 @@ export default function ContactPage() {
                                 </div>
                                 <div className="w-full">
                                     <h4 className="font-bold text-lg mb-1">Office Location</h4>
-                                    <p className="text-brand-secondary">Sco 29 Mohali citi centre F block aerocity, 140306</p>
-                                    <p className="text-xs text-brand-secondary/60 mt-1 mb-4">Punjab, India</p>
-
-                                    {/* Google Maps Embed */}
-                                    <div className="w-full rounded-2xl overflow-hidden border border-brand-border/50 shadow-inner h-64 mt-6 opacity-90 hover:opacity-100 transition-opacity">
-                                        <iframe
-                                            src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Sco%2029,%20Citi%20Centre,%20F%20Block,%20Aerocity,%20Mohali,%20Punjab%20140306+(ScamFreeIndia)&t=&z=14&ie=UTF8&iwloc=B&output=embed"
-                                            width="100%"
-                                            height="100%"
-                                            style={{ border: 0 }}
-                                            allowFullScreen={true}
-                                            loading="lazy"
-                                            referrerPolicy="no-referrer-when-downgrade"
-                                            title="ScamFreeIndia Office Location"
-                                        ></iframe>
-                                    </div>
+                                    <p className="text-brand-secondary">IT city Mohali</p>
+                                    <p className="text-xs text-brand-secondary/60 mt-1 mb-4">Punjab, India</p>                                   
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Social Links */}
-                        {/* <div className="pt-8 block border-t border-brand-border">
-                            <h4 className="font-bold mb-4">Follow us for alerts</h4>
-                            <div className="flex gap-4">
-                                {['Twitter', 'Facebook', 'LinkedIn', 'Instagram'].map((social) => (
-                                    <a key={social} href="#" className="w-10 h-10 rounded-full bg-brand-card border border-brand-border flex items-center justify-center hover:bg-brand-blue/10 hover:border-brand-blue transition-all">
-                                        <span className="sr-only">{social}</span>
-                                        <div className="w-5 h-5 bg-brand-secondary group-hover:bg-brand-blue" />
-                                    </a>
-                                ))}
-                            </div>
-                        </div> */}
+                        </div>                      
                     </div>
                 </div>
             </div>

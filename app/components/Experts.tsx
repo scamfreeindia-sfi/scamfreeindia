@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface Expert {
     name: string;
     role: string;
-    location: string;
     image: string | null;
     specializations?: string[];
 }
@@ -23,27 +22,27 @@ interface Lawyer {
 
 const EXPERT_METADATA: Record<
     string,
-    { image: string | null; location: string; specializations: string[] }
+    { image: string | null; specializations: string[] }
 > = {
     "Adv. Gaurav Charaya": {
         image: "/gaurav.jpeg",
-        location: "Chandigarh, India",
-        specializations: ["Cyber Crime", "High Court Cases"],
+        specializations: ["Legal Expert"],
     },
     "Adv. Gunjan Sachdeva": {
         image: "/gunjan.jpeg",
-        location: "Chandigarh, India",
-        specializations: ["Cyber Crime", "High Court Cases"],
+        specializations: ["Legal Expert"],
     },
-    "Adv. Neha Bairagee": {
-        image: null, // Set to null to fall back to the premium glowing letter placeholder as in the screenshot
-        location: "Chandigarh, India",
-        specializations: ["Cyber Crime", "Delhi High Court"],
+    "Adv. Pardeep Singh Komboj": {
+        image: null,
+        specializations: ["Legal Expert"],
+    },
+    "Adv. G.S Cheema": {
+        image: null,
+        specializations: ["Legal Expert"],
     },
     "Rahul Kaushal": {
         image: null,
-        location: "Chandigarh, India",
-        specializations: ["SEBI Matters", "Financial Fraud"],
+        specializations: ["Legal Expert"],
     },
 };
 
@@ -72,10 +71,42 @@ export default function Experts() {
     const [loading, setLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const carouselRef = useRef<HTMLDivElement | null>(null);
 
     const backendUrl =
         process.env.NEXT_PUBLIC_API_URL ||
         "https://scamfreeind.in";
+
+    const scrollCarousel = (direction: "prev" | "next") => {
+        const container = carouselRef.current;
+        if (!container) return;
+
+        const firstCard = container.querySelector("[data-expert-card]") as HTMLElement | null;
+        const cardWidth = firstCard ? firstCard.offsetWidth + 16 : 340;
+
+        container.scrollBy({
+            left: direction === "next" ? cardWidth : -cardWidth,
+            behavior: "smooth",
+        });
+    };
+
+    useEffect(() => {
+        const container = carouselRef.current;
+        if (!container || experts.length <= 1) return;
+
+        const interval = setInterval(() => {
+            const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+            if (container.scrollLeft >= maxScrollLeft - 8) {
+                container.scrollTo({ left: 0, behavior: "smooth" });
+                return;
+            }
+
+            scrollCarousel("next");
+        }, 2500);
+
+        return () => clearInterval(interval);
+    }, [experts.length]);
 
     const handleCardClick = (expert: Expert) => {
         setSelectedExpert(expert);
@@ -197,9 +228,7 @@ export default function Experts() {
                                     role:
                                         lawyer.address ||
                                         "Expert Legal Advisor",
-
-                                    location:
-                                        meta.location,
+                                  
 
                                     image: finalImage,
 
@@ -259,83 +288,106 @@ export default function Experts() {
                 </p>
             </div>
 
-            <div className="expert-grid relative z-10">
-                {experts.map((expert, index) => {
-                    const fallback = getFallbackStyle(expert.name);
-                    const initials = expert.name.charAt(0).toUpperCase();
+            <div className="relative z-10">
+                <div className="mb-6 flex items-center justify-end gap-3">
+                    <button
+                        type="button"
+                        onClick={() => scrollCarousel("prev")}
+                        aria-label="Previous experts"
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-700 bg-[#17181D] text-white transition hover:border-blue-500 hover:text-blue-400"
+                    >
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => scrollCarousel("next")}
+                        aria-label="Next experts"
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-700 bg-[#17181D] text-white transition hover:border-blue-500 hover:text-blue-400"
+                    >
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
 
-                    return (
-                        <div
-                            key={index}
-                            onClick={() => handleCardClick(expert)}
-                            className="bg-[#17181D] border border-[#27272A]/70 rounded-[2.5rem] p-8 text-center transition-all duration-500 ease-out hover:-translate-y-3 hover:bg-[#1E1F26] hover:border-zinc-700/80 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] flex flex-col items-center group relative overflow-hidden cursor-pointer"
-                        >
-                            {/* Avatar / Portrait Circle */}
-                            <div className="mb-6 relative flex-shrink-0">
-                                {expert.image ? (
-                                    <div className="w-[140px] h-[140px] rounded-full overflow-hidden border border-zinc-700/40 group-hover:border-blue-500/80 transition-all duration-500 relative flex items-center justify-center bg-[#1A1A1F]">
-                                        <Image
-                                            src={expert.image}
-                                            alt={expert.name}
-                                            fill
-                                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
-                                        />
-                                    </div>
-                                ) : (
-                                    <div className={`w-[140px] h-[140px] rounded-full flex items-center justify-center transition-all duration-500 bg-[#1A1A1F] ${fallback.borderClass}`}>
-                                        <span className={`text-4xl font-extrabold tracking-tight ${fallback.textClass}`}>
-                                            {initials}
-                                        </span>
-                                    </div>
-                                )}
-                            </div>
+                <div
+                    ref={carouselRef}
+                    onMouseEnter={() => {
+                        const container = carouselRef.current;
+                        if (!container) return;
+                        container.style.scrollBehavior = "auto";
+                    }}
+                    onMouseLeave={() => {
+                        const container = carouselRef.current;
+                        if (!container) return;
+                        container.style.scrollBehavior = "smooth";
+                    }}
+                    className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+                >
+                    {experts.map((expert, index) => {
+                        const fallback = getFallbackStyle(expert.name);
+                        const initials = expert.name.charAt(0).toUpperCase();
 
-                            {/* Name */}
-                            <h3 className="text-white text-[22px] font-bold tracking-tight mb-3 transition-colors duration-300 group-hover:text-blue-400">
-                                {expert.name}
-                            </h3>
+                        return (
+                            <div
+                                key={index}
+                                data-expert-card
+                                onClick={() => handleCardClick(expert)}
+                                className="group relative flex w-[280px] shrink-0 snap-center flex-col items-center overflow-hidden rounded-[2.5rem] border border-[#27272A]/70 bg-[#17181D] p-8 text-center transition-all duration-500 ease-out hover:-translate-y-3 hover:border-zinc-700/80 hover:bg-[#1E1F26] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] sm:w-[320px] cursor-pointer"
+                            >
+                                {/* Avatar / Portrait Circle */}
+                                <div className="mb-6 relative flex-shrink-0">
+                                    {expert.image ? (
+                                        <div className="relative h-[140px] w-[140px] overflow-hidden rounded-full border border-zinc-700/40 bg-[#1A1A1F] transition-all duration-500 group-hover:border-blue-500/80">
+                                            <Image
+                                                src={expert.image}
+                                                alt={expert.name}
+                                                fill
+                                                className="scale-100 object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className={`h-[140px] w-[140px] rounded-full flex items-center justify-center transition-all duration-500 bg-[#1A1A1F] ${fallback.borderClass}`}>
+                                            <span className={`text-4xl font-extrabold tracking-tight ${fallback.textClass}`}>
+                                                {initials}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
 
-                            {/* Specialization Badges */}
-                            {expert.specializations && expert.specializations.length > 0 && (
-                                <div className="flex flex-wrap gap-2 justify-center mb-4 max-w-[240px]">
-                                    {expert.specializations.map((spec, specIdx) => (
-                                        <span 
-                                            key={specIdx}
-                                            className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/5 backdrop-blur-md border border-white/10 text-slate-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)] group-hover:border-blue-500/40 group-hover:text-blue-400 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all duration-300 ease-out"
+                                {/* Name */}
+                                <h3 className="mb-3 text-[22px] font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-blue-400">
+                                    {expert.name}
+                                </h3>
+
+                                <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
+                                    {(expert.specializations && expert.specializations.length > 0 ? expert.specializations : ["Legal Expert"]).map((specialization, specIndex) => (
+                                        <span
+                                            key={`${expert.name}-${specialization}-${specIndex}`}
+                                            className="inline-flex items-center justify-center rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-300"
                                         >
-                                            {spec}
+                                            {specialization}
                                         </span>
                                     ))}
                                 </div>
-                            )}
 
-                            {/* Mail Icon Button Container */}
-                            <div className="w-9 h-9 rounded-full bg-[#2563EB] flex items-center justify-center text-white mb-4 shadow-[0_4px_12px_rgba(37,99,235,0.3)] transition-all duration-300 group-hover:scale-110">
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
+                                {/* Mail Icon Button Container */}
+                                <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#2563EB] text-white shadow-[0_4px_12px_rgba(37,99,235,0.3)] transition-all duration-300 group-hover:scale-110">
+                                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+
+                                {/* Role / Description */}
+                                <p className="mb-5 flex min-h-[40px] max-w-[200px] items-center justify-center text-sm font-medium leading-relaxed text-zinc-400">
+                                    {expert.role}
+                                </p>
                             </div>
-
-                            {/* Role / Description */}
-                            <p className="text-zinc-400 text-sm font-medium leading-relaxed max-w-[200px] mb-5 min-h-[40px] flex items-center justify-center">
-                                {expert.role}
-                            </p>
-
-                            {/* Location Icon Button Container */}
-                            <div className="w-9 h-9 rounded-full bg-[#EAB308] flex items-center justify-center text-white mb-3 shadow-[0_4px_12px_rgba(234,179,8,0.3)] transition-all duration-300 group-hover:scale-110">
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
-
-                            {/* Location */}
-                            <p className="text-zinc-300 text-sm font-semibold tracking-wide mt-1">
-                                {expert.location}
-                            </p>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
             </div>
 
             {experts.length === 0 && (

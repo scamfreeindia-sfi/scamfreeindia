@@ -3,13 +3,16 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 
 export default function Header() {
+    const pathname = usePathname()
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-    const navItems = ["Home", "Blog", "About", "Contact"]
+    const navItems = ["Home", "Blog", "About", "Contact", "Services"]
+    const isLawyerPage = pathname === "/lawyer" || pathname === "/lawyer/"
 
     useEffect(() => {
         const handleScroll = () => {
@@ -36,10 +39,10 @@ export default function Header() {
             >
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-1.5 sm:gap-2 group">
-                    <div className="rounded-full w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105">
+                    <div className={`rounded-full w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center overflow-hidden shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105 ${isLawyerPage ? "bg-white" : "bg-white/5"}`}>
                         <Image
-                            src="/logo.png"
-                            alt="ScamFreeIndia Logo"
+                            src={isLawyerPage ? "/lawyer.png" : "/logo.png"}
+                            alt={isLawyerPage ? "Legal Brief Logo" : "ScamFreeIndia Logo"}
                             width={48}
                             height={48}
                             className="w-full h-full object-contain p-1"
@@ -47,11 +50,20 @@ export default function Header() {
                         />
                     </div>
 
-                    <span className="text-brand-primary font-bold tracking-wide text-base sm:text-lg">
-                        ScamFreeIndia
-                    </span>
+                    <div className="flex flex-col leading-tight">
+                        <span className="text-brand-primary font-bold tracking-wide text-base sm:text-lg">
+                            {isLawyerPage ? "Legal Brief" : "ScamFreeIndia"}
+                        </span>
+                        {!isLawyerPage && (
+                            <p className="text-[10px] text-center sm:text-xs text-brand-secondary">
+                                by Legal Brief
+                            </p>
+                        )}
+                    </div>
+                    
                 </Link>
-
+                
+               
                 {/* Navigation */}
                 <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-14 text-sm font-medium text-brand-secondary">
                     {navItems.map((item) => (
@@ -61,6 +73,7 @@ export default function Header() {
                                 item === "Home" ? "/" :
                                     item === "Blog" ? "/blog" :
                                         item === "About" ? "/about" :
+                                            item === "Services" ? "/services" :
                                             "/contact"
                             }
                             className="relative group transition-colors hover:text-brand-primary text-lg"
@@ -104,6 +117,7 @@ export default function Header() {
                                     item === "Home" ? "/" :
                                         item === "Blog" ? "/blog" :
                                             item === "About" ? "/about" :
+                                                item === "Services" ? "/services" :
                                                 "/contact"
                                 }
                                 className={`px-5 py-4 text-sm font-medium text-brand-secondary hover:text-brand-primary hover:bg-white/5 transition ${idx !== navItems.length - 1 ? "border-b border-brand-border" : ""

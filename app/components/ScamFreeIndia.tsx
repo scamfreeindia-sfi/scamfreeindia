@@ -3,7 +3,6 @@ import Header from "./Header"
 import Image from "next/image"
 import Main from "./Main"
 import Footer from "./Footer"
-import WhatsAppButton from "./WhatsAppButton"
 import LeadPopup from "./LeadPopup"
 import { useEffect, useState } from "react"
 
@@ -26,8 +25,6 @@ export default function Home() {
       <Main />
 
       <Footer />
-
-      <WhatsAppButton />
 
       <LeadPopup open={showLeadPopup} setOpen={setShowLeadPopup} />
 

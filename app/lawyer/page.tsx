@@ -1,13 +1,33 @@
 "use client"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import Image from "next/image"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+
+type LawyerRecord = {
+    id: number
+    name: string
+    address: string | null
+    image: string | null
+    specializations: Array<{ title: string }>
+}
+
+type CarouselLawyer = {
+    id: string
+    name: string
+    image: string
+    focus: string
+    specialties: string[]
+}
 
 export default function LawyerPage() {
     const [problemType, setProblemType] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
     const [isRefundModalOpen, setIsRefundModalOpen] = useState(false)
+    const [lawyers, setLawyers] = useState<CarouselLawyer[]>([])
+    const [lawyersLoading, setLawyersLoading] = useState(true)
+    const [lawyersError, setLawyersError] = useState(false)
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://scamfreeind.in"
 
     const badgePath = useMemo(() => {
         const points = [];
@@ -135,10 +155,80 @@ export default function LawyerPage() {
         "Traffic Challan"
     ]
     const socialProof = [
-        { label: "Consultations", value: "12,000+" },
-        { label: "Rating", value: "4.9★" },
+        { label: "Consultations", value: "16,000+" },
+        { label: "Rating", value: "4.9/5★" },
         { label: "Customer Satisfaction", value: "95%" }
     ]
+    const [activeLawyer, setActiveLawyer] = useState(0)
+
+    useEffect(() => {
+        const controller = new AbortController()
+
+        async function fetchLawyers() {
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/lawyer/list`, {
+                    headers: { Accept: "application/json" },
+                    signal: controller.signal,
+                })
+                if (!response.ok) throw new Error(`HTTP ${response.status}`)
+
+                const data: { success?: boolean; lawyers?: LawyerRecord[] } = await response.json()
+                if (!data.success || !Array.isArray(data.lawyers)) {
+                    throw new Error("Invalid lawyer list response")
+                }
+
+                setLawyers(data.lawyers.map((lawyer) => {
+                    const fallbackImage = lawyer.name.toLowerCase().includes("gaurav")
+                        ? "/gaurav.jpeg"
+                        : lawyer.name.toLowerCase().includes("gunjan")
+                            ? "/gunjan.jpeg"
+                            : lawyer.name.toLowerCase().includes("neha")
+                                ? "/neha.jpeg"
+                                : "/lawyer.png"
+                    const image = lawyer.image
+                        ? lawyer.image.startsWith("http")
+                            ? lawyer.image
+                            : `${apiBaseUrl}/storage/${lawyer.image.replace(/^\//, "")}`
+                        : fallbackImage
+
+                    return {
+                        id: String(lawyer.id),
+                        name: lawyer.name,
+                        image,
+                        focus: lawyer.address || "Legal consultation",
+                        specialties: (lawyer.specializations || [])
+                            .map((specialization) => specialization.title)
+                            .filter(Boolean),
+                    }
+                }))
+            } catch (error) {
+                if (!controller.signal.aborted) {
+                    console.error("Error fetching lawyers:", error)
+                    setLawyersError(true)
+                }
+            } finally {
+                if (!controller.signal.aborted) setLawyersLoading(false)
+            }
+        }
+
+        fetchLawyers()
+        return () => controller.abort()
+    }, [apiBaseUrl])
+
+    useEffect(() => {
+        if (lawyers.length <= 1) return
+
+        const carouselTimer = window.setInterval(() => {
+            setActiveLawyer((current) => (current + 1) % lawyers.length)
+        }, 5000)
+
+        return () => window.clearInterval(carouselTimer)
+    }, [lawyers.length])
+
+    const showLawyer = (index: number) => {
+        if (lawyers.length === 0) return
+        setActiveLawyer((index + lawyers.length) % lawyers.length)
+    }
 
 
     return (
@@ -261,6 +351,8 @@ export default function LawyerPage() {
                                 <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed font-medium">
                                     Professional Assistance for Cyber Crime, Fraud, Family, Corporate and other legal matters.
                                 </p>
+
+                             
                             </div>
                             
 
@@ -289,8 +381,15 @@ export default function LawyerPage() {
 
                         {/* Right Column - Booking Card */}
                         <div id="booking-card" className="w-full lg:w-[450px] sticky top-32">
-                            <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(15,23,42,0.08)] border border-slate-100 overflow-hidden">
+                            <div className="bg-slate-50 rounded-3xl shadow-[0_20px_50px_rgba(15,23,42,0.08)] border border-slate-200 overflow-hidden">
                                 <div className="p-8">
+                                    <div className="mb-7">
+                                        <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D97706]">Personal legal help</p>
+                                        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-[#0F172A]">Talk with a Lawyer</h2>
+                                        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                                            Share your concern and a verified legal expert will guide you on the best next step.
+                                        </p>
+                                    </div>
                                     {isSuccess ? (
                                         <div className="py-8 flex flex-col items-center text-center space-y-6 animate-in fade-in zoom-in duration-500">
                                             <div className="w-20 h-20 bg-emerald-50 border border-emerald-100 rounded-full flex items-center justify-center text-emerald-600 shadow-inner">
@@ -405,12 +504,87 @@ export default function LawyerPage() {
                     </div>
                 </section>
 
+                {/* Legal Expert Carousel */}
+                <section className="mt-24 border-y border-slate-200 bg-slate-50 py-16 sm:py-20">
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                            <div>
+                                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#60a5fa]">Trusted legal support</p>
+                                <h2 className="mt-2 text-3xl font-extrabold text-[#0F172A] sm:text-4xl">Meet Our Legal Experts</h2>
+                                <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">Connect with experienced professionals for clear, confidential guidance on your next legal step.</p>
+                            </div>
+                            {lawyers.length > 1 && (
+                                <div className="flex gap-2 self-start sm:self-auto">
+                                    <button type="button" aria-label="Previous legal expert" onClick={() => showLawyer(activeLawyer - 1)} className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-600 transition-colors hover:border-[#3b82f6] hover:text-[#2563eb]">&#8592;</button>
+                                    <button type="button" aria-label="Next legal expert" onClick={() => showLawyer(activeLawyer + 1)} className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-600 transition-colors hover:border-[#3b82f6] hover:text-[#2563eb]">&#8594;</button>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="relative overflow-hidden">
+                            {lawyersLoading ? (
+                                <p className="py-12 text-center text-sm font-medium text-slate-500" role="status">Loading legal experts...</p>
+                            ) : lawyersError ? (
+                                <p className="py-12 text-center text-sm font-medium text-slate-500" role="status">Legal experts are temporarily unavailable.</p>
+                            ) : lawyers.length === 0 ? (
+                                <p className="py-12 text-center text-sm font-medium text-slate-500">No legal experts are available right now.</p>
+                            ) : (
+                                <div
+                                    className="flex transition-transform duration-500 ease-out"
+                                    style={{ transform: `translateX(-${activeLawyer * (100 / lawyers.length)}%)` }}
+                                >
+                                    {lawyers.map((lawyer, index) => (
+                                    <div
+                                        key={lawyer.id}
+                                        className="w-full shrink-0 px-2 md:w-[33.333%]"
+                                    >
+                                        <button
+                                            type="button"
+                                            onClick={() => showLawyer(index)}
+                                            aria-current={activeLawyer === index}
+                                            className={`w-full rounded-[1.75rem] border p-6 text-center transition-all duration-300 ${activeLawyer === index ? "border-[#3b82f6] bg-white shadow-[0_12px_30px_rgba(59,130,246,0.16)]" : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-md"}`}
+                                        >
+                                            <div className={`relative mx-auto h-32 w-32 overflow-hidden rounded-full border-2 bg-slate-100 ${activeLawyer === index ? "border-[#3b82f6] shadow-[0_0_22px_rgba(59,130,246,0.25)]" : "border-slate-200"}`}>
+                                                <Image src={lawyer.image} alt={`${lawyer.name}, legal expert`} fill sizes="128px" className="object-cover object-top" />
+                                            </div>
+                                            <h3 className="mt-5 text-xl font-extrabold text-[#0F172A]">{lawyer.name}</h3>
+                                            <p className="mt-1 text-sm text-slate-500">{lawyer.focus}</p>
+                                            <div className="mt-4 flex flex-wrap justify-center gap-2">
+                                                {lawyer.specialties.map((specialty) => (
+                                                    <span key={specialty} className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">{specialty}</span>
+                                                ))}
+                                            </div>
+                                            <div className="mt-5 flex justify-center gap-4">
+                                                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2563eb] text-white shadow-[0_0_16px_rgba(37,99,235,0.4)]">
+                                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" /></svg>
+                                                </span>
+                                                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fbbf0b] text-[#1d1e23] shadow-[0_0_16px_rgba(251,191,11,0.32)]">
+                                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21s7-4.35 7-10a7 7 0 10-14 0c0 5.65 7 10 7 10z" /><circle cx="12" cy="11" r="2.5" strokeWidth={2} /></svg>
+                                                </span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {lawyers.length > 1 && (
+                            <div className="mt-8 flex justify-center gap-2" aria-label="Choose a legal expert">
+                                {lawyers.map((lawyer, index) => (
+                                    <button key={lawyer.id} type="button" aria-label={`Show ${lawyer.name}`} aria-current={activeLawyer === index} onClick={() => showLawyer(index)} className={`h-2.5 rounded-full transition-all ${activeLawyer === index ? "w-8 bg-[#3b82f6]" : "w-2.5 bg-slate-300 hover:bg-slate-400"}`} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </section>
+
                 {/* Trust Strip */}
                 <section className="max-w-7xl mx-auto px-6 lg:px-8 mt-24">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {[
-                            { value: "12k+", label: "Consultations", sub: "Successfully completed" },
-                            { value: "4.9★", label: "Rating", sub: "Average client rating" },
+                            { value: "16k+", label: "Consultations", sub: "Successfully completed" },
+                            { value: "4.9/5★", label: "Rating", sub: "Average client rating" },
                             { value: "2 min", label: "Avg Response", sub: "Fastest in the industry" },
                             { value: "24/7", label: "Availability", sub: "Experts always online" }
                         ].map((stat, i) => (
@@ -504,7 +678,7 @@ export default function LawyerPage() {
                 </div>
             )}
 
-            <Footer />
+            <Footer variant="lawyer" />
         </div>
     )
 }

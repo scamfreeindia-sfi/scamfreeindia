@@ -3,7 +3,12 @@ import Image from "next/image"
 import Link from "next/link"
 import ShareLink from "./ShareLink";
 
-export default function Footer() {
+type FooterProps = {
+    variant?: "default" | "lawyer"
+}
+
+export default function Footer({ variant = "default" }: FooterProps) {
+    const isLawyerPage = variant === "lawyer"
     return (
         <footer className="px-6 md:px-16 py-16 border-t border-brand-border bg-brand-section text-brand-secondary text-sm">
             <div className="max-w-7xl mx-auto">
@@ -13,8 +18,8 @@ export default function Footer() {
                         <div className="flex items-center gap-2">
                             <Link href="/" className="rounded-full w-12 h-12 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20">
                                 <Image
-                                    src="/logo.png"
-                                    alt="ScamFreeIndia Logo"
+                                    src={isLawyerPage ? "/lawyer.png" : "/logo.png"}
+                                    alt={isLawyerPage ? "Legal Brief Logo" : "ScamFreeIndia Logo"}
                                     width={48}
                                     height={48}
                                     className="w-full h-full object-contain p-1"
@@ -22,7 +27,7 @@ export default function Footer() {
                                 />
                             </Link>
                             <span className="text-brand-primary text-xl font-extrabold tracking-tight">
-                                ScamFreeIndia
+                                {isLawyerPage ? "Legal Brief" : "ScamFreeIndia"}
                             </span>
                         </div>
                         <p className="text-brand-secondary leading-relaxed max-w-xs">
@@ -77,7 +82,7 @@ export default function Footer() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span>Sco 29 Mohali citi centre F block aerocity, 140306</span>
+                                <span>IT City Mohali</span>
                             </li>
                         </ul>
                     </div>
@@ -91,7 +96,7 @@ export default function Footer() {
                                 <span className="text-brand-primary font-semibold">Disclaimer: </span>ScamFree India operates as an independent private consultancy and is not associated with any government body or legal institution. We do not practice law, offer legal representation, or guarantee fund recovery. Government complaint and grievance portals are publicly available and free to access. Our role is limited to providing consultation and assistance services.
                             </p>
                             <p className="text-xs text-brand-secondary/50">
-                                &copy; 2026 Scam Free India. All rights reserved.
+                                {isLawyerPage ? "© 2026 Legal Brief. All rights reserved." : "© 2026 ScamFree India. All rights reserved."}
                             </p>
                         </div>
                         <ShareLink />

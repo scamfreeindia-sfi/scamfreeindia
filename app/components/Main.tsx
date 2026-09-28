@@ -18,13 +18,7 @@ export default function Main() {
             <div className="h-16"></div>
             <section className="relative min-h-screen">
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                    <Image
-                        src="/image.png"
-                        alt="Background"
-                        fill
-                        className="object-cover object-center scale-105 items-center"
-                        priority
-                    />
+                   
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/80 to-transparent"></div>
                     <div className="absolute inset-0 bg-black/20"></div>
                 </div>
@@ -79,10 +73,10 @@ export default function Main() {
                 </div>
             </section>
 
+            <Experts />           
             <SebiIntermediaries />
             <FraudSection />
             <Testomenial/>
-            <Experts />           
             <Review />
             <Video />
             <ComplaintGuide />

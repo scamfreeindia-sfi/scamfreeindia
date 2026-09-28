@@ -111,8 +111,8 @@ export default function LeadPopup({ open, setOpen }: any) {
                 Need Advice?
               </h2>
               <p className="text-brand-secondary text-[15px] mt-2">
-                Speak with Professionals. Leave your number and our legal team will call you back for a consultation.
-              </p>
+                Speak with Professionals. Leave your number and our team will call you back for a consultation.
+              </p>    
             </div>
 
             <div className="space-y-5">
