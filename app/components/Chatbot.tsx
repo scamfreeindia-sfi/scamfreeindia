@@ -1,7 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useSyncExternalStore } from "react"
 import type { FormEvent } from "react"
+
+const emptySubscribe = () => () => {}
 
 type ChatMessage = {
     role: "assistant" | "user"
@@ -49,7 +51,29 @@ function getReply(message: string): Omit<ChatMessage, "role"> {
     }
 }
 
+function ChatbotIcon({ className = "h-3.5 w-3.5" }: { className?: string }) {
+    return (
+        <svg
+            className={className}
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+        >
+            <path
+                fillRule="evenodd"
+                d="M10 2c-2.236 0-4.43.18-6.57.524C1.993 2.755 1 4.014 1 5.426v5.148c0 1.413.993 2.67 2.43 2.902 1.168.188 2.352.327 3.55.414.28.02.533.16.69.394L10 17.5l2.33-3.216a1.118 1.118 0 0 1 .69-.394c1.198-.087 2.382-.226 3.55-.414 1.437-.232 2.43-1.49 2.43-2.902V5.426c0-1.413-.993-2.67-2.43-2.902A41.289 41.289 0 0 0 10 2Zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+                clipRule="evenodd"
+            />
+        </svg>
+    )
+}
+
 export default function Chatbot() {
+    const isClient = useSyncExternalStore(
+        emptySubscribe,
+        () => true,
+        () => false
+    )
     const [isOpen, setIsOpen] = useState(false)
     const [draft, setDraft] = useState("")
     const [messages, setMessages] = useState<ChatMessage[]>([
@@ -58,6 +82,10 @@ export default function Chatbot() {
             text: "Hi, I can point you to practical next steps. What do you need help with?",
         },
     ])
+
+    if (!isClient) {
+        return null
+    }
 
     function sendMessage(message: string) {
         const trimmedMessage = message.trim()
@@ -161,7 +189,16 @@ export default function Chatbot() {
                 aria-label={isOpen ? "Close chat guide" : "Open chat guide"}
                 className="inline-flex min-h-12 items-center gap-2 rounded-md border border-brand-green/50 bg-brand-section px-4 py-3 text-sm font-bold text-white shadow-lg shadow-black/30 transition hover:border-brand-green hover:bg-brand-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green"
             >
-                <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-green text-xs font-black text-brand-bg">?</span>
+                <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-green text-xs font-black text-brand-bg">
+                    {isOpen ? (
+                        <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    ) : (
+                        <ChatbotIcon className="h-3.5 w-3.5" />
+                    )}
+                </span>
                 Chat
             </button>
         </div>

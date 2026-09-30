@@ -9,6 +9,7 @@ import Video from "./video";
 import ComplaintGuide from "./ComplaintGuide";
 import Form from "./Form";
 import Testomenial from "./Testomenial";
+import CaseStudy from "./CaseStudy";
 
 export default function Main() {
 
@@ -72,10 +73,10 @@ export default function Main() {
                     </div>
                 </div>
             </section>
-
+            <CaseStudy />
             <Experts />           
             <SebiIntermediaries />
-            <FraudSection />
+            <FraudSection />            
             <Testomenial/>
             <Review />
             <Video />

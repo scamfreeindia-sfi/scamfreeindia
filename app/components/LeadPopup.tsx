@@ -14,7 +14,7 @@ export default function LeadPopup({ open, setOpen }: any) {
     if (open && !isSuccess) {
       const timer = setTimeout(() => {
         inputRef.current?.focus({ preventScroll: true });
-      }, 500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [open, isSuccess]);
@@ -37,19 +37,17 @@ export default function LeadPopup({ open, setOpen }: any) {
           name: "Lead Popup",
           phone,
           amount: "",
-          message: "Lead from 5-second popup"
+          message: "Lead from 10-second popup"
         }),
       });
 
       if (res.ok) {
         setIsSuccess(true);
-        setPhone("");
-        // Auto close after 3 seconds on success
+        setPhone("");        
         setTimeout(() => {
-          setOpen(false);
-          // Reset success state after closing animation
+          setOpen(false);          
           setTimeout(() => setIsSuccess(false), 500);
-        }, 3000);
+        }, 10000);
       } else {
         const errorData = await res.json().catch(() => ({}));
         console.error("Submission failed:", errorData.message || "Unknown error");
