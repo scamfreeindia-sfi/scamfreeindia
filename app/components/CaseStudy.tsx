@@ -42,7 +42,7 @@ export default function CaseStudy() {
                 {/* Card 1 */}
                 <div className="group rounded-2xl border border-brand-border bg-brand-card/80 p-6 text-center shadow-lg transition duration-300 hover:-translate-y-1 hover:border-brand-blue/40">
                     <div className="mb-2 text-3xl font-black text-white sm:text-4xl">
-                        ₹3.85+ Cr
+                        ₹1.85+ Cr
                     </div>
 
                     <div className="text-sm font-medium text-brand-secondary">
@@ -53,7 +53,7 @@ export default function CaseStudy() {
                 {/* Card 2 */}
                 <div className="group rounded-2xl border border-brand-border bg-brand-card/80 p-6 text-center shadow-lg transition duration-300 hover:-translate-y-1 hover:border-brand-green/40">
                     <div className="mb-2 text-3xl font-black text-brand-green sm:text-4xl">
-                        410+
+                        680+
                     </div>
 
                     <div className="text-sm font-medium text-brand-secondary">
