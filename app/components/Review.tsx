@@ -56,6 +56,8 @@ export default function Review() {
     useEffect(() => {
         if (isPaused) return;
 
+        if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
         let lastTime = performance.now();
         let animationId: number;
 
@@ -72,11 +74,13 @@ export default function Review() {
                 }
                 return next;
             });
-
+            
             animationId = requestAnimationFrame(animate);
         };
 
-        animationId = requestAnimationFrame(animate);
+        if (typeof window !== "undefined" && window.innerWidth >= 768) {
+            animationId = requestAnimationFrame(animate);
+        }
         return () => cancelAnimationFrame(animationId);
     }, [isPaused]);
 

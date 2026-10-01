@@ -1,5 +1,3 @@
-"use client"
-import Image from "next/image";
 import FraudSection from "./ScamType"
 import SebiIntermediaries from "./SebiIntermediaries";
 import Experts from "./Experts";

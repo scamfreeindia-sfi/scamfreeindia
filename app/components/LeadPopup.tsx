@@ -2,13 +2,28 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export default function LeadPopup({ open, setOpen }: any) {
+type LeadPopupProps = {
+  open?: boolean;
+  setOpen?: (open: boolean) => void;
+};
+
+export default function LeadPopup({ open: controlledOpen, setOpen: controlledSetOpen }: LeadPopupProps = {}) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = controlledOpen ?? internalOpen;
+  const setOpen = controlledSetOpen ?? setInternalOpen;
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://scamfreeind.in";
+
+  useEffect(() => {
+    if (controlledOpen !== undefined) return;
+
+    const timer = setTimeout(() => setInternalOpen(true), 10000);
+    return () => clearTimeout(timer);
+  }, [controlledOpen]);
 
   useEffect(() => {
     if (open && !isSuccess) {
