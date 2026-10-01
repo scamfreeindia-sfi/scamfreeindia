@@ -69,7 +69,7 @@ export default function Main() {
                         </div>
                     </div>
                     <div className="flex-1 w-full lg:w-auto">
-                        <Form />
+                        <Form /> 
                     </div>
                 </div>
             </section>
