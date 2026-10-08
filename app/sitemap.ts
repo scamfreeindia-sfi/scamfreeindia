@@ -28,26 +28,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogRoutes: any[] = []
   try {
     const apiUrl = process.env.API_URL || 'https://scamfreeind.in'
-    const res = await fetch(`${apiUrl}/api/blogs`, {
-      next: { revalidate: 3600 }
-    })
-    
-    // Check if the response is actually valid JSON
-    const contentType = res.headers.get("content-type");
-    if (res.ok && contentType && contentType.includes("application/json")) {
-      const data = await res.json()
-      if (data.success && data.data?.data) {
-        blogRoutes = data.data.data.map((post: any) => ({
-          url: `${baseUrl}/blog/${post.slug}`,
-          lastModified: new Date(post.updated_at || post.created_at || new Date()),
-          changeFrequency: 'monthly' as const,
-          priority: 0.6,
-        }))
+    let currentPage = 1
+    let hasMore = true
+    let allPosts: any[] = []
+
+    while (hasMore) {
+      const res = await fetch(`${apiUrl}/api/blogs?page=${currentPage}`, {
+        next: { revalidate: 3600 }
+      })
+      const contentType = res.headers.get("content-type");
+      if (res.ok && contentType && contentType.includes("application/json")) {
+        const data = await res.json()
+        if (data.success && data.data?.data) {
+          const pagePosts = data.data.data || []
+          allPosts = [...allPosts, ...pagePosts]
+          const lastPage = data.data.last_page || 1
+          if (currentPage < lastPage) {
+            currentPage++
+          } else {
+            hasMore = false
+          }
+        } else {
+          hasMore = false
+        }
       } else {
-        throw new Error("Invalid API Structure")
+        hasMore = false
       }
+    }
+
+    if (allPosts.length > 0) {
+      blogRoutes = allPosts.map((post: any) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: new Date(post.updated_at || post.created_at || new Date()),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      }))
     } else {
-      throw new Error("Invalid Content-Type or Response from API")
+      throw new Error("No posts fetched from API")
     }
   } catch (error) {
     console.warn('API unavailable for sitemap generation, falling back to local data...')

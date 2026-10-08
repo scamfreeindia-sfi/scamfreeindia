@@ -13,18 +13,28 @@ interface Props {
     params: Promise<{ slug: string }>
 }
 
-async function getPost(slug: string) {
+async function getPost(slug: string, retries = 3) {
     const apiUrl = process.env.API_URL || 'https://scamfreeind.in';
-    try {
-        const res = await fetch(`${apiUrl}/api/blogs/${slug}`, {
-            next: { revalidate: 3600 }
-        })
-        if (res.ok) {
-            const data = await res.json()
-            if (data.success) return data.data
+    for (let attempt = 1; attempt <= retries; attempt++) {
+        try {
+            const res = await fetch(`${apiUrl}/api/blogs/${slug}`, {
+                next: { revalidate: 3600 }
+            })
+            if (res.ok) {
+                const data = await res.json()
+                if (data.success) return data.data
+            } else if (res.status === 404) {
+                // Post not found on API, break immediately to check fallback static posts
+                break;
+            } else {
+                console.warn(`[getPost] Attempt ${attempt}/${retries} failed for slug "${slug}": HTTP ${res.status}`);
+            }
+        } catch (error) {
+            console.error(`[getPost] Attempt ${attempt}/${retries} error for slug "${slug}":`, error)
         }
-    } catch (error) {
-        console.error("Error fetching post from API:", error)
+        if (attempt < retries) {
+            await new Promise(r => setTimeout(r, attempt * 1000));
+        }
     }
 
     // Fallback to static data
@@ -39,10 +49,20 @@ async function getAllPosts(maxPages: number = 0) {
 
     try {
         while (hasMore) {
-            const res = await fetch(`${apiUrl}/api/blogs?page=${currentPage}`, {
-                next: { revalidate: 3600 }
-            })
-            if (res.ok) {
+            let res: Response | null = null;
+            for (let attempt = 1; attempt <= 3; attempt++) {
+                try {
+                    res = await fetch(`${apiUrl}/api/blogs?page=${currentPage}`, {
+                        next: { revalidate: 3600 }
+                    });
+                    if (res && res.ok) break;
+                } catch (e) {
+                    if (attempt === 3) throw e;
+                    await new Promise(r => setTimeout(r, 1000));
+                }
+            }
+
+            if (res && res.ok) {
                 const data = await res.json()
                 if (data.success) {
                     const pagePosts = data.data.data || [];
