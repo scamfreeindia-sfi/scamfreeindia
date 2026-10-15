@@ -1,4 +1,3 @@
-"use client"
 import Image from "next/image"
 import Link from "next/link"
 import ShareLink from "./ShareLink";
@@ -9,6 +8,7 @@ type FooterProps = {
 
 export default function Footer({ variant = "default" }: FooterProps) {
     const isLawyerPage = variant === "lawyer"
+
     return (
         <footer className="px-6 md:px-16 py-16 border-t border-brand-border bg-brand-section text-brand-secondary text-sm">
             <div className="max-w-7xl mx-auto">
@@ -19,7 +19,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                             <Link href="/" className="rounded-full w-12 h-12 flex items-center justify-center overflow-hidden bg-white/5 shadow-sm shadow-[#FFA500]/20">
                                 <Image
                                     src={isLawyerPage ? "/lawyer.png" : "/logo.png"}
-                                    alt={isLawyerPage ? "The Legal Brief Logo" : "ScamFreeIndia Logo"}
+                                    alt={isLawyerPage ? "Inventour Legal LLP Logo" : "ScamFreeIndia Logo"}
                                     width={48}
                                     height={48}
                                     className="w-full h-full object-contain p-1"
@@ -27,7 +27,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                                 />
                             </Link>
                             <span className="text-brand-primary text-xl font-extrabold tracking-tight">
-                                {isLawyerPage ? "The Legal Brief" : "ScamFreeIndia"}
+                                {isLawyerPage ? "Inventour Legal LLP" : "ScamFreeIndia"}
                             </span>
                         </div>
                         <p className="text-brand-secondary leading-relaxed max-w-xs">
@@ -43,7 +43,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                                 <li><Link href="/about" className="hover:text-brand-primary transition-colors">About Us</Link></li>
                                 <li><Link href="/contact" className="hover:text-brand-primary transition-colors">Contact Us</Link></li>
                                 <li><Link href="/blog" className="hover:text-brand-primary transition-colors">Blog</Link></li>
-                                <li><a href="https://razorpay.me/@scamfreeind" target="_blank" rel="noopener noreferrer" className="text-brand-blue font-bold hover:brightness-110 transition-all text-lg">Register Your Query</a></li>
+                                <li><Link href="/payment" className="hover:text-brand-primary transition-colors">Book Consultation</Link></li>
                             </ul>
                         </nav>
                     </div>
@@ -88,6 +88,8 @@ export default function Footer({ variant = "default" }: FooterProps) {
                     </div>
                 </div>
 
+              
+
                 {/* Disclaimer Section */}
                 <div className="pt-10 border-t border-brand-border">
                     <div className="flex flex-col lg:flex-row justify-between gap-8 items-start">
@@ -96,7 +98,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                                 <span className="text-brand-primary font-semibold">Disclaimer: </span>ScamFree India operates as an independent private consultancy and is not associated with any government body or legal institution. We do not practice law, offer legal representation, or guarantee fund recovery. Government complaint and grievance portals are publicly available and free to access. Our role is limited to providing consultation and assistance services.
                             </p>
                             <p className="text-xs text-brand-secondary/50">
-                                {isLawyerPage ? "© 2026 The Legal Brief. All rights reserved." : "© 2026 ScamFree India. All rights reserved."}
+                                {isLawyerPage ? "© 2026 Inventour Legal LLP. All rights reserved." : "© 2026 ScamFree India. All rights reserved."}
                             </p>
                         </div>
                         <ShareLink />
@@ -105,6 +107,4 @@ export default function Footer({ variant = "default" }: FooterProps) {
             </div>
         </footer>
     );
-
-
 }

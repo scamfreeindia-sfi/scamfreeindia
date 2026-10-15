@@ -42,7 +42,7 @@ export default function Header() {
                     <div className={`rounded-full w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center overflow-hidden shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105 ${isLawyerPage ? "bg-white" : "bg-white/5"}`}>
                         <Image
                             src={isLawyerPage ? "/lawyer.png" : "/logo.png"}
-                            alt={isLawyerPage ? "The Legal Brief Logo" : "ScamFreeIndia Logo"}
+                            alt={isLawyerPage ? "Inventour Legal LLP Logo" : "ScamFreeIndia Logo"}
                             width={48}
                             height={48}
                             className="w-full h-full object-contain p-1"
@@ -52,18 +52,18 @@ export default function Header() {
 
                     <div className="flex flex-col leading-tight">
                         <span className="text-brand-primary font-bold tracking-wide text-base sm:text-lg">
-                            {isLawyerPage ? "The Legal Brief" : "ScamFreeIndia"}
+                            {isLawyerPage ? "Inventour Legal LLP" : "ScamFreeIndia"}
                         </span>
                         {!isLawyerPage && (
                             <p className="text-[10px] text-center sm:text-xs text-brand-secondary">
-                                by The Legal Brief
+                                by Inventour Legal LLP
                             </p>
                         )}
                     </div>
-                    
+
                 </Link>
-                
-               
+
+
                 {/* Navigation */}
                 <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-14 text-sm font-medium text-brand-secondary">
                     {navItems.map((item) => (
@@ -74,7 +74,7 @@ export default function Header() {
                                     item === "Blog" ? "/blog" :
                                         item === "About" ? "/about" :
                                             item === "Services" ? "/services" :
-                                            "/contact"
+                                                "/contact"
                             }
                             className="relative group transition-colors hover:text-brand-primary text-lg"
                         >
@@ -118,7 +118,7 @@ export default function Header() {
                                         item === "Blog" ? "/blog" :
                                             item === "About" ? "/about" :
                                                 item === "Services" ? "/services" :
-                                                "/contact"
+                                                    "/contact"
                                 }
                                 className={`px-5 py-4 text-sm font-medium text-brand-secondary hover:text-brand-primary hover:bg-white/5 transition ${idx !== navItems.length - 1 ? "border-b border-brand-border" : ""
                                     }`}
