@@ -54,7 +54,11 @@ export default function Header() {
                         <span className="text-brand-primary font-bold tracking-wide text-base sm:text-lg">
                             {isLawyerPage ? "Inventour Legal LLP" : "ScamFreeIndia"}
                         </span>
-                        {!isLawyerPage && (
+                        {isLawyerPage ? (
+                            <span className="text-[10px] font-mono text-amber-400 font-medium tracking-tight">
+                                LLPIN: ACD-2916
+                            </span>
+                        ) : (
                             <p className="text-[10px] text-center sm:text-xs text-brand-secondary">
                                 by Inventour Legal LLP
                             </p>

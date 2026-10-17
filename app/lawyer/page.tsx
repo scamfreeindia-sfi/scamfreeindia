@@ -263,12 +263,24 @@ export default function LawyerPage() {
                             </div>
 
                             <div className="space-y-4 relative z-10 flex flex-col items-center sm:items-start">
-                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200">
-                                    <svg className="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                    </svg>
-                                    <span className="text-slate-900 text-sm font-bold tracking-tight">Verified Legal Experts</span>
-                                </div>                                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 items-center">
+                                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200">
+                                        <svg className="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                        </svg>
+                                        <span className="text-slate-900 text-sm font-bold tracking-tight">Verified Legal Experts</span>
+                                    </div>
+                                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold">
+                                        <svg className="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                        </svg>
+                                        <span>Inventour Legal LLP</span>
+                                        <span className="text-amber-400">•</span>
+                                        <span className="font-mono font-bold text-amber-950">LLPIN: ACD-2916</span>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 items-center">
                                     <h1 className="text-4xl md:text-6xl font-extrabold text-[#0F172A] leading-tight tracking-tight">
                                         Speak with Verified <br />
                                         <span className="text-[#D97706]">Lawyers Within Minutes</span>
@@ -352,7 +364,27 @@ export default function LawyerPage() {
                                     Professional Assistance for Cyber Crime, Fraud, Family, Corporate and other legal matters.
                                 </p>
 
-                             
+                                <div className="w-full max-w-xl rounded-2xl bg-slate-50 border border-slate-200/80 p-3.5 sm:p-4 text-left flex items-center justify-between gap-3 shadow-xs">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-xl bg-amber-100/80 border border-amber-200 flex items-center justify-center text-amber-700 shrink-0">
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Government Registered Entity</div>
+                                            <div className="text-sm sm:text-base font-extrabold text-[#0F172A] flex flex-wrap items-center gap-1.5">
+                                                <span>Inventour Legal LLP</span>
+                                                <span className="text-xs font-mono font-bold text-amber-800 bg-amber-100/70 border border-amber-200 px-2 py-0.5 rounded-md">
+                                                    LLPIN: ACD-2916
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200 shrink-0">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> MCA Verified
+                                    </span>
+                                </div>
                             </div>
                             
 
@@ -400,7 +432,7 @@ export default function LawyerPage() {
                                             <div>
                                                 <h3 className="text-2xl font-bold text-[#0F172A] mb-2">Booking Confirmed!</h3>
                                                 <p className="text-slate-600 font-medium text-sm">
-                                                    Our top legal expert will contact you within 2 minutes for your consultation.
+                                                    Our legal expert from Inventour Legal LLP (LLPIN: ACD-2916) will contact you within 2 minutes for your consultation.
                                                 </p>
                                             </div>
                                             <button
@@ -488,11 +520,16 @@ export default function LawyerPage() {
                                                         </>
                                                     )}
                                                 </button>
-                                                <div className="flex items-center justify-center gap-2 text-xs text-slate-400 font-semibold">
-                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                                                    </svg>
-                                                    100% encrypted and secure payment
+                                                <div className="pt-2 border-t border-slate-200/80 flex flex-col items-center justify-center gap-1 text-center">
+                                                    <div className="flex items-center justify-center gap-1.5 text-xs text-slate-700 font-semibold">
+                                                        <svg className="w-4 h-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                        </svg>
+                                                        <span>Consultation by <strong className="text-slate-900">Inventour Legal LLP</strong></span>
+                                                    </div>
+                                                    <div className="text-[11px] text-slate-500 font-medium">
+                                                        LLPIN / CIN: <span className="font-mono font-bold text-slate-800">ACD-2916</span> • 100% Encrypted &amp; Confidential
+                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
@@ -594,6 +631,37 @@ export default function LawyerPage() {
                                 <div className="text-xs text-slate-500 font-semibold">{stat.sub}</div>
                             </div>
                         ))}
+                    </div>
+
+                    {/* Corporate Registration Banner */}
+                    <div className="mt-8 rounded-2xl bg-slate-900 p-6 sm:p-7 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-slate-800">
+                        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
+                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FBBF24] shrink-0">
+                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                                    <span className="text-xs uppercase tracking-widest font-bold text-[#FBBF24]">Official Legal Practice</span>
+                                    <span className="text-xs font-mono font-bold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2.5 py-0.5 rounded-full">
+                                        LLPIN / CIN: ACD-2916
+                                    </span>
+                                </div>
+                                <h3 className="text-lg sm:text-xl font-extrabold text-white mt-1">
+                                    Inventour Legal LLP
+                                </h3>
+                                <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl leading-relaxed">
+                                    Registered with the Ministry of Corporate Affairs (MCA), Government of India. Providing verified, ethical, and confidential legal guidance across cyber, civil, and corporate domains.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex sm:flex-col items-center sm:items-end gap-2 shrink-0">
+                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
+                                <span className="w-2 h-2 rounded-full bg-emerald-400"></span> MCA Registered
+                            </span>
+                            <span className="text-[11px] text-slate-400 font-medium">Govt. of India Recognized</span>
+                        </div>
                     </div>
                 </section>
             </main>

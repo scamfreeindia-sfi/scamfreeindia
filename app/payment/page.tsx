@@ -124,7 +124,8 @@ export default function PaymentPage() {
                     </h1>
                     <p className="mt-1 text-xs text-brand-secondary sm:text-sm">
                         Please ensure all consultation fees are remitted exclusively to the official account of{" "}
-                        <span className="font-semibold text-white">Inventour Legal LLP</span>.
+                        <span className="font-semibold text-white">Inventour Legal LLP</span>{" "}
+                        <span className="text-amber-400 font-mono text-xs">(LLPIN: ACD-2916)</span>.
                     </p>
                 </div>
 
