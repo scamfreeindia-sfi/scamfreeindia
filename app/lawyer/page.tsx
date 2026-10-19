@@ -9,6 +9,7 @@ type LawyerRecord = {
     name: string
     address: string | null
     image: string | null
+    display_order: number | null
     specializations: Array<{ title: string }>
 }
 
@@ -169,51 +170,64 @@ export default function LawyerPage() {
                 const response = await fetch(`${apiBaseUrl}/api/lawyer/list`, {
                     headers: { Accept: "application/json" },
                     signal: controller.signal,
-                })
-                if (!response.ok) throw new Error(`HTTP ${response.status}`)
+                });
 
-                const data: { success?: boolean; lawyers?: LawyerRecord[] } = await response.json()
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                const data: { success?: boolean; lawyers?: LawyerRecord[] } =
+                    await response.json();
+
                 if (!data.success || !Array.isArray(data.lawyers)) {
-                    throw new Error("Invalid lawyer list response")
+                    throw new Error("Invalid lawyer list response");
                 }
 
-                setLawyers(data.lawyers.map((lawyer) => {
-                    const fallbackImage = lawyer.name.toLowerCase().includes("gaurav")
-                        ? "/gaurav.jpeg"
-                        : lawyer.name.toLowerCase().includes("gunjan")
-                            ? "/gunjan.jpeg"
-                            : lawyer.name.toLowerCase().includes("neha")
-                                ? "/neha.jpeg"
-                                : "/lawyer.png"
-                    const image = lawyer.image
-                        ? lawyer.image.startsWith("http")
-                            ? lawyer.image
-                            : `${apiBaseUrl}/storage/${lawyer.image.replace(/^\//, "")}`
-                        : fallbackImage
+                setLawyers(
+                    data.lawyers
+                        .filter((lawyer) => Number(lawyer.id) !== 4)
+                        .sort((a, b) => {
+                            const orderA = a.display_order ?? Number.MAX_SAFE_INTEGER
+                            const orderB = b.display_order ?? Number.MAX_SAFE_INTEGER
+                            return orderA - orderB || a.id - b.id
+                        })
+                        .map((lawyer) => {
+                            const fallbackImage = lawyer.name.toLowerCase().includes("gaurav")
+                                ? "/gaurav.jpeg"
+                                : lawyer.name.toLowerCase().includes("gunjan")
+                                    ? "/gunjan.jpeg"
+                                    : lawyer.name.toLowerCase().includes("neha")
+                                        ? "/neha.jpeg"
+                                        : "/lawyer.png";
 
-                    return {
-                        id: String(lawyer.id),
-                        name: lawyer.name,
-                        image,
-                        focus: lawyer.address || "Legal consultation",
-                        specialties: (lawyer.specializations || [])
-                            .map((specialization) => specialization.title)
-                            .filter(Boolean),
-                    }
-                }))
+                            const image = lawyer.image
+                                ? lawyer.image.startsWith("http")
+                                    ? lawyer.image
+                                    : `${apiBaseUrl}/storage/${lawyer.image.replace(/^\//, "")}`
+                                : fallbackImage;
+
+                            return {
+                                id: String(lawyer.id),
+                                name: lawyer.name,
+                                image,
+                                focus: lawyer.address || "Legal consultation",
+                                specialties: (lawyer.specializations || [])
+                                    .map((specialization) => specialization.title)
+                                    .filter(Boolean),
+                            };
+                        })
+                );
             } catch (error) {
                 if (!controller.signal.aborted) {
-                    console.error("Error fetching lawyers:", error)
-                    setLawyersError(true)
+                    console.error("Error fetching lawyers:", error);
+                    setLawyersError(true);
                 }
             } finally {
-                if (!controller.signal.aborted) setLawyersLoading(false)
+                if (!controller.signal.aborted) setLawyersLoading(false);
             }
         }
 
-        fetchLawyers()
-        return () => controller.abort()
-    }, [apiBaseUrl])
+        fetchLawyers();
+        return () => controller.abort();
+    }, [apiBaseUrl]);
 
     useEffect(() => {
         if (lawyers.length <= 1) return
@@ -270,14 +284,7 @@ export default function LawyerPage() {
                                         </svg>
                                         <span className="text-slate-900 text-sm font-bold tracking-tight">Verified Legal Experts</span>
                                     </div>
-                                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold">
-                                        <svg className="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                        </svg>
-                                        <span>Inventour Legal LLP</span>
-                                        <span className="text-amber-400">•</span>
-                                        <span className="font-mono font-bold text-amber-950">LLPIN: ACD-2916</span>
-                                    </div>
+
                                 </div>
 
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 items-center">
@@ -306,23 +313,23 @@ export default function LawyerPage() {
                                                         <stop offset="100%" stopColor="#D97706" />
                                                     </linearGradient>
                                                     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-                                                         <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#B45309" floodOpacity="0.2" />
+                                                        <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#B45309" floodOpacity="0.2" />
                                                     </filter>
                                                 </defs>
-                                                
+
                                                 {/* 32-point scalloped seal */}
                                                 <path
                                                     d={badgePath}
                                                     fill="url(#badge-grad)"
                                                 />
-                                                
+
                                                 {/* White circular inner line */}
                                                 <circle cx="60" cy="60" r="38" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.8" />
-                                                 
+
                                                 {/* Curved arcs on top and bottom of text */}
                                                 <path d="M 35,48 A 28,28 0 0,1 85,48" fill="none" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.5" />
                                                 <path d="M 35,72 A 28,28 0 0,0 85,72" fill="none" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.5" />
-                                                 
+
                                                 {/* Text centered, slightly rotated */}
                                                 <g transform="rotate(-8 60 60)">
                                                     <text
@@ -363,30 +370,8 @@ export default function LawyerPage() {
                                 <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed font-medium">
                                     Professional Assistance for Cyber Crime, Fraud, Family, Corporate and other legal matters.
                                 </p>
-
-                                <div className="w-full max-w-xl rounded-2xl bg-slate-50 border border-slate-200/80 p-3.5 sm:p-4 text-left flex items-center justify-between gap-3 shadow-xs">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-xl bg-amber-100/80 border border-amber-200 flex items-center justify-center text-amber-700 shrink-0">
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Government Registered Entity</div>
-                                            <div className="text-sm sm:text-base font-extrabold text-[#0F172A] flex flex-wrap items-center gap-1.5">
-                                                <span>Inventour Legal LLP</span>
-                                                <span className="text-xs font-mono font-bold text-amber-800 bg-amber-100/70 border border-amber-200 px-2 py-0.5 rounded-md">
-                                                    LLPIN: ACD-2916
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200 shrink-0">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> MCA Verified
-                                    </span>
-                                </div>
                             </div>
-                            
+
 
                             <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                                 {trustIndicators.map((item, i) => (
@@ -476,10 +461,10 @@ export default function LawyerPage() {
                                                         <span className="inline-flex items-center px-4 rounded-l-xl border border-r-0 border-slate-200 bg-slate-100 text-slate-500 font-semibold text-sm">
                                                             +91
                                                         </span>
-                                                        <input 
+                                                        <input
                                                             disabled={loading}
-                                                            type="tel" 
-                                                            className="w-full px-5 py-4 rounded-r-xl bg-slate-50 border border-slate-200 focus:border-[#0F172A] focus:ring-1 focus:ring-[#0F172A] outline-none transition-all text-slate-900 font-medium disabled:opacity-65 disabled:cursor-not-allowed" 
+                                                            type="tel"
+                                                            className="w-full px-5 py-4 rounded-r-xl bg-slate-50 border border-slate-200 focus:border-[#0F172A] focus:ring-1 focus:ring-[#0F172A] outline-none transition-all text-slate-900 font-medium disabled:opacity-65 disabled:cursor-not-allowed"
                                                             placeholder="Enter 10-digit number"
                                                             value={phoneNumber}
                                                             onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, '').slice(0, 10))}
@@ -498,7 +483,7 @@ export default function LawyerPage() {
                                             )}
 
                                             <div className="space-y-4">
-                                                <button 
+                                                <button
                                                     type="submit"
                                                     disabled={loading}
                                                     className="w-full bg-[#0F172A] hover:bg-slate-800 disabled:bg-slate-400 text-white py-5 rounded-2xl font-bold text-lg transition-all shadow-lg shadow-slate-200 flex items-center justify-center gap-3 active:scale-[0.98] disabled:scale-100 disabled:cursor-not-allowed"
@@ -526,9 +511,6 @@ export default function LawyerPage() {
                                                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                                         </svg>
                                                         <span>Consultation by <strong className="text-slate-900">Inventour Legal LLP</strong></span>
-                                                    </div>
-                                                    <div className="text-[11px] text-slate-500 font-medium">
-                                                        LLPIN / CIN: <span className="font-mono font-bold text-slate-800">ACD-2916</span> • 100% Encrypted &amp; Confidential
                                                     </div>
                                                 </div>
                                             </div>
@@ -571,36 +553,36 @@ export default function LawyerPage() {
                                     style={{ transform: `translateX(-${activeLawyer * (100 / lawyers.length)}%)` }}
                                 >
                                     {lawyers.map((lawyer, index) => (
-                                    <div
-                                        key={lawyer.id}
-                                        className="w-full shrink-0 px-2 md:w-[33.333%]"
-                                    >
-                                        <button
-                                            type="button"
-                                            onClick={() => showLawyer(index)}
-                                            aria-current={activeLawyer === index}
-                                            className={`w-full rounded-[1.75rem] border p-6 text-center transition-all duration-300 ${activeLawyer === index ? "border-[#3b82f6] bg-white shadow-[0_12px_30px_rgba(59,130,246,0.16)]" : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-md"}`}
+                                        <div
+                                            key={lawyer.id}
+                                            className="w-full shrink-0 px-2 md:w-[33.333%]"
                                         >
-                                            <div className={`relative mx-auto h-32 w-32 overflow-hidden rounded-full border-2 bg-slate-100 ${activeLawyer === index ? "border-[#3b82f6] shadow-[0_0_22px_rgba(59,130,246,0.25)]" : "border-slate-200"}`}>
-                                                <Image src={lawyer.image} alt={`${lawyer.name}, legal expert`} fill sizes="128px" className="object-cover object-top" />
-                                            </div>
-                                            <h3 className="mt-5 text-xl font-extrabold text-[#0F172A]">{lawyer.name}</h3>
-                                            <p className="mt-1 text-sm text-slate-500">{lawyer.focus}</p>
-                                            <div className="mt-4 flex flex-wrap justify-center gap-2">
-                                                {lawyer.specialties.map((specialty) => (
-                                                    <span key={specialty} className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">{specialty}</span>
-                                                ))}
-                                            </div>
-                                            <div className="mt-5 flex justify-center gap-4">
-                                                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2563eb] text-white shadow-[0_0_16px_rgba(37,99,235,0.4)]">
-                                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" /></svg>
-                                                </span>
-                                                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fbbf0b] text-[#1d1e23] shadow-[0_0_16px_rgba(251,191,11,0.32)]">
-                                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21s7-4.35 7-10a7 7 0 10-14 0c0 5.65 7 10 7 10z" /><circle cx="12" cy="11" r="2.5" strokeWidth={2} /></svg>
-                                                </span>
-                                            </div>
-                                        </button>
-                                    </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => showLawyer(index)}
+                                                aria-current={activeLawyer === index}
+                                                className={`w-full rounded-[1.75rem] border p-6 text-center transition-all duration-300 ${activeLawyer === index ? "border-[#3b82f6] bg-white shadow-[0_12px_30px_rgba(59,130,246,0.16)]" : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-md"}`}
+                                            >
+                                                <div className={`relative mx-auto h-32 w-32 overflow-hidden rounded-full border-2 bg-slate-100 ${activeLawyer === index ? "border-[#3b82f6] shadow-[0_0_22px_rgba(59,130,246,0.25)]" : "border-slate-200"}`}>
+                                                    <Image src={lawyer.image} alt={`${lawyer.name}, legal expert`} fill sizes="128px" className="object-cover object-top" />
+                                                </div>
+                                                <h3 className="mt-5 text-xl font-extrabold text-[#0F172A]">{lawyer.name}</h3>
+                                                <p className="mt-1 text-sm text-slate-500">{lawyer.focus}</p>
+                                                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                                                    {lawyer.specialties.map((specialty) => (
+                                                        <span key={specialty} className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-slate-600">{specialty}</span>
+                                                    ))}
+                                                </div>
+                                                <div className="mt-5 flex justify-center gap-4">
+                                                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2563eb] text-white shadow-[0_0_16px_rgba(37,99,235,0.4)]">
+                                                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" /></svg>
+                                                    </span>
+                                                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fbbf0b] text-[#1d1e23] shadow-[0_0_16px_rgba(251,191,11,0.32)]">
+                                                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21s7-4.35 7-10a7 7 0 10-14 0c0 5.65 7 10 7 10z" /><circle cx="12" cy="11" r="2.5" strokeWidth={2} /></svg>
+                                                    </span>
+                                                </div>
+                                            </button>
+                                        </div>
                                     ))}
                                 </div>
                             )}
@@ -632,37 +614,6 @@ export default function LawyerPage() {
                             </div>
                         ))}
                     </div>
-
-                    {/* Corporate Registration Banner */}
-                    <div className="mt-8 rounded-2xl bg-slate-900 p-6 sm:p-7 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-slate-800">
-                        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
-                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FBBF24] shrink-0">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-                                    <span className="text-xs uppercase tracking-widest font-bold text-[#FBBF24]">Official Legal Practice</span>
-                                    <span className="text-xs font-mono font-bold bg-amber-400/15 text-amber-300 border border-amber-400/30 px-2.5 py-0.5 rounded-full">
-                                        LLPIN / CIN: ACD-2916
-                                    </span>
-                                </div>
-                                <h3 className="text-lg sm:text-xl font-extrabold text-white mt-1">
-                                    Inventour Legal LLP
-                                </h3>
-                                <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl leading-relaxed">
-                                    Registered with the Ministry of Corporate Affairs (MCA), Government of India. Providing verified, ethical, and confidential legal guidance across cyber, civil, and corporate domains.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex sm:flex-col items-center sm:items-end gap-2 shrink-0">
-                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
-                                <span className="w-2 h-2 rounded-full bg-emerald-400"></span> MCA Registered
-                            </span>
-                            <span className="text-[11px] text-slate-400 font-medium">Govt. of India Recognized</span>
-                        </div>
-                    </div>
                 </section>
             </main>
 
@@ -670,11 +621,11 @@ export default function LawyerPage() {
             {isRefundModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                     {/* Backdrop overlay */}
-                    <div 
+                    <div
                         onClick={() => setIsRefundModalOpen(false)}
                         className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in"
                     />
-                    
+
                     {/* Modal content box */}
                     <div className="relative w-full max-w-lg bg-white rounded-3xl p-8 md:p-10 shadow-2xl border border-slate-100 z-10 transition-all duration-300 transform scale-100 animate-in zoom-in-95 duration-200">
                         {/* Close Button */}

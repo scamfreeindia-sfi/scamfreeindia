@@ -7,6 +7,7 @@ interface Expert {
     name: string;
     role: string;
     image: string | null;
+    display_order?: number | null;
     specializations?: string[];
 }
 
@@ -17,6 +18,7 @@ interface Lawyer {
     phone: string | null;
     address: string | null;
     image: string | null;
+    display_order?: number | null;
     specializations?: any[];
 }
 
@@ -191,12 +193,19 @@ export default function Experts() {
                     Array.isArray(data?.lawyers)
                 ) {
                     const mappedExperts =
-                        data.lawyers.map(
+                        (data.lawyers as Lawyer[])
+                        .sort((a: Lawyer, b: Lawyer) => {
+                            const orderA = a.display_order ?? Number.MAX_SAFE_INTEGER
+                            const orderB = b.display_order ?? Number.MAX_SAFE_INTEGER
+                            return orderA - orderB || a.id - b.id
+                        })
+                        .map(
                             (lawyer: Lawyer): Expert => {
                                 const meta =
                                     EXPERT_METADATA[
                                         lawyer.name
                                     ] || {
+                                        display_order: null,
                                         image: null,
                                         location:
                                             "Punjab, India",
@@ -228,7 +237,8 @@ export default function Experts() {
                                     role:
                                         lawyer.address ||
                                         "Expert Legal Advisor",
-                                  
+
+                                    display_order: lawyer.display_order ?? null,
 
                                     image: finalImage,
 
