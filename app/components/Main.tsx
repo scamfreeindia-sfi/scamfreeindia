@@ -39,7 +39,7 @@ export default function Main() {
 
                         <ul className="space-y-4 text-brand-primary/90 font-medium">
                             {[
-                                "Verified Expert Lawyers",
+                                "Verified Experts",
                                 "100% Secure & Confidential",
                                 "Available 24/7 Support"
                             ].map((item, itemIndex) => (

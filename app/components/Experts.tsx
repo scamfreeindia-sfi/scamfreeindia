@@ -35,11 +35,11 @@ const EXPERT_METADATA: Record<
         specializations: ["Legal Expert"],
     },
     "Adv. Pardeep Singh Komboj": {
-        image: null,
+        image: "/pardeep.png",
         specializations: ["Legal Expert"],
     },
     "Adv. G.S Cheema": {
-        image: null,
+        image: "/cheema.jpeg",
         specializations: ["Legal Expert"],
     },
     "Rahul Kaushal": {
@@ -58,7 +58,7 @@ const getFallbackStyle = (name: string) => {
     // Default fallback (e.g. Rahul Kaushal)
     return {
         borderClass: "border border-slate-700/60 shadow-[0_0_12px_rgba(59,130,246,0.15)]",
-        textClass: "text-blue-500/80 font-bold",
+        textClass: "text-gray-500/80 font-bold",
     };
 };
 
@@ -194,60 +194,60 @@ export default function Experts() {
                 ) {
                     const mappedExperts =
                         (data.lawyers as Lawyer[])
-                        .sort((a: Lawyer, b: Lawyer) => {
-                            const orderA = a.display_order ?? Number.MAX_SAFE_INTEGER
-                            const orderB = b.display_order ?? Number.MAX_SAFE_INTEGER
-                            return orderA - orderB || a.id - b.id
-                        })
-                        .map(
-                            (lawyer: Lawyer): Expert => {
-                                const meta =
-                                    EXPERT_METADATA[
+                            .sort((a: Lawyer, b: Lawyer) => {
+                                const orderA = a.display_order ?? Number.MAX_SAFE_INTEGER
+                                const orderB = b.display_order ?? Number.MAX_SAFE_INTEGER
+                                return orderA - orderB || a.id - b.id
+                            })
+                            .map(
+                                (lawyer: Lawyer): Expert => {
+                                    const meta =
+                                        EXPERT_METADATA[
                                         lawyer.name
-                                    ] || {
-                                        display_order: null,
-                                        image: null,
-                                        location:
-                                            "Punjab, India",
-                                        specializations: ["Cyber Expert"],
+                                        ] || {
+                                            display_order: null,
+                                            image: null,
+                                            location:
+                                                "Punjab, India",
+                                            specializations: ["Cyber Expert"],
+                                        };
+                                    let finalImage = null;
+                                    if (lawyer.image) {
+                                        finalImage = lawyer.image.startsWith("http")
+                                            ? lawyer.image
+                                            : `${backendUrl}/storage/${lawyer.image}`;
+                                    } else {
+                                        finalImage = meta.image || null;
+                                    }
+
+                                    const specs = (lawyer.specializations || [])
+                                        .map((spec: any) => {
+                                            if (spec && typeof spec === "object" && spec.title) {
+                                                return spec.title;
+                                            }
+                                            return typeof spec === "string" ? spec : "";
+                                        })
+                                        .filter(Boolean);
+
+                                    return {
+                                        name:
+                                            lawyer.name ||
+                                            "Unknown Expert",
+
+                                        role:
+                                            lawyer.address ||
+                                            "Expert Legal Advisor",
+
+                                        display_order: lawyer.display_order ?? null,
+
+                                        image: finalImage,
+
+                                        specializations: specs.length > 0
+                                            ? specs
+                                            : meta.specializations,
                                     };
-                                let finalImage = null;
-                                if (lawyer.image) {
-                                    finalImage = lawyer.image.startsWith("http")
-                                        ? lawyer.image
-                                        : `${backendUrl}/storage/${lawyer.image}`;
-                                } else {
-                                    finalImage = meta.image || null;
                                 }
-
-                                const specs = (lawyer.specializations || [])
-                                    .map((spec: any) => {
-                                        if (spec && typeof spec === "object" && spec.title) {
-                                            return spec.title;
-                                        }
-                                        return typeof spec === "string" ? spec : "";
-                                    })
-                                    .filter(Boolean);
-
-                                return {
-                                    name:
-                                        lawyer.name ||
-                                        "Unknown Expert",
-
-                                    role:
-                                        lawyer.address ||
-                                        "Expert Legal Advisor",
-
-                                    display_order: lawyer.display_order ?? null,
-
-                                    image: finalImage,
-
-                                    specializations: specs.length > 0
-                                        ? specs
-                                        : meta.specializations,
-                                };
-                            }
-                        );
+                            );
 
                     setExperts(mappedExperts);
                 }
@@ -274,10 +274,10 @@ export default function Experts() {
             {/* Giant Vertical "EXPERTS" background text */}
             <div className="absolute left-[-180px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-0 hidden lg:block">
                 <div className="text-[14rem] font-black tracking-[0.25em] text-transparent -rotate-90 origin-center select-none"
-                     style={{
-                         WebkitTextStroke: '2px rgba(255, 255, 255, 0.025)',
-                         fontFamily: 'system-ui, sans-serif'
-                     }}>
+                    style={{
+                        WebkitTextStroke: '2px rgba(255, 255, 255, 0.025)',
+                        fontFamily: 'system-ui, sans-serif'
+                    }}>
                     EXPERTS
                 </div>
             </div>
@@ -409,7 +409,7 @@ export default function Experts() {
             {isModalOpen && selectedExpert && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                     {/* Backdrop */}
-                    <div 
+                    <div
                         onClick={() => setIsModalOpen(false)}
                         className="absolute inset-0 bg-[#0B0C10]/80 backdrop-blur-md transition-opacity duration-300 animate-in fade-in"
                     />

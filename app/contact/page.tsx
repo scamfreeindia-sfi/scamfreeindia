@@ -127,12 +127,21 @@ export default function ContactPage() {
                                     </svg>
                                 </div>
                                 <div className="w-full">
-                                    <h4 className="font-bold text-lg mb-1">Office Location</h4>
-                                    <p className="text-brand-secondary">IT city Mohali</p>
-                                    <p className="text-xs text-brand-secondary/60 mt-1 mb-4">Punjab, India</p>                                   
+                                    <h4 className="font-bold text-lg mb-1">Registered Office</h4>
+                                    <p className="text-brand-primary font-medium text-sm">Inventour Legal LLP <span className="text-amber-400 font-mono text-xs">(LLPIN: ACD-2916)</span></p>
+                                    <p className="text-brand-secondary text-sm">Sco 29, Citi Centre, F Block, Aerocity</p>
+                                    <p className="text-xs text-brand-secondary/70 mt-0.5">Mohali, Punjab &ndash; 140306, India</p>                                   
                                 </div>
                             </div>
-                        </div>                      
+                        </div>
+
+                        {/* Legal Clarity Badge */}
+                        <div className="p-5 rounded-2xl bg-brand-section/80 border border-brand-border text-xs text-brand-secondary leading-relaxed space-y-2">
+                            <p className="font-bold text-white text-sm">Official Entity Notice</p>
+                            <p>
+                                ScamFreeIndia is an initiative/brand of Inventour Legal LLP. The services offered include scam awareness, general procedural guidance, complaint preparation, document organisation, and administrative assistance. Legal advice and representation, where required, are provided only through an appropriately qualified advocate under a separate engagement.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

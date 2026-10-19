@@ -38,7 +38,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                             </div>
                         </div>
                         <p className="text-brand-secondary leading-relaxed max-w-xs">
-                            
+
                             Empowering victims of online fraud with expert guidance and awareness to navigate the recovery process effectively.
                         </p>
                     </div>
@@ -95,7 +95,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                         </ul>
                     </div>
                 </div>
-            
+
                 {/* Disclaimer Section */}
                 <div className="pt-10 border-t border-brand-border">
                     <div className="flex flex-col lg:flex-row justify-between gap-8 items-start">
@@ -103,7 +103,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                             <p className="text-xs text-brand-secondary/70 leading-relaxed mb-4">
                                 <span className="text-brand-primary font-semibold">Disclaimer: </span>
                                 Scam Free India is a marketing name used by Inventour Legal LLP. All payments for services are received in the legal name of Inventour Legal LLP.
-                                We provide legal consultation, documentation, and assistance in various legal matters through lawful procedures and appropriate legal mechanisms.                                
+                                We provide legal consultation, documentation, and assistance in various legal matters through lawful procedures and appropriate legal mechanisms.
                                 We do not guarantee the recovery of funds, refunds, or any specific outcome or timeline. Inventour Legal LLP shall not be liable solely for non-recovery of funds or outcomes beyond its reasonable control, subject to applicable laws and professional obligations
                             </p>
                             <p className="text-xs text-brand-secondary/50">

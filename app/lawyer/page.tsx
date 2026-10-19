@@ -684,11 +684,19 @@ export default function LawyerPage() {
                         </div>
 
                         {/* Footer action / confirmation */}
-                        <div className="mt-8 pt-6 border-t border-slate-100 flex justify-end">
+                        <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <a
+                                href="/refund-policy"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs font-semibold text-slate-500 hover:text-slate-800 underline"
+                            >
+                                View Detailed Refund &amp; Cancellation Policy &rarr;
+                            </a>
                             <button
                                 onClick={() => setIsRefundModalOpen(false)}
                                 type="button"
-                                className="px-6 py-3 bg-[#0F172A] hover:bg-slate-800 text-white rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-[0.98]"
+                                className="w-full sm:w-auto px-6 py-3 bg-[#0F172A] hover:bg-slate-800 text-white rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-[0.98]"
                             >
                                 I Understand
                             </button>
