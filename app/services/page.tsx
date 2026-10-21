@@ -243,10 +243,6 @@ export default function ServicesPage() {
                                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                                 Filing Assistance
                             </div>
-                            <div className="flex items-center gap-2 font-medium">
-                                <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                                Legal Consultations
-                            </div>
                         </div>
                     </div>
                 </div>
