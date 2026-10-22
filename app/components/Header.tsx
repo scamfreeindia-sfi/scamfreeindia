@@ -83,19 +83,16 @@ export default function Header() {
                             className="relative group transition-colors hover:text-brand-primary text-lg"
                         >
                             <span>{item}</span>
-                            {/* Animated underline */}
                             <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
                         </Link>
                     ))}
                 </nav>
 
                 <div className="flex items-center gap-2 sm:gap-3">
-                    {/* Desktop & Mobile CTA */}
                     <Link href="/lawyer" className="inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-xs sm:text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg active:scale-95 whitespace-nowrap">
-                        Talk to Lawyer
+                        Inventour Legal LLP
                     </Link>
 
-                    {/* Mobile Toggle */}
                     <button
                         type="button"
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}

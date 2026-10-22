@@ -8,6 +8,7 @@ import ComplaintGuide from "./ComplaintGuide";
 import Form from "./Form";
 import Testomenial from "./Testomenial";
 import CaseStudy from "./CaseStudy";
+import LegalService from "./LegalService";
 
 export default function Main() {
 
@@ -72,6 +73,7 @@ export default function Main() {
                 </div>
             </section>
             <CaseStudy />
+            <LegalService/>
             <Experts />           
             <SebiIntermediaries />
             <FraudSection />            

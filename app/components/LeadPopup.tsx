@@ -5,9 +5,18 @@ import { useState, useEffect, useRef } from "react";
 type LeadPopupProps = {
   open?: boolean;
   setOpen?: (open: boolean) => void;
+  serviceTitle?: string;
+  serviceSlug?: string;
+  subService?: string;
 };
 
-export default function LeadPopup({ open: controlledOpen, setOpen: controlledSetOpen }: LeadPopupProps = {}) {
+export default function LeadPopup({
+  open: controlledOpen,
+  setOpen: controlledSetOpen,
+  serviceTitle,
+  serviceSlug,
+  subService,
+}: LeadPopupProps = {}) {
   const [internalOpen, setInternalOpen] = useState(false);
   const open = controlledOpen ?? internalOpen;
   const setOpen = controlledSetOpen ?? setInternalOpen;
@@ -43,16 +52,20 @@ export default function LeadPopup({ open: controlledOpen, setOpen: controlledSet
     try {
       setLoading(true);
 
+      const leadMessage = serviceTitle
+        ? `Legal Consultation for ${serviceTitle}${subService ? ` (${subService})` : ""}${serviceSlug ? ` [slug: ${serviceSlug}]` : ""}`
+        : "Lead from 10-second popup";
+
       const res = await fetch(`${apiBaseUrl}/api/scam/lead`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: "Lead Popup",
+          name: serviceTitle ? `${serviceTitle} Consultation` : "Lead Popup",
           phone,
           amount: "",
-          message: "Lead from 10-second popup"
+          message: leadMessage,
         }),
       });
 
@@ -121,10 +134,12 @@ export default function LeadPopup({ open: controlledOpen, setOpen: controlledSet
                 </svg>
               </div>
               <h2 className="text-2xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                Need Advice?
+                {serviceTitle ? `Consult a ${serviceTitle} Lawyer` : "Need Advice?"}
               </h2>
               <p className="text-brand-secondary text-[15px] mt-2">
-                Speak with Professionals. Leave your number and our team will call you back for a consultation.
+                {serviceTitle
+                  ? `Speak directly with a specialist advocate for ${serviceTitle}. Leave your mobile number for a callback.`
+                  : "Speak with Professionals. Leave your number and our team will call you back for a consultation."}
               </p>    
             </div>
 

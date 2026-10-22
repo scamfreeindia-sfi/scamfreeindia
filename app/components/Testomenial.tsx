@@ -3,7 +3,7 @@ const testimonials = [
     name: "Ramesh Kumar",
     location: "Mumbai",
     case: "Phishing Scam",
-    text: "I lost ₹50,000 to a fake bank SMS scam. The ScamFreeIndia team guided me on how to immediately freeze my account and file an FIR. I managed to recover my funds within 48 hours!",
+    text: "I lost ₹50,000 to a fake bank SMS scam. The ScamFreeIndia team guided me on how to immediately freeze my account and file an FIR. I managed to recover!",
     rating: 5,
     initial: "R",
     color: "bg-blue-600"
