@@ -1,6 +1,7 @@
 "use client"
 import { useState, useMemo, useEffect } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 
@@ -285,6 +286,12 @@ export default function LawyerPage() {
                                         <span className="text-slate-900 text-sm font-bold tracking-tight">Verified Legal Experts</span>
                                     </div>
 
+                                    <Link
+                                        href="/lawyer-registration"
+                                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-300 text-amber-900 text-xs font-semibold hover:bg-amber-100 transition shadow-xs"
+                                    >
+                                        <span>Are you an advocate? Join our network →</span>
+                                    </Link>
                                 </div>
 
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 items-center">

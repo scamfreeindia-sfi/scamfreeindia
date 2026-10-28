@@ -52,6 +52,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                                 <li><Link href="/contact" className="hover:text-brand-primary transition-colors">Contact Us</Link></li>
                                 <li><Link href="/blog" className="hover:text-brand-primary transition-colors">Blog</Link></li>
                                 <li><Link href="/payment" className="hover:text-brand-primary transition-colors">Book Consultation</Link></li>
+                                <li><Link href="/lawyer-registration" className="hover:text-amber-300 text-amber-400/90 font-medium transition-colors">Register as a Lawyer</Link></li>
                             </ul>
                         </nav>
                     </div>

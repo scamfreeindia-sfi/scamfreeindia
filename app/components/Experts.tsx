@@ -350,7 +350,7 @@ export default function Experts() {
                                 {/* Avatar / Portrait Circle */}
                                 <div className="mb-6 relative flex-shrink-0">
                                     {expert.image ? (
-                                        <div className="relative h-[140px] w-[140px] overflow-hidden rounded-full border border-zinc-700/40 bg-[#1A1A1F] transition-all duration-500 group-hover:border-blue-500/80">
+                                        <div className="relative h-[140px] w-[140px] overflow-hidden border border-zinc-700/40 bg-[#1A1A1F] transition-all duration-500 group-hover:border-blue-500/80">
                                             <Image
                                                 src={expert.image}
                                                 alt={expert.name}
@@ -429,7 +429,7 @@ export default function Experts() {
 
                         {isSuccess ? (
                             <div className="py-8 flex flex-col items-center text-center space-y-6 animate-in fade-in zoom-in duration-500">
-                                <div className="w-20 h-20 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                                <div className="w-20 h-20 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center text-blue-400 ">
                                     <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                     </svg>
@@ -447,7 +447,7 @@ export default function Experts() {
                                     {/* Expert Portrait in Modal */}
                                     <div className="mb-4 relative flex justify-center">
                                         {selectedExpert.image ? (
-                                            <div className="w-[100px] h-[100px] rounded-full overflow-hidden border-2 border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)] relative">
+                                            <div className="w-[100px] h-[100px] rounded-full overflow-hidden border-2 border-blue-500/50  relative">
                                                 <Image
                                                     src={selectedExpert.image}
                                                     alt={selectedExpert.name}

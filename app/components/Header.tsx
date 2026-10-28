@@ -4,39 +4,20 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 export default function Header() {
     const pathname = usePathname()
-    const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     const navItems = ["Home", "Blog", "About", "Contact", "Services"]
     const isLawyerPage = pathname === "/lawyer" || pathname === "/lawyer/"
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20)
-        }
-
-        window.addEventListener("scroll", handleScroll, { passive: true })
-
-        return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
-
     return (
         <header
-            className={`fixed top-0 left-0 w-full z-50 flex justify-center transition-all duration-500 ${isScrolled
-                ? "pt-4 px-4"
-                : "bg-brand-section/90 backdrop-blur border-b border-brand-border"
-                }`}
+            className={`fixed top-0 left-0 w-full z-50 flex justify-center border-b bg-brand-section/90 backdrop-blur border-brand-border`}
         >
-            <div
-                className={`flex items-center justify-between w-full transition-all duration-500 ${isScrolled
-                    ? "max-w-5xl bg-brand-card/80 backdrop-blur-xl border border-brand-border shadow-lg rounded-full px-4 py-2.5 sm:px-5 sm:py-3"
-                    : "max-w-7xl px-4 sm:px-6 md:px-16 py-4"
-                    }`}
-            >
+            <div className="flex items-center justify-between w-full max-w-7xl px-4 sm:px-6 lg:px-10 py-3">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-1.5 sm:gap-2 group">
                     <div className={`rounded-full w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center overflow-hidden shadow-sm shadow-[#FFA500]/20 transition-transform group-hover:scale-105 ${isLawyerPage ? "bg-white" : "bg-white/5"}`}>
@@ -69,7 +50,7 @@ export default function Header() {
 
 
                 {/* Navigation */}
-                <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-14 text-sm font-medium text-brand-secondary">
+                <nav aria-label="Main navigation" className="hidden md:flex flex-1 justify-center items-center gap-6 lg:gap-10 text-sm font-medium text-brand-secondary">
                     {navItems.map((item) => (
                         <Link
                             key={item}
@@ -80,16 +61,29 @@ export default function Header() {
                                             item === "Services" ? "/services" :
                                                 "/contact"
                             }
-                            className="relative group transition-colors hover:text-brand-primary text-lg"
+                            className="relative group transition-colors hover:text-brand-primary text-[15px] py-1"
                         >
                             <span>{item}</span>
-                            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
+                            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
                         </Link>
                     ))}
                 </nav>
 
                 <div className="flex items-center gap-2 sm:gap-3">
-                    <Link href="/lawyer" className="inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-xs sm:text-sm font-bold transition shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg active:scale-95 whitespace-nowrap">
+                    <Link
+                        href="/lawyer-registration"
+                        className="hidden sm:inline-flex items-center gap-1.5 border border-amber-500/50 text-amber-300 hover:text-white hover:bg-amber-500/20 hover:border-amber-400 text-xs sm:text-sm font-medium px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg transition active:scale-95 whitespace-nowrap"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <line x1="19" x2="19" y1="8" y2="14" />
+                            <line x1="22" x2="16" y1="11" y2="11" />
+                        </svg>
+                        <span>Register as a Lawyer</span>
+                    </Link>
+
+                    <Link href="/lawyer" className="inline-flex bg-brand-green hover:brightness-110 text-brand-bg text-xs sm:text-sm font-bold transition shadow-[0_4px_14px_0_rgba(255,165,0,0.35)] px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg active:scale-95 whitespace-nowrap">
                         Inventour Legal LLP
                     </Link>
 
@@ -128,6 +122,13 @@ export default function Header() {
                                 {item}
                             </Link>
                         ))}
+                        <Link
+                            href="/lawyer-registration"
+                            className="px-5 py-4 text-sm font-semibold text-amber-400 hover:text-amber-300 hover:bg-white/5 transition border-t border-brand-border flex items-center gap-2"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            <span>+ Register as a Lawyer</span>
+                        </Link>
                     </div>
                 </div>
             </div>
